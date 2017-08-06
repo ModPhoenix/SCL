@@ -1,0 +1,54 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+<form class="login form-signin" method="POST" action="{% url 'account_login' %}">
+<h2 class="form-signin-heading">{% trans "Sign In" %}</h2>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>Войдите на сайт при помощии одной из социальных сетей:</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+{% csrf_token %}
+<label for="id_login" class="sr-only">Имя пользователя:</label>
+<input type="text" class="form-control top" name="login" autofocus="autofocus" id="id_login" maxlength="150" required="" placeholder="Имя пользователя">
+<label for="id_password" class="sr-only">Пароль:</label>
+<input type="password" class="form-control bottom" name="password" placeholder="Пароль" id="id_password" required="">
+<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+  <input type="checkbox" class="custom-control-input" name="remember">
+  <span class="custom-control-indicator"></span>
+  <span class="custom-control-description">Запомнить меня</span>
+</label>
+{% if redirect_field_value %}
+<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+{% endif %}
+<button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign In" %}</button>
+<div><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
+<div><a href="{% url 'account_signup' %}">Зарегистрироватся</a></div>
+</form>
+
+</div>
+{% endblock %}

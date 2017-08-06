@@ -1,0 +1,29 @@
+from django.db import models
+from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
+from unidecode import unidecode
+
+
+class Post(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    title = models.CharField(max_length=120)
+    slug = models.SlugField(unique=False)
+    content = models.TextField()
+    published = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-date"]
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("blog:detail", kwargs={"slug": self.slug, "id": self.id})
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(unidecode(self.title))
+        return super(Post, self).save(*args, **kwargs)

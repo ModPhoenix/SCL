@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+<form class="signup form-signin" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  <h2 class="form-signin-heading">{% trans "Sign Up" %}</h2>
+
+  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+  {% csrf_token %}
+
+  <label for="id_username" class="sr-only">Имя пользователя:</label>
+  <input type="text" class="form-control top" name="username" id="id_username" placeholder="Имя пользователя" minlength="1" required="" maxlength="150" autofocus="autofocus">
+  <label for="id_email" class="sr-only">E-mail:</label>
+  <input type="email" class="form-control mid" name="email" id="id_email" placeholder="E-mail адрес">
+  <label for="id_password1" class="sr-only">Пароль:</label>
+  <input type="password" class="form-control mid" name="password1" id="id_password1" required="" placeholder="Пароль">
+  <label for="id_password2" class="sr-only">Пароль (еще раз):</label>
+  <input type="password" class="form-control bottom" name="password2" id="id_password2" required="" placeholder="Пароль (еще раз)">
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit" class="btn btn-lg btn-primary btn-block">{% trans "Sign Up" %} &raquo;</button>
+</form>
+</div>
+{% endblock %}

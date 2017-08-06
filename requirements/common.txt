@@ -1,0 +1,4 @@
+Django==1.11.3
+pytz==2017.2
+Unidecode==0.4.21
+django-allauth==0.32.0

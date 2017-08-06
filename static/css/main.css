@@ -1,0 +1,211 @@
+color {
+  color: #212121;
+  color: #424242;
+  color: #6d6d6d;
+  color: #1b1b1b;
+}
+
+html {
+  height: 300%;
+  margin-top: 56px !important;
+}
+
+body {
+  color: #eeeeee;
+  background-color: #191919;
+}
+
+/* Header star */
+
+nav .profile .dropdown-menu {
+  right: 0;
+  left: initial;
+}
+
+nav .link-create {
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+nav .btn-create {
+  cursor: pointer;
+}
+
+/* Header end */
+
+/* Signin start */
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin .btn-block {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.form-signin .top {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin .mid {
+  margin-bottom: -1px;
+  border-radius: 0;
+}
+
+.form-signin .bottom {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/* Signin end */
+
+/* Article start */
+
+.main {
+  margin-top: 50px;
+}
+
+article.post {
+  margin-bottom: 20px;
+}
+article .post-content,
+article .post-footer {
+  background-color: #323232;
+}
+
+article .post-content {
+  padding: 1.25rem 1.25rem 10px 1.25rem;
+}
+
+article .post-text {
+  margin: 0;
+}
+
+article .post-footer {
+  padding: 10px 1.25rem;
+}
+
+article .post-footer > div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+article .post-author-img {
+    margin: 0 5px 3px 0;
+}
+
+/* Article end */
+
+/* Comments start */
+
+#comments {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 30px 70px;
+  background-color: #323232;
+}
+
+#comments .comments-header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+/* Comments end */
+
+/* Quill editor start */
+
+.form-control {
+  color: #eeeeee;
+  background-color: #323232;
+}
+
+.form-control:focus {
+    color: #fff;
+    background-color: #323232;
+    border-color: #5cb3fd;
+    outline: 0;
+}
+
+.hide {
+  display: none; 
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ql-container {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    background-color: #323232;
+}
+
+.ql-toolbar.ql-snow {
+    border: none !important;
+    background-color: #323232;
+}
+
+.ql-snow .ql-picker {
+    color: #fff !important;
+}
+
+.ql-container.ql-snow {
+    border: none !important;
+}
+
+.ql-editor {
+    line-height: inherit !important;
+}
+
+
+
+/* Quill editor end */
+
+/* post-detail start */
+
+  .wrapper-post-detail {
+    background-color: #323232;
+    padding: 30px 40px;
+  }
+
+  .post-info {
+    margin-bottom: 15px;
+  }
+  
+  .post-info > div {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .post-detail-title {
+    margin-bottom: 20px;
+  }
+
+  .post-detail-content {
+    padding: 0;
+  }
+
+/* post-detail end */

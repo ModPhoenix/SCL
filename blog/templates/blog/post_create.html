@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+{% block extend %}
+  {% load staticfiles %}
+  <link rel='stylesheet' href='{% static "css/quill.snow.css" %}' />
+  <script src="{% static 'js/jquery.sticky-kit.js' %}"></script>
+  <style>
+    body > #standalone-container {
+      margin: 50px auto;
+      max-width: 720px;
+    }
+    #editor-container {
+      min-height: 500px;
+    }
+  </style>
+{% endblock extend %}
+{% block content %}
+<div class="container main">
+    <h2>Создать Пост</h2>
+    <form method="POST" class="post-form">
+      {% csrf_token %}
+      <div class="row">
+        <div class="main-form col-md-8">
+          <div class="form-group">
+            {{ form.title }}
+            {{ form.content }}
+          </div>
+          <div class="form-group">
+            {% include 'editor/editor.html' %}
+          </div>
+          <div class="form-group">
+            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+              <!-- <input type="checkbox" class="custom-control-input" name="published" id="id_published"> -->
+              {{ form.published }}
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Опубликовано</span>
+            </label>
+            <button type="submit" class="save btn btn-primary">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>
+{% endblock content %}
