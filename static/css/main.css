@@ -3,6 +3,8 @@ color {
   color: #424242;
   color: #6d6d6d;
   color: #1b1b1b;
+
+  color: #292929;
 }
 
 html {
@@ -12,8 +14,12 @@ html {
 
 body {
   font-family: 'Roboto',"Helvetica Neue",Arial,sans-serif;
-  color: #eeeeee;
-  background-color: #191919;
+  color: rgba(255, 255, 255, 0.882);
+  background-color: #131313;
+}
+
+.bg-inverse {
+    background-color: #232323!important;
 }
 
 /* Header star */
@@ -30,6 +36,10 @@ nav .link-create {
 
 nav .btn-create {
   cursor: pointer;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-toggler {
+    color: rgba(255, 255, 255, 0.882);
 }
 
 /* Header end */
@@ -128,10 +138,41 @@ article .post-author-img {
   background-color: #323232;
 }
 
+#comments .comments-header {
+  margin-bottom: 40px;
+}
+
 #comments .comments-header h2 {
   font-size: 1.4rem;
   margin: 0;
 }
+
+#author-thumbnail {
+  width: 56px;
+  float: left;
+}
+
+#comments .author-comment-avatar {
+  margin-top: 4px;
+}
+
+#comment-body {
+  float: left;
+}
+
+#comments .comment-header {
+    margin-bottom: 2px;
+}
+
+#comments .comment-header > div {
+  display: inline-block;
+}
+
+#comments .header-author {
+  margin-right: 10px;
+}
+
+
 
 /* Comments end */
 
@@ -188,7 +229,7 @@ p {
 /* post-detail start */
 
   .wrapper-post-detail {
-    background-color: #323232;
+    background-color: #292929;
     padding: 30px 40px;
   }
 
