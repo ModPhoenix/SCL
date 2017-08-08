@@ -200,6 +200,11 @@ article .post-author-img {
     margin-left: 55px;
 }
 
+#comments .comment-form-reply {
+  margin-top: 10px;
+  margin-left: 56px;
+}
+
 /* Comments end */
 
 /* Quill editor start */

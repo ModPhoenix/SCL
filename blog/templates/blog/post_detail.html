@@ -63,30 +63,58 @@
                 <div class="comment-content">{{ comment.content }}</div>
               </div>
             </div>
-            <div class="comment-reply clearfix">
-               {% for child_comment in comments_children %}
-                    {% if child_comment.parent_id == comment.id %}
-                      <div id="comment-{{child_comment.id}}" class="comment clearfix">
-                        <div id="author-thumbnail">
-                          <a href="">
-                            <img src="holder.js/40x40" alt="{{ child_comment.author }}" class="rounded-circle author-comment-avatar">
-                          </a>
-                        </div>
-                        <div id="comment-body">
-                          <div class="comment-header">
-                            <div class="header-author">
-                              <a href="" class="comment-author">{{ child_comment.author }}</a>
-                            </div>
-                            <div class="heaser-date">
-                              <div class="comment-date">{{ child_comment.date|timesince }} назад</div>
-                            </div>
-                          </div>
-                          <div class="comment-content">{{ child_comment.content }}</div>
-                        </div>
-                      </div>
-                    {%endif%}
-               {% endfor %}
+            <div class="comment-form comment-form-reply clearfix">
+              <div class="form-wapper">
+                <form method="POST" action="">
+                  {% csrf_token %}
+                  {{ comment_form.content_type }}
+                  {{ comment_form.object_id }}
+                  <input type="hidden" name="parent_id" id="id_parent_id" value="{{ comment.id }}">
+                  <label for="id_content" class="sr-only">Комментарий:</label>
+                  <textarea name="content" class="form-control" cols="40" rows="3" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
+                  <button type="submit" class="btn btn-primary">Комментировать</button>
+                </form>
+              </div>
             </div>
+            {% for child_comment in comments_children %}
+              {% if child_comment.parent_id == comment.id %}
+                <div class="comment-reply clearfix">
+                  <div id="comment-{{child_comment.id}}" class="comment">
+                    <div class="clearfix">
+                      <div id="author-thumbnail">
+                        <a href="">
+                          <img src="holder.js/40x40" alt="{{ child_comment.author }}" class="rounded-circle author-comment-avatar">
+                        </a>
+                      </div>
+                      <div id="comment-body">
+                        <div class="comment-header">
+                          <div class="header-author">
+                            <a href="" class="comment-author">{{ child_comment.author }}</a>
+                          </div>
+                          <div class="heaser-date">
+                            <div class="comment-date">{{ child_comment.date|timesince }} назад</div>
+                          </div>
+                        </div>
+                        <div class="comment-content">{{ child_comment.content }}</div>
+                      </div>
+                    </div>
+                    <div class="comment-form comment-form-reply clearfix">
+                      <div class="form-wapper">
+                        <form method="POST" action="">
+                          {% csrf_token %}
+                          {{ comment_form.content_type }}
+                          {{ comment_form.object_id }}
+                          <input type="hidden" name="parent_id" id="id_parent_id" value="{{ comment.id }}">
+                          <label for="id_content" class="sr-only">Комментарий:</label>
+                          <textarea name="content" class="form-control" cols="40" rows="3" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
+                          <button type="submit" class="btn btn-primary">Комментировать</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {%endif%}
+              {% endfor %}
           </div>
           {% endfor %}
         </div>

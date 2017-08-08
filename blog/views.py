@@ -30,7 +30,6 @@ def post_detail(request, id, slug):
         else:
             comments_children.append(comment)
 
-
     initial_data = {
         'content_type': post.get_conttent_type,
         'object_id': post.id,
@@ -41,16 +40,25 @@ def post_detail(request, id, slug):
         content_type = ContentType.objects.get(model=c_type)
         object_id = comment_form.cleaned_data['object_id']
         content_data = comment_form.cleaned_data['content']
+        parent_object = None
+
         try:
-            parent_id = int(request.POST.get("parent_id"))
+            parent_id = comment_form.cleaned_data['parent_id']
         except:
             parent_id = None
+
+        if parent_id != None:
+            print("parent_id != None")
+            parent_qs = Comment.objects.filter(id=parent_id)
+            if parent_qs.exists():
+                parent_object = parent_qs.first()
+
         new_comment = Comment.objects.create(
             author=request.user,
             content_type=content_type,
             object_id=object_id,
             content=content_data,
-            parent=parent_id,
+            parent=parent_object,
         )
         return HttpResponseRedirect("%s#comment-%s" % (new_comment.content_object.get_absolute_url(), new_comment.id))
 
