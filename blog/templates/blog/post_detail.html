@@ -24,27 +24,45 @@
         <div class="comments-header">
           <h2>0 комментариев</h2>
         </div>
+        <div class="comment-form clearfix">
+          <div id="author-thumbnail">
+            <a href="">
+              <img src="holder.js/40x40" alt="{{ comment.author }}" class="rounded-circle author-comment-avatar">
+            </a>
+          </div>
+          <div class="form-wapper">
+            <form method="POST" action="">
+              {% csrf_token %}
+              {{ comment_form.content_type }}
+              {{ comment_form.object_id }}
+              {{ comment_form.parent_id }}
+              <label for="id_content" class="sr-only">Комментарий:</label>
+              <textarea name="content" class="form-control" cols="40" rows="3" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
+              <button type="submit" class="btn btn-primary">Комментировать</button>
+            </form>
+          </div>
+        </div>
         <div class="comments-content">
-          <div id="comment-n" class="clearfix">
+          {% for comment in comments %}
+          <div id="comment-{{comment.id}}" class="comment clearfix">
             <div id="author-thumbnail">
               <a href="">
-                <img src="holder.js/40x40" alt="..." class="rounded-circle author-comment-avatar">
+                <img src="holder.js/40x40" alt="{{ comment.author }}" class="rounded-circle author-comment-avatar">
               </a>
             </div>
             <div id="comment-body">
               <div class="comment-header">
                 <div class="header-author">
-                  <a href="" class="comment-author">Swarog</a>
+                  <a href="" class="comment-author">{{ comment.author }}</a>
                 </div>
                 <div class="heaser-date">
-                  <div class="comment-date">24 июля 2017 г. 16:37</div>
+                  <div class="comment-date">{{ comment.date|timesince }} назад</div>
                 </div>
               </div>
-              <div class="comment-content">
-                После годового перерыва на TI возвращается представитель Беларуси (правда, вместо  fng это будет  j4).
-              </div>
+              <div class="comment-content">{{ comment.content }}</div>
             </div>
           </div>
+          {% endfor %}
         </div>
       </div>
     </div>

@@ -147,6 +147,23 @@ article .post-author-img {
   margin: 0;
 }
 
+#comments .comment {
+  margin-bottom: 20px;
+}
+
+#comments .comment-form {
+  margin-bottom: 20px;
+}
+
+#comments .form-wapper {
+  float: left;
+  width: calc(100% - 56px);
+}
+
+#comments .comment-form textarea {
+  margin-bottom: 10px;
+}
+
 #author-thumbnail {
   width: 56px;
   float: left;
@@ -158,6 +175,7 @@ article .post-author-img {
 
 #comment-body {
   float: left;
+  width: calc(100% - 56px);
 }
 
 #comments .comment-header {
@@ -172,7 +190,10 @@ article .post-author-img {
   margin-right: 10px;
 }
 
-
+#comments .comment-author {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.882);
+}
 
 /* Comments end */
 
@@ -180,12 +201,12 @@ article .post-author-img {
 
 .form-control {
   color: #eeeeee;
-  background-color: #323232;
+  background-color: #404040;
 }
 
 .form-control:focus {
     color: #fff;
-    background-color: #323232;
+    background-color: #404040;
     border-color: #5cb3fd;
     outline: 0;
 }
