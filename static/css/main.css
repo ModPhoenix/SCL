@@ -195,6 +195,11 @@ article .post-author-img {
   color: rgba(255, 255, 255, 0.882);
 }
 
+#comments .comment-reply {
+    margin-top: 20px;
+    margin-left: 55px;
+}
+
 /* Comments end */
 
 /* Quill editor start */

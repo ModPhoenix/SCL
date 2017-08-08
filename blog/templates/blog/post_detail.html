@@ -43,23 +43,49 @@
           </div>
         </div>
         <div class="comments-content">
-          {% for comment in comments %}
-          <div id="comment-{{comment.id}}" class="comment clearfix">
-            <div id="author-thumbnail">
-              <a href="">
-                <img src="holder.js/40x40" alt="{{ comment.author }}" class="rounded-circle author-comment-avatar">
-              </a>
-            </div>
-            <div id="comment-body">
-              <div class="comment-header">
-                <div class="header-author">
-                  <a href="" class="comment-author">{{ comment.author }}</a>
-                </div>
-                <div class="heaser-date">
-                  <div class="comment-date">{{ comment.date|timesince }} назад</div>
-                </div>
+          {% for comment in comments_parent %}
+          <div id="comment-{{comment.id}}" class="comment">
+            <div class="clearfix">
+              <div id="author-thumbnail">
+                <a href="">
+                  <img src="holder.js/40x40" alt="{{ comment.author }}" class="rounded-circle author-comment-avatar">
+                </a>
               </div>
-              <div class="comment-content">{{ comment.content }}</div>
+              <div id="comment-body">
+                <div class="comment-header">
+                  <div class="header-author">
+                    <a href="" class="comment-author">{{ comment.author }}</a>
+                  </div>
+                  <div class="heaser-date">
+                    <div class="comment-date">{{ comment.date|timesince }} назад</div>
+                  </div>
+                </div>
+                <div class="comment-content">{{ comment.content }}</div>
+              </div>
+            </div>
+            <div class="comment-reply clearfix">
+               {% for child_comment in comments_children %}
+                    {% if child_comment.parent_id == comment.id %}
+                      <div id="comment-{{child_comment.id}}" class="comment clearfix">
+                        <div id="author-thumbnail">
+                          <a href="">
+                            <img src="holder.js/40x40" alt="{{ child_comment.author }}" class="rounded-circle author-comment-avatar">
+                          </a>
+                        </div>
+                        <div id="comment-body">
+                          <div class="comment-header">
+                            <div class="header-author">
+                              <a href="" class="comment-author">{{ child_comment.author }}</a>
+                            </div>
+                            <div class="heaser-date">
+                              <div class="comment-date">{{ child_comment.date|timesince }} назад</div>
+                            </div>
+                          </div>
+                          <div class="comment-content">{{ child_comment.content }}</div>
+                        </div>
+                      </div>
+                    {%endif%}
+               {% endfor %}
             </div>
           </div>
           {% endfor %}
