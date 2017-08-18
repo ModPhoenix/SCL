@@ -35,9 +35,8 @@
               {% csrf_token %}
               {{ comment_form.content_type }}
               {{ comment_form.object_id }}
-              {{ comment_form.parent_id }}
               <label for="id_content" class="sr-only">Комментарий:</label>
-              <textarea name="content" class="form-control" cols="40" rows="3" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
+              <textarea name="content" class="form-control" cols="40" rows="5" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
               <button type="submit" class="btn btn-primary">Комментировать</button>
             </form>
           </div>
@@ -63,6 +62,11 @@
                 <div class="comment-content">{{ comment.content }}</div>
               </div>
             </div>
+            <div class="comment-footer">
+              <div class="comment-reply-btn">
+                <button class="btn btn-sm reply-btn reply-btn-js">Ответить</button>
+              </div>
+            </div>
             <div class="comment-form comment-form-reply clearfix">
               <div class="form-wapper">
                 <form method="POST" action="">
@@ -71,8 +75,9 @@
                   {{ comment_form.object_id }}
                   <input type="hidden" name="parent_id" id="id_parent_id" value="{{ comment.id }}">
                   <label for="id_content" class="sr-only">Комментарий:</label>
-                  <textarea name="content" class="form-control" cols="40" rows="3" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
+                  <textarea name="content" class="form-control" cols="40" rows="5" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
                   <button type="submit" class="btn btn-primary">Комментировать</button>
+                  <button type="submit" class="btn reply-btn reply-cancel-js">Отменить</button>
                 </form>
               </div>
             </div>
@@ -98,6 +103,11 @@
                         <div class="comment-content">{{ child_comment.content }}</div>
                       </div>
                     </div>
+                    <div class="comment-footer">
+                      <div class="comment-reply-btn">
+                        <button class="btn btn-sm reply-btn reply-btn-js">Ответить</button>
+                      </div>
+                    </div>
                     <div class="comment-form comment-form-reply clearfix">
                       <div class="form-wapper">
                         <form method="POST" action="">
@@ -108,6 +118,7 @@
                           <label for="id_content" class="sr-only">Комментарий:</label>
                           <textarea name="content" class="form-control" cols="40" rows="3" required="" id="id_content" placeholder="Написать комментарий..."></textarea>
                           <button type="submit" class="btn btn-primary">Комментировать</button>
+                          <button type="submit" class="btn reply-btn reply-cancel-js">Отменить</button>
                         </form>
                       </div>
                     </div>

@@ -135,7 +135,7 @@ article .post-author-img {
   margin-top: 40px;
   margin-bottom: 40px;
   padding: 30px 70px;
-  background-color: #323232;
+  background-color: #292929;
 }
 
 #comments .comments-header {
@@ -200,9 +200,33 @@ article .post-author-img {
     margin-left: 55px;
 }
 
+#comments .comment-footer {
+  margin-top: 5px;
+  margin-left: 56px;
+}
+
 #comments .comment-form-reply {
+  display: none;
   margin-top: 10px;
   margin-left: 56px;
+}
+
+#comments .show-reply-form {
+  display: block;
+}
+
+.reply-btn {
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.498);
+  background-image: none;
+  background-color: transparent;
+  border: none;
+}
+
+.reply-btn:hover,
+.reply-btn:active {
+    color: rgba(255, 255, 255, 0.498);
+    background-color: rgba(255, 255, 255, 0.1);;
 }
 
 /* Comments end */
