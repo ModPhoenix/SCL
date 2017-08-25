@@ -2,15 +2,22 @@
 {% block content %}
 <div class="container main">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="user-info">
             <div class="user-avatar">
-                <img src="holder.js/80x80" alt="">
+                <img class="mx-auto d-block" src="holder.js/160x160" alt="">
             </div>
-            <div class="user-name">{{ user_prolile.username }}</div>
+            <div class="user-name text-center"><h1>{{ user_prolile.username }}</h1></div>
         </div>
     </div>
-    <div class="col-md-8"></div>
+    <div class="col-md-6">
+      <div class="posts-list">
+        {% for post in posts %}
+          {% include "blog/post_block.html" %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-3"></div>
   </div>
 </div>
    

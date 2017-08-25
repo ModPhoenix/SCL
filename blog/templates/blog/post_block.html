@@ -1,0 +1,13 @@
+<article class="post">
+  <div class="post-content">
+    <a href="{{ post.get_absolute_url }}"><h4 class="post-title">{{ post.title }}</h4></a>
+    <p class="post-text">{{ post.content|slice:":150" }}</p>
+  </div>
+  <div class="post-img">
+    <img class="img-fluid" src="holder.js/540x250" alt="">
+  </div>
+  <div class="post-footer">
+    <div class="post-date">{{ post.date }}</div>
+    <div class="post-author"><a href="{% url 'profiles:user_profile' username=post.author  %}"><img class="rounded-circle post-author-img" src="holder.js/20x20" alt="">{{ post.author }}</a></div>
+  </div>
+</article>

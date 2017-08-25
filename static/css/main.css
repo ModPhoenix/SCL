@@ -306,3 +306,12 @@ p {
   }
 
 /* post-detail end */
+
+/* profiles start */
+
+.user-info {
+  background-color: #292929;
+  padding: 30px 20px;
+}
+
+/* profiles end */
