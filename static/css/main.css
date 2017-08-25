@@ -18,11 +18,16 @@ body {
   background-color: #131313;
 }
 
-.bg-inverse {
-    background-color: #232323!important;
+.bg-dark {
+  background-color: #232323!important;
 }
 
 /* Header star */
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-brand {
+  color: rgba(255, 255, 255, 0.882);
+}
 
 nav .profile .dropdown-menu {
   right: 0;
@@ -36,10 +41,6 @@ nav .link-create {
 
 nav .btn-create {
   cursor: pointer;
-}
-
-.navbar-inverse .navbar-brand, .navbar-inverse .navbar-toggler {
-    color: rgba(255, 255, 255, 0.882);
 }
 
 /* Header end */
