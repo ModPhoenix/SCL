@@ -130,6 +130,57 @@ article .post-author-img {
 
 /* Article end */
 
+/* Post_create start */
+
+.btn-modal-unload {
+  margin-bottom: 5px;
+}
+
+.modal-header {
+  padding: 15px 15px 0 15px;
+  border-bottom: none;
+}
+
+.modal-file-unload {
+  padding: 15px 0; 
+}
+
+.nav-tabs {
+  border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.nav-tabs .nav-link {
+  color: rgba(255,255,255,.5);
+}
+
+.nav-tabs .nav-item:first-child {
+  margin-left: 10px;
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  border-color: rgba(255,255,255,.15) rgba(255,255,255,.15) transparent;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: rgba(255, 255, 255, 0.882);
+  background: none; 
+  border-color: rgba(255,255,255,.25) rgba(255,255,255,.25) #232323;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(255,255,255,.25);
+}
+
+@media (min-width: 992px){
+  .modal-lg {
+    max-width: 80%;
+  }
+}
+
+/* Post_create end */
+
 /* Comments start */
 
 #comments {

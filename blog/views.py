@@ -7,6 +7,7 @@ from .models import Post
 from comments.models import Comment
 from .forms import PostForm
 from comments.forms import CommentForm
+from attachments.models import Attachment
 
 
 def index(request):
@@ -72,6 +73,8 @@ def post_detail(request, id, slug):
 
 
 def create_post(request):
+    attachments_list = Attachment.objects.all()
+
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -82,7 +85,7 @@ def create_post(request):
             return redirect(post.get_absolute_url())
     else:
         form = PostForm()
-    return render(request, 'blog/post_create.html', {'form': form})
+    return render(request, 'blog/post_create.html', {'form': form, 'attachments': attachments_list,})
 
 
 def edit(request, id, slug):

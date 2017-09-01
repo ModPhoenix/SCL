@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'blog',
     'comments',
     'editor',
+    'attachments',
 ]
 
 SITE_ID = 1
