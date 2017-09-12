@@ -154,7 +154,7 @@ article .post-author-img {
 }
 
 .nav-tabs .nav-item:first-child {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .nav-tabs .nav-link:focus,
@@ -167,6 +167,10 @@ article .post-author-img {
   color: rgba(255, 255, 255, 0.882);
   background: none; 
   border-color: rgba(255,255,255,.25) rgba(255,255,255,.25) #232323;
+}
+
+.tab-pane {
+  padding: 15px;
 }
 
 .modal-footer {
