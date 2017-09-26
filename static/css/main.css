@@ -371,3 +371,12 @@ p {
 }
 
 /* profiles end */
+
+/* stats start */
+
+.stats {
+  padding: 20px;
+  background-color: #323232;
+}
+
+/* stats end */

@@ -5,6 +5,7 @@ from editor.utils import screening
 
 from .models import Post
 from comments.models import Comment
+from database.models import Funding
 from .forms import PostForm
 from comments.forms import CommentForm
 from attachments.models import Attachment
@@ -12,7 +13,14 @@ from attachments.models import Attachment
 
 def index(request):
     posts = Post.objects.all()
-    context = {'posts': posts}
+    #funding = Funding.objects.all()[:1]
+    funding = Funding.objects.latest('date')
+
+    print(funding)
+    context = {
+        'posts': posts,
+        'funding': funding,
+        }
     return render(request, 'blog/home.html', context)
 
 

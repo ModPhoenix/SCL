@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load humanize %}
 {% block content %}
 <div class="container main">
   <div class="row">
@@ -6,6 +7,18 @@
       {% for post in posts %}
       {% include "blog/post_block.html" %}
       {% endfor %}
+    </div>
+    <div class="col-md-4">
+      <div class="stats">
+        <div class="stats-title">
+          <h2>Статистика</h2>
+        </div>
+        <div class="funding">
+          <div class="funds">${{ funding.funds|slugify|slice:':9'|intcomma }} - Профинансировано</div>
+          <div class="fans">{{ funding.fans|intcomma }} - Звездных Граждан</div>
+          <div class="fans">{{ funding.date }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
