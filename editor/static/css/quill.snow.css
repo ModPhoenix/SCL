@@ -1,5 +1,5 @@
 /*!
- * Quill Editor v1.3.0
+ * Quill Editor v1.3.2
  * https://quilljs.com/
  * Copyright (c) 2014, Jason Chen
  * Copyright (c) 2013, salesforce.com
@@ -387,15 +387,17 @@
   text-align: right;
 }
 .ql-editor .ql-embed-selected {
-  border: 1px solid #777;
+  border: 2px solid #777;
   user-select: none;
 }
 .ql-editor.ql-blank::before {
   color: rgba(0,0,0,0.6);
   content: attr(data-placeholder);
   font-style: italic;
+  left: 15px;
   pointer-events: none;
   position: absolute;
+  right: 15px;
 }
 .ql-snow.ql-toolbar:after,
 .ql-snow .ql-toolbar:after {
@@ -556,7 +558,7 @@
 }
 .ql-snow .ql-stroke {
   fill: none;
-  stroke: #fff;
+  stroke: #444;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2;
@@ -569,7 +571,7 @@
 }
 .ql-snow .ql-fill,
 .ql-snow .ql-stroke.ql-fill {
-  fill: #fff;
+  fill: #444;
 }
 .ql-snow .ql-empty {
   fill: none;
@@ -633,13 +635,7 @@
 }
 .ql-snow .ql-editor code {
   font-size: 85%;
-  padding-bottom: 2px;
-  padding-top: 2px;
-}
-.ql-snow .ql-editor code:before,
-.ql-snow .ql-editor code:after {
-  content: "\A0";
-  letter-spacing: -2px;
+  padding: 2px 4px;
 }
 .ql-snow .ql-editor pre.ql-syntax {
   background-color: #23241f;
@@ -673,8 +669,7 @@
   line-height: 22px;
 }
 .ql-snow .ql-picker-options {
-  background-color: #312d2d;
-;
+  background-color: #fff;
   display: none;
   min-width: 100%;
   padding: 4px 8px;
@@ -688,14 +683,14 @@
   padding-top: 5px;
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-label {
-  color: #fff;
+  color: #ccc;
   z-index: 2;
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-fill {
-  fill: #fff;
+  fill: #ccc;
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-label .ql-stroke {
-  stroke: #fff;
+  stroke: #ccc;
 }
 .ql-snow .ql-picker.ql-expanded .ql-picker-options {
   display: block;
