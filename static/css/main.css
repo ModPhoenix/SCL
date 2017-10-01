@@ -329,11 +329,15 @@ p {
     border: none !important;
 }
 
-.ql-editor {
-    line-height: inherit !important;
+.wrapper-post-detail .ql-editor {
+  line-height: inherit !important;
+  overflow: hidden;
+  padding: 0 !important;
 }
 
-
+#editor-container .ql-editor {
+  min-height: 500px;
+}
 
 /* Quill editor end */
 

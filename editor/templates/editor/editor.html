@@ -41,13 +41,67 @@
 <script src="{% static 'js/quill.min.js' %}"></script>
 
 <script type="text/javascript">
-  var quill = new Quill('#editor-container', {
+
+  var Image = Quill.import('formats/image');
+  Image.className = 'img-fluid';
+  Quill.register(Image, true);
+
+  const quill = new Quill('#editor-container', {
     modules: {
       toolbar: '#toolbar-container'
     },
     placeholder: 'Compose ansdfdsfsdf epic...',
     theme: 'snow'
   });
+
+  function selectLocalImage() {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.click();
+
+    // Listen upload local image and save to server
+    input.onchange = () => {
+      const file = input.files[0];
+
+      // file type is only image.
+      if (/^image\//.test(file.type)) {
+        saveToServer(file);
+      } else {
+        console.warn('You could only upload images.');
+      }
+    };
+  }
+
+  function saveToServer(file) {
+    const fd = new FormData();
+    fd.append('image', file);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/image-upload/', true);
+    xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        // this is callback data: url
+        const data = JSON.parse(xhr.responseText);
+        insertToEditor(data);
+      }
+    };
+    xhr.send(fd);
+  }
+
+  function insertToEditor(data) {
+    // push image url to rich editor.
+    const range = quill.getSelection();
+    // quill.insertEmbed(range.index, 'image', `${data.link}`);
+    quill.pasteHTML(range.index, `<a href="${data.link}" class="img" data-size="1600x1068"><img src="${data.link}" class="img-fluid" alt="${data.name}"></a>`);
+  }
+
+  // quill editor add image handler
+  quill.getModule('toolbar').addHandler('image', () => {
+    selectLocalImage();
+  });
+  
+
 
   $(document).ready(function () {
     var content = document.getElementById('id_content');

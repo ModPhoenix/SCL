@@ -1,0 +1,386 @@
+color {
+  color: #212121;
+  color: #424242;
+  color: #6d6d6d;
+  color: #1b1b1b;
+
+  color: #292929;
+}
+
+html {
+  height: 300%;
+  margin-top: 56px !important;
+}
+
+body {
+  font-family: 'Roboto',"Helvetica Neue",Arial,sans-serif;
+  color: rgba(255, 255, 255, 0.882);
+  background-color: #131313;
+}
+
+.bg-dark {
+  background-color: #232323!important;
+}
+
+/* Header star */
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-brand {
+  color: rgba(255, 255, 255, 0.882);
+}
+
+nav .profile .dropdown-menu {
+  right: 0;
+  left: initial;
+}
+
+nav .link-create {
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+nav .btn-create {
+  cursor: pointer;
+}
+
+/* Header end */
+
+/* Signin start */
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin .btn-block {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.form-signin .top {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin .mid {
+  margin-bottom: -1px;
+  border-radius: 0;
+}
+
+.form-signin .bottom {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/* Signin end */
+
+/* Article start */
+
+.main {
+  margin-top: 50px;
+}
+
+article.post {
+  margin-bottom: 20px;
+}
+article .post-content,
+article .post-footer {
+  background-color: #323232;
+}
+
+article .post-content {
+  padding: 1.25rem 1.25rem 10px 1.25rem;
+}
+
+article .post-text {
+  margin: 0;
+}
+
+article .post-footer {
+  padding: 10px 1.25rem;
+}
+
+article .post-footer > div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+article .post-author-img {
+    margin: 0 5px 3px 0;
+}
+
+/* Article end */
+
+/* Post_create start */
+
+.btn-modal-unload {
+  margin-bottom: 5px;
+}
+
+.modal-header {
+  padding: 15px 15px 0 15px;
+  border-bottom: none;
+}
+
+.modal-file-unload {
+  padding: 15px 0; 
+}
+
+.nav-tabs {
+  border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.nav-tabs .nav-link {
+  color: rgba(255,255,255,.5);
+}
+
+.nav-tabs .nav-item:first-child {
+  margin-left: 15px;
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  border-color: rgba(255,255,255,.15) rgba(255,255,255,.15) transparent;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: rgba(255, 255, 255, 0.882);
+  background: none; 
+  border-color: rgba(255,255,255,.25) rgba(255,255,255,.25) #232323;
+}
+
+.tab-pane {
+  padding: 15px;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(255,255,255,.25);
+}
+
+@media (min-width: 992px){
+  .modal-lg {
+    max-width: 80%;
+  }
+}
+
+/* Post_create end */
+
+/* Comments start */
+
+#comments {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 30px 70px;
+  background-color: #292929;
+}
+
+#comments .comments-header {
+  margin-bottom: 40px;
+}
+
+#comments .comments-header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+#comments .comment {
+  margin-bottom: 20px;
+}
+
+#comments .comment-form {
+  margin-bottom: 20px;
+}
+
+#comments .form-wapper {
+  float: left;
+  width: calc(100% - 56px);
+}
+
+#comments .comment-form textarea {
+  margin-bottom: 10px;
+}
+
+#author-thumbnail {
+  width: 56px;
+  float: left;
+}
+
+#comments .author-comment-avatar {
+  margin-top: 4px;
+}
+
+#comment-body {
+  float: left;
+  width: calc(100% - 56px);
+}
+
+#comments .comment-header {
+    margin-bottom: 2px;
+}
+
+#comments .comment-header > div {
+  display: inline-block;
+}
+
+#comments .header-author {
+  margin-right: 10px;
+}
+
+#comments .comment-author {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.882);
+}
+
+#comments .comment-reply {
+    margin-top: 20px;
+    margin-left: 55px;
+}
+
+#comments .comment-footer {
+  margin-top: 5px;
+  margin-left: 56px;
+}
+
+#comments .comment-form-reply {
+  display: none;
+  margin-top: 10px;
+  margin-left: 56px;
+}
+
+#comments .show-reply-form {
+  display: block;
+}
+
+.reply-btn {
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.498);
+  background-image: none;
+  background-color: transparent;
+  border: none;
+}
+
+.reply-btn:hover,
+.reply-btn:active {
+    color: rgba(255, 255, 255, 0.498);
+    background-color: rgba(255, 255, 255, 0.1);;
+}
+
+/* Comments end */
+
+/* Quill editor start */
+
+.form-control {
+  color: #eeeeee;
+  background-color: #404040;
+}
+
+.form-control:focus {
+    color: #fff;
+    background-color: #404040;
+    border-color: #5cb3fd;
+    outline: 0;
+}
+
+.hide {
+  display: none; 
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ql-container {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    background-color: #323232;
+}
+
+.ql-toolbar.ql-snow {
+    border: none !important;
+    background-color: #323232;
+}
+
+.ql-snow .ql-picker {
+    color: #fff !important;
+}
+
+.ql-container.ql-snow {
+    border: none !important;
+}
+
+.wrapper-post-detail .ql-editor {
+  line-height: inherit !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+#editor-container .ql-editor {
+  min-height: 500px;
+}
+
+/* Quill editor end */
+
+/* post-detail start */
+
+  .wrapper-post-detail {
+    background-color: #292929;
+    padding: 30px 40px;
+  }
+
+  .post-info {
+    margin-bottom: 15px;
+  }
+  
+  .post-info > div {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .post-detail-title {
+    margin-bottom: 20px;
+  }
+
+  .post-detail-content {
+    padding: 0;
+  }
+
+/* post-detail end */
+
+/* profiles start */
+
+.user-info {
+  background-color: #292929;
+  padding: 30px 20px;
+}
+
+/* profiles end */
+
+/* stats start */
+
+.stats {
+  padding: 20px;
+  background-color: #323232;
+}
+
+/* stats end */

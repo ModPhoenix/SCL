@@ -1,20 +1,37 @@
-from django.shortcuts import render
+import json
+import os
+
+from imagekit import ImageSpec
+from imagekit.processors import ResizeToFill
 from django.http import JsonResponse
-from django.views import View
+from django.http import HttpResponse
+from django.conf import settings
+from django.core.files.storage import default_storage
+from django.utils.translation import ugettext_lazy as _
 
-from .forms import AttachmentForm
-from .models import Attachment
 
-class BasicUploadView(View):
-    def get(self, request):
-        attachments_list = Attachment.objects.all()
-        return render(self.request, 'photos/basic_upload/index.html', {'attachments': attachments_list})
+class ImageOptimizer(ImageSpec):
+    #format = 'JPEG'
+    options = {'quality': 99}
 
-    def post(self, request):
-        form = AttachmentForm(self.request.POST, self.request.FILES)
-        if form.is_valid():
-            attachment = form.save()
-            data = {'is_valid': True, 'name': attachment.file.name, 'url': attachment.file.url}
-        else:
-            data = {'is_valid': False}
-        return JsonResponse(data)
+def image_upload(request):
+    if request.FILES:
+        the_file = request.FILES['image']
+        allowed_types = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/gif']
+        if not the_file.content_type in allowed_types:
+            return HttpResponse(json.dumps({'error': _('You can only upload images.')}),
+                                content_type="application/json")
+        # Other data on the request.FILES dictionary:
+        # filesize = len(file['content'])
+        # filetype = file['content-type']
+        upload_to = 'uploads/'
+        image_generator = ImageOptimizer(source=the_file)
+        result = image_generator.generate()
+        path = default_storage.save(os.path.join(upload_to, the_file.name), result)
+        print(7)
+        link = default_storage.url(path)
+        name = the_file.name.split('.')[0]
+        print(name)
+        print(8)
+        # return JsonResponse({'link': link})
+        return HttpResponse(json.dumps({'link': link, 'name': name}), content_type="application/json")
