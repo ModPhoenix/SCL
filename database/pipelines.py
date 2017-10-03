@@ -6,7 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class DatabasePipeline(object):
-    def process_item(self, item, spider):
-        item.save()
-        return item
+# class DatabasePipeline(object):
+#     def process_item(self, item, spider):
+#         item.save()
+#         return item
