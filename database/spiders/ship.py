@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import json
-import re
 from scrapy.contrib.loader import XPathItemLoader
 from scrapy.contrib.loader.processor import MapCompose, TakeFirst
-from django.template.defaultfilters import slugify
 
 from database.models import ShipItem
 
@@ -15,6 +12,13 @@ class MyItemLoader(XPathItemLoader):
 
 class ShipSpider(scrapy.Spider):
     name = 'Ship'
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'database.pipelines.ShipPipeline': 300,
+        }
+    }
+
     allowed_domains = ['starcitizen.tools']
     start_urls = ['https://starcitizen.tools/Category:Ships']
 
@@ -25,7 +29,7 @@ class ShipSpider(scrapy.Spider):
 
     def parse_ship_page(self, response):
         l = MyItemLoader(response=response)
-        l.add_xpath('name', '//th[@class="infobox-table-name fn"]/text()')
+        l.add_xpath('name', '//h1[@id="firstHeading"]/text()')
         l.add_xpath('focus', '//td[text() = "Focus"]/following-sibling::*/text()')
         l.add_xpath('prod_state', '//td[text() = "Production State"]/following-sibling::*/text()')
         l.add_xpath('max_crew', '//td[text() = "Maximum Crew"]/following-sibling::*/text()')

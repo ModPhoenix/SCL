@@ -17,15 +17,27 @@ class FundingItem(DjangoItem):
 class Company(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField()
+    industry = models.CharField(max_length=80, blank=True, null=True)
+    race = models.CharField(max_length=20, blank=True, null=True)
+    code = models.CharField(max_length=10, blank=True, null=True)
+    current_ceo = models.CharField(max_length=50, blank=True, null=True)
+    founder = models.CharField(max_length=50, blank=True, null=True)
+    founded = models.CharField(max_length=50, blank=True, null=True)
+    demographic = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
 
 class CompanyItem(DjangoItem):
     django_model = Company
     success = scrapy.Field(default=False)
 
+
 class Ship(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField()
-    content = models.TextField()
+    content = models.TextField(blank=True)
     manufacturer = models.ForeignKey(
         'Company',
         on_delete=models.CASCADE,
@@ -42,6 +54,10 @@ class Ship(models.Model):
     length = models.FloatField(blank=True, null=True)
     height = models.FloatField(blank=True, null=True)
     beam = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
 
 class ShipItem(DjangoItem):
     django_model = Ship

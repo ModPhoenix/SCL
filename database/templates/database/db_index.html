@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<div class="container main">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrapper">
+                <h1>Star Citizen - База знаний</h1>
+
+                <h3>Корабли</h3>
+                <ul>
+                {% for ship in ships %}
+                    <li><a href="{% url 'database:ship_detail' slug=ship.slug %}">{{ ship.name }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

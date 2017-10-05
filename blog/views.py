@@ -16,7 +16,6 @@ def index(request):
     #funding = Funding.objects.all()[:1]
     funding = Funding.objects.latest('date')
 
-    print(funding)
     context = {
         'posts': posts,
         'funding': funding,

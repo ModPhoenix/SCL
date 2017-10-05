@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<div class="container main">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrapper">
+                <h1>{{ ship.name }}</h1>
+                
+                <h3>Характеристики:</h3>
+                <ul>
+                    <li>Производитель - {{ ship.manufacturer }}</li>
+                    <li>Фокус - {{ ship.focus }}</li>
+                    <li>Состояние - {{ ship.prod_state }}</li>
+                    <li>Экипаж - {{ ship.max_crew }}</li>
+                    <li>Грузопоемность - {{ ship.cargo_capacity }} SCU</li>
+                    <li>Цена в REC - {{ ship.rec_cost }} REC</li>
+                    <li>Стоимость залога - $ {{ ship.pledge_cost }} USD</li>
+                    <li>Масса нетто - {{ ship.null_cargo_mass }} кг</li>
+                    <li>Длинна - {{ ship.length }} м</li>
+                    <li>Высота - {{ ship.height }} м</li>
+                    <li>Ширина - {{ ship.beam }} м</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

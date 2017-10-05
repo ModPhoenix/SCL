@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^', include('blog.urls', namespace='blog')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('profiles.urls', namespace='profiles')),
+    url(r'^db/', include('database.urls', namespace='database')),
     url(r'^', include('attachments.urls', namespace='attachments')),
     url(r'^admin/', admin.site.urls),
 ]

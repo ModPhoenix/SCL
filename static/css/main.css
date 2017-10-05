@@ -18,6 +18,11 @@ body {
   background-color: #131313;
 }
 
+.wrapper {
+  background-color: #292929;
+  padding: 30px 40px;
+}
+
 .bg-dark {
   background-color: #232323!important;
 }
