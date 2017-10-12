@@ -13,19 +13,90 @@ html {
 }
 
 body {
-  font-family: 'Roboto',"Helvetica Neue",Arial,sans-serif;
+  font-family: Roboto,"Helvetica Neue",Arial,sans-serif;
   color: rgba(255, 255, 255, 0.882);
+  line-height: 1.6em;
   background-color: #131313;
 }
 
 .wrapper {
   background-color: #292929;
+}
+
+.page-padding {
   padding: 30px 40px;
+}
+
+table caption {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.882);
+  text-align: center;
+  caption-side: top;
 }
 
 .bg-dark {
   background-color: #232323!important;
 }
+
+.Subhead-heading {
+  font-size: 24px;
+  font-weight: normal;
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+}
+
+.Subhead {
+  display: -webkit-box;
+  display: flex;
+  padding-bottom: 4px;
+  margin-bottom: 16px;
+  margin-top: 25px;
+  border-bottom: 1px #424242 solid;
+  flex-flow: row wrap;
+}
+
+.avatar-upload .custom-file {
+  width: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-file-control {
+  color: rgba(255, 255, 255, 0.882);
+  background-color: #404040;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+}
+
+.custom-file-control::before {
+  display: none;
+}
+
+.custom-file-control:lang(ru):empty::after {
+  content: "Загрузить изображение";
+}
+
+.btn-avatar-upload {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 250px;
+}
+
+/* list-group star */
+
+.list-group-item {
+  background-color: #323232;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.list-group-item.active {
+  color: #fff;
+  background-color: #424242;
+  border-color: #424242;
+}
+/* list-group end */
 
 /* Header star */
 .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active,

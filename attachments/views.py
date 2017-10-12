@@ -1,6 +1,7 @@
 import json
 import os
 
+from PIL import Image
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFill
 from django.http import JsonResponse
@@ -24,6 +25,8 @@ def image_upload(request):
         # Other data on the request.FILES dictionary:
         # filesize = len(file['content'])
         # filetype = file['content-type']
+        img = Image.open(the_file)
+        img_size = img.size
         upload_to = 'uploads/'
         image_generator = ImageOptimizer(source=the_file)
         result = image_generator.generate()
@@ -31,7 +34,8 @@ def image_upload(request):
         print(7)
         link = default_storage.url(path)
         name = the_file.name.split('.')[0]
-        print(name)
-        print(8)
+        width = img_size[0]
+        height = img_size[1]
+        print('width', width, 'height', height)
         # return JsonResponse({'link': link})
-        return HttpResponse(json.dumps({'link': link, 'name': name}), content_type="application/json")
+        return HttpResponse(json.dumps({'link': link, 'name': name, 'width': width, 'height': height}), content_type="application/json")

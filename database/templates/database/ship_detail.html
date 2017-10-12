@@ -3,27 +3,72 @@
 {% block content %}
 
 <div class="container main">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="wrapper">
-                <h1>{{ ship.name }}</h1>
-                
-                <h3>Характеристики:</h3>
-                <ul>
-                    <li>Производитель - {{ ship.manufacturer }}</li>
-                    <li>Фокус - {{ ship.focus }}</li>
-                    <li>Состояние - {{ ship.prod_state }}</li>
-                    <li>Экипаж - {{ ship.max_crew }}</li>
-                    <li>Грузопоемность - {{ ship.cargo_capacity }} SCU</li>
-                    <li>Цена в REC - {{ ship.rec_cost }} REC</li>
-                    <li>Стоимость залога - $ {{ ship.pledge_cost }} USD</li>
-                    <li>Масса нетто - {{ ship.null_cargo_mass }} кг</li>
-                    <li>Длинна - {{ ship.length }} м</li>
-                    <li>Высота - {{ ship.height }} м</li>
-                    <li>Ширина - {{ ship.beam }} м</li>
-                </ul>
-            </div>
-        </div>
+
+            <div class="wrapper page-padding">
+                <div class="row">
+                    <div class="col-md-8">
+                            <h1>{{ ship.name }}</h1>
+                            
+                            <h3>Характеристики:</h3>
+                            <ul>
+                                {% if ship.manufacturer  %}
+                                <li>Производитель - {{ ship.manufacturer }}</li>
+                                {% endif %}
+                                {% if ship.focus  %}
+                                <li>Фокус - {{ ship.focus }}</li>
+                                {% endif %}
+                                {% if ship.prod_state  %}
+                                <li>Состояние - {{ ship.prod_state }}</li>
+                                {% endif %}
+                                {% if ship.max_crew  %}
+                                <li>Экипаж - {{ ship.max_crew }}</li>
+                                {% endif %}
+                                {% if ship.cargo_capacity  %}
+                                <li>Грузопоемность - {{ ship.cargo_capacity }} SCU</li>
+                                {% endif %}
+                                {% if ship.rec_cost  %}
+                                <li>Цена в REC - {{ ship.rec_cost }} REC</li>
+                                {% endif %}
+                                {% if ship.pledge_cost  %}
+                                <li>Стоимость залога - $ {{ ship.pledge_cost }} USD</li>
+                                {% endif %}
+                                {% if ship.null_cargo_mass  %}
+                                <li>Масса нетто - {{ ship.null_cargo_mass }} кг</li>
+                                {% endif %}
+                                {% if ship.length  %}
+                                <li>Длинна - {{ ship.length }} м</li>
+                                {% endif %}
+                                {% if ship.height  %}
+                                <li>Высота - {{ ship.height }} м</li>
+                                {% endif %}
+                                {% if ship.beam  %}
+                                <li>Ширина - {{ ship.beam }} м</li>
+                                {% endif %}
+                            </ul>
+                    </div>
+                    <div class="col-md-4">
+                            <table class="table table-bordered">
+                                    <caption>{{ ship.name }}</caption>
+                                    <tbody>
+                                      <tr>
+                                        {% if ship.manufacturer  %}
+                                        <td>Производитель</td>
+                                        <td>{{ ship.manufacturer }}</td>
+                                        {% endif %}
+                                      </tr>
+                                      <tr>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                      </tr>
+                                      <tr>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                    </div>
+                </div>
+           
     </div>
 </div>
 

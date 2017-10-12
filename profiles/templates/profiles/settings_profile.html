@@ -1,0 +1,107 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container main">
+  <div class="row">
+      <div class="col-md-3">
+        <nav class="mb-4">
+        <div class="list-group">
+          <a href="{% url 'profiles:settings_profile' %}" class="list-group-item active">Профиль</a>
+          <a href="#" class="list-group-item">Аккаунт</a>
+          <a href="#" class="list-group-item">Email</a>
+        </div>
+      </nav>
+      </div>
+    <div class="col-md-9">
+      <div class="settings">
+          <div class="Subhead mt-0">
+            <h2 class="Subhead-heading">Публичный профиль</h2>
+          </div>
+          <div class="avatar-upload float-right col-md-4 p-0">
+            <div class="mb-2">Изображение профиля</div>
+            <img alt="{{ user.username }}" class="rounded" {% if user.avatar %} src="{{ user.avatar.url }}" height="{{ user.avatar.height }}" width="{{ user.avatar.width }}" {% endif %}>
+            <!-- <label class="btn custom-file">
+              <input type="file" id="file2" class="custom-file-input">
+              <span class="custom-file-control"></span>
+            </label>   -->
+            <button type="button" class="btn btn-secondary btn-avatar-upload">Загрузить изображение</button>
+          </div>
+          <script>
+            function selectLocalImageAvatar() {
+              const input = document.createElement('input');
+              input.setAttribute('type', 'file');
+              input.click();
+
+              // Listen upload local image and save to server
+              input.onchange = () => {
+                const file = input.files[0];
+
+                // file type is only image.
+                if (/^image\//.test(file.type)) {
+                  saveToServer(file);
+                } else {
+                  console.warn('You could only upload images.');
+                }
+              };
+            }
+
+            function insertAvatar(data) {
+              $("img").attr("src", data.link);
+
+            }
+
+            function saveToServer(file) {
+              const fd = new FormData();
+              fd.append('image', file);
+
+              const xhr = new XMLHttpRequest();
+              xhr.open('POST', '/settings/profile/upload/', true);
+              xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+              xhr.onload = () => {
+                if (xhr.status === 200) {
+                  // this is callback data: url
+                  const data = JSON.parse(xhr.responseText);
+                  insertAvatar(data);
+                  console.log(data.link);
+                }
+              };
+              xhr.send(fd);
+            }
+
+            $('.btn-avatar-upload').click(function() {   
+              selectLocalImageAvatar();
+            });
+
+          </script>
+          <form enctype="multipart/form-data" method="POST" class="profile float-left post-form col-md-7 p-0">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form.first_name.id_for_label }}">Имя</label>
+              <input type="text" name="first_name" class="form-control" id="{{ form.first_name.id_for_label }}" value="{{ form.first_name.value }}" aria-describedby="firstnameHelp" maxlength="30">
+              <small id="firstnameHelp" class="form-text text-muted">В поле имя вы можете указать ваше настоящее имя.</small>
+            </div>
+            <div class="form-group">
+              <label for="id_biography">Био</label>
+              <textarea name="biography" name="biography" class="form-control" cols="40" rows="3" id="id_biography" aria-describedby="biographyHelp" maxlength="255" placeholder="Расскажите нам немного о себе
+              ">{{ form.biography.value }}</textarea>
+            </div>
+            <div class="Subhead">
+              <h2 class="Subhead-heading">Star Citizen аккаунт</h2>
+            </div>
+            <div class="form-group">
+              <label for="id_handle">Handle</label>
+              <input type="text" name="handle" class="form-control" id="id_handle" value="{{ form.handle.value }}" aria-describedby="HandleHelp" maxlength="30">
+              <small id="HandleHelp" class="form-text text-muted">Ваш уникальный позывной на официальном сайте.</small>
+            </div>
+            <div class="form-group">
+              <label for="id_organization">Организация</label>
+              <input type="text" name="organization" maxlength="60" class="form-control" id="id_organization" value="{{ form.organization.value }}" aria-describedby="OrganizationHelp" maxlength="30">
+              <small id="OrganizationHelp" class="form-text text-muted">Если вы состоите в игровой организации можете указать ее здесь.</small>
+            </div>
+            <button type="submit" class="save btn btn-primary">Обновить профиль</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+   
+{% endblock content %}

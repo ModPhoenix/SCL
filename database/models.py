@@ -25,6 +25,9 @@ class Company(models.Model):
     founded = models.CharField(max_length=50, blank=True, null=True)
     demographic = models.CharField(max_length=50, blank=True, null=True)
 
+    class Meta:
+        ordering = ["name"]
+
     def __str__(self):
         return self.name
 
@@ -54,6 +57,9 @@ class Ship(models.Model):
     length = models.FloatField(blank=True, null=True)
     height = models.FloatField(blank=True, null=True)
     beam = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self):
         return self.name

@@ -5,19 +5,20 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from unidecode import unidecode
 
+from scl.models import (
+    BaseModel,
+    ModerationBaseModel,
+    )
 
-class Post(models.Model):
+class Post(ModerationBaseModel):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=False)
     content = models.TextField()
-    published = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ["-date"]
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.title

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.contenttypes.models import ContentType
+from django.utils import timezone
 from editor.utils import screening
 
 from .models import Post
@@ -12,7 +13,7 @@ from attachments.models import Attachment
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().select_related()
     #funding = Funding.objects.all()[:1]
     funding = Funding.objects.latest('date')
 
@@ -24,7 +25,7 @@ def index(request):
 
 
 def post_detail(request, id, slug):
-    post = get_object_or_404(Post, slug=slug, id=id)
+    post = get_object_or_404(Post.objects.select_related(), slug=slug, id=id)
 
     comments = Comment.objects.filter_by_instance(post).select_related()
 
@@ -104,6 +105,7 @@ def edit(request, id, slug):
             post = form.save(commit=False)
             post.author = request.user
             post.content = screening(form.cleaned_data['content'])
+            post.updated_at = timezone.now()
             post.save()
             return redirect(post.get_absolute_url())
     else:

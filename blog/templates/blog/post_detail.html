@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <div class="wrapper-post-detail">
         <div class="post-info">
-          <div class="date">{{ post.date }}</div>
+          <div class="date">{{ post.created_at }}</div>
           <div class="author">{{ post.author }}</div>
           <div class="edit"><a href="{% url 'blog:edit_post' id=post.id slug=post.slug %}">Редактировать</a></div>
         </div>
