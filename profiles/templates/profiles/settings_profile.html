@@ -6,8 +6,8 @@
         <nav class="mb-4">
         <div class="list-group">
           <a href="{% url 'profiles:settings_profile' %}" class="list-group-item active">Профиль</a>
-          <a href="#" class="list-group-item">Аккаунт</a>
-          <a href="#" class="list-group-item">Email</a>
+          <a href="{% url 'profiles:settings_password_change' %}" class="list-group-item">Аккаунт</a>
+          <a href="{% url 'profiles:settings_email' %}" class="list-group-item">Email</a>
         </div>
       </nav>
       </div>

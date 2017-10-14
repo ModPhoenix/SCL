@@ -460,3 +460,14 @@ p {
 }
 
 /* stats end */
+
+
+/* settings start */
+.settings-email .badge {
+  height: 20px;
+  margin-top: 3px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* settings start */

@@ -1,11 +1,15 @@
 import json
 
 from django.http import JsonResponse, HttpResponse
+from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from .models import User
 from blog.models import Post
 from .forms import PublicProfileForm
+from allauth.account.views import PasswordChangeView, EmailView
+
 
 def user_profile(request, username):
     user_prolile = get_object_or_404(User, username=username)
@@ -55,3 +59,17 @@ def avatar_upload(request):
 
         # return JsonResponse({'link': link})
         return HttpResponse(json.dumps({'link': link, 'name': "name",}), content_type="application/json")
+
+class SettingsPasswordChangeView(PasswordChangeView):
+    template_name = (
+        "profiles/settings_password_change.html")
+    success_url = reverse_lazy("profiles:settings_password_change")
+
+settings_password_change = login_required(SettingsPasswordChangeView.as_view())
+
+class SettingsEmailView(EmailView):
+    template_name = (
+        "profiles/settings_email.html")
+    success_url = reverse_lazy("profiles:settings_email")
+
+settings_email = login_required(SettingsEmailView.as_view())

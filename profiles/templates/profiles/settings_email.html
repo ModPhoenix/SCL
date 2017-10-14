@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %}
+{% block content %}
+{% load i18n %}
+<div class="container main">
+  <div class="row">
+      <div class="col-md-3">
+        <nav class="mb-4">
+          <div class="list-group">
+            <a href="{% url 'profiles:settings_profile' %}" class="list-group-item">Профиль</a>
+            <a href="{% url 'profiles:settings_password_change' %}" class="list-group-item">Аккаунт</a>
+            <a href="{% url 'profiles:settings_email' %}" class="list-group-item active">Email</a>
+          </div>
+        </nav>
+      </div>
+    <div class="col-md-9">
+      <div class="settings">
+          <div class="Subhead mt-0">
+            <h2 class="Subhead-heading">E-mail адреса</h2>
+          </div>
+          {% if user.emailaddress_set.all %}
+          <p class="mb-4">{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+          <form method="POST" class="settings-email post-form p-0">
+            {% csrf_token %}
+        
+            {% for emailaddress in user.emailaddress_set.all %}
+            <div class="form-group">
+              <label class="custom-control custom-radio">
+                <input id="email_radio_{{forloop.counter}}" name="email" type="radio" class="custom-control-input" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">{{emailaddress.email}}</span>
+                {% if emailaddress.verified %}
+                <span class="badge badge-primary verified">{% trans "Verified" %}</span>
+                {% else %}
+                <span class="badge badge-secondary unverified">{% trans "Unverified" %}</span>
+                {% endif %}
+                  {% if emailaddress.primary %}<span class="badge badge-success primary">{% trans "Primary" %}</span>{% endif %}
+              </label>
+            </div>
+            {% endfor %}
+            <button class="btn btn-secondary btn-sm" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+            <button class="btn btn-secondary btn-sm" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+            <button class="btn btn-danger btn-sm" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+
+          {% else %}
+          <p><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
+          {% endif %}
+          </form>
+          <form method="post" class="add_email mt-4 col-6 p-0">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="id_email">Добавить e-mail адрес</label>
+              <input type="email" name="email" size="30" class="form-control" required="" id="id_email">
+            </div>
+            <button class="btn btn-secondary btn-sm" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
