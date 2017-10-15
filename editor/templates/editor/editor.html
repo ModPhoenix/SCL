@@ -42,37 +42,15 @@
 
 <script type="text/javascript">
 
-  // var Image = Quill.import('formats/image');
-  // Image.className = 'img-fluid';
-  // Quill.register(Image, true);
-
-  let BlockEmbed = Quill.import('blots/block/embed');
-  
-  class PhotoSwipeBlot extends BlockEmbed {
-    static create(value) {
-      let node = super.create();
-      node.setAttribute('alt', value.alt);
-      node.setAttribute('src', value.url);
-      return node;
-    }
-  
-    static value(node) {
-      return {
-        alt: node.getAttribute('alt'),
-        url: node.getAttribute('src')
-      };
-    }
-  }
-  PhotoSwipeBlot.blotName = 'imagephotoswipe';
-  PhotoSwipeBlot.tagName = 'img';
-
-  Quill.register(PhotoSwipeBlot);
+  var Image = Quill.import('formats/image');
+  Image.className = 'img-fluid';
+  Quill.register(Image, true);
 
   const quill = new Quill('#editor-container', {
     modules: {
       toolbar: '#toolbar-container'
     },
-    placeholder: 'Compose ansdfdsfsdf epic...',
+    placeholder: 'Напишите что то...',
     theme: 'snow'
   });
 
@@ -114,15 +92,7 @@
   function insertToEditor(data) {
     // push image url to rich editor.
     const range = quill.getSelection();
-    quill.insertEmbed(range.index + 1, 'imagephotoswipe', {
-        alt: 'Quill Cloud',
-        url: `${data.link}`,
-      });
-    // quill.insertEmbed(range.index, 'imagephotoswipe', {
-    // alt: `${data.name}`,
-    // src: `${data.link}`,
-    // size: `${data.width}x${data.height}` });
-    // quill.pasteHTML(range.index, `<a href="${data.link}" class="img" data-size="1600x1068"><img src="${data.link}" class="img-fluid" alt="${data.name}"></a>`);
+    quill.pasteHTML(range.index, `<a href="${data.link}" class="img"><img src="${data.link_crop}" class="img-fluid" alt="${data.name}"></a>`);
   }
 
   // quill editor add image handler

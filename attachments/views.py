@@ -1,9 +1,8 @@
 import json
 import os
 
-from PIL import Image
 from imagekit import ImageSpec
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFit
 from django.http import JsonResponse
 from django.http import HttpResponse
 from django.conf import settings
@@ -15,6 +14,12 @@ class ImageOptimizer(ImageSpec):
     #format = 'JPEG'
     options = {'quality': 99}
 
+class ImageCrop(ImageSpec):
+    processors = [
+        #ResizeToFill(687,200),
+        ResizeToFit(width=687)
+    ]
+
 def image_upload(request):
     if request.FILES:
         the_file = request.FILES['image']
@@ -25,17 +30,19 @@ def image_upload(request):
         # Other data on the request.FILES dictionary:
         # filesize = len(file['content'])
         # filetype = file['content-type']
-        img = Image.open(the_file)
-        img_size = img.size
-        upload_to = 'uploads/'
+        
+        name = the_file.name
+        upload_to = 'uploads/%Y/%m/%d'
+        upload_crop = 'uploads/crop//%Y/%m/%d'
         image_generator = ImageOptimizer(source=the_file)
-        result = image_generator.generate()
-        path = default_storage.save(os.path.join(upload_to, the_file.name), result)
+        result_generator = image_generator.generate()
+        path = default_storage.save(os.path.join(upload_to, the_file.name), result_generator)
+        image_crop = ImageCrop(source=result_generator)
+        result_crop = image_crop.generate()
+        path_crop = default_storage.save(os.path.join(upload_crop, the_file.name), result_crop)
         print(7)
         link = default_storage.url(path)
-        name = the_file.name.split('.')[0]
-        width = img_size[0]
-        height = img_size[1]
-        print('width', width, 'height', height)
+        link_crop = default_storage.url(path_crop)
+        print()
         # return JsonResponse({'link': link})
-        return HttpResponse(json.dumps({'link': link, 'name': name, 'width': width, 'height': height}), content_type="application/json")
+        return HttpResponse(json.dumps({'link': link, 'name': name, 'link_crop': link_crop, }), content_type="application/json")

@@ -135,9 +135,25 @@
 {% endblock content %}
 
 {% block javascript %}
-  <link rel="stylesheet" href="{% static 'css/photoswipe.css' %}">
-  <link rel="stylesheet" href="{% static 'css/default-skin/default-skin.css' %}">
-  <script src="{% static 'js/photoswipe.js' %}"></script>
-  <script src="{% static 'js/photoswipe-ui-default.js' %}"></script>
-  {% include 'blog/pswp.html' %}
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $('img').parents('a').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        showCloseBtn: false,
+        closeBtnInside: false,
+        fixedContentPos: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+        image: {
+          verticalFit: true
+        },
+        zoom: {
+          enabled: true,
+          duration: 300 // don't foget to change the duration also in CSS
+        }
+      });
+    });
+    </script>
 {% endblock %}
