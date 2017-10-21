@@ -125,7 +125,7 @@ nav .btn-create {
 .form-signin {
   max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  margin: 40px auto 0;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -467,7 +467,6 @@ p {
   height: 20px;
   margin-top: 3px;
   margin-left: 10px;
-  margin-right: 10px;
 }
 
 /* settings start */

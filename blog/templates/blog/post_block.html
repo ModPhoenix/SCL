@@ -1,13 +1,19 @@
+{% load imagekit %}
 <article class="post">
   <div class="post-content">
     <a href="{{ post.get_absolute_url }}"><h3 class="post-title">{{ post.title }}</h3></a>
     {{ post.content|truncatechars_html:50|striptags }}
   </div>
+  {% if post.thumbnail %}
   <div class="post-img">
-    <img class="img-fluid" src="holder.js/540x250" alt="">
+    <img class="img-fluid" src="{{ post.thumbnail_540.url }}" alt="">
   </div>
+  {% endif %}
   <div class="post-footer">
     <div class="post-date">{{ post.created_at }}</div>
-    <div class="post-author"><a href="{% url 'profiles:user_profile' username=post.author  %}"><img class="rounded-circle post-author-img" src="holder.js/20x20" alt="">{{ post.author }}</a></div>
+    <div class="post-author"><a href="{% url 'profiles:user_profile' username=post.author  %}">
+      {% thumbnail '20x20' post.author.avatar -- alt="A picture of Me" class="rounded-circle post-author-img" %}
+      {{ post.author }}
+    </a></div>
   </div>
 </article>

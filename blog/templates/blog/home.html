@@ -15,9 +15,7 @@
         </div>
         {% if funding.funds %}
         <div class="funding">
-          <div class="funds">${{ funding.funds|slugify|slice:':9'|intcomma }} - Профинансировано</div>
-          <div class="fans">{{ funding.fans|intcomma }} - Звездных Граждан</div>
-          <div class="fans">{{ funding.date }}</div>
+          
         </div>
         {% endif %}
       </div>

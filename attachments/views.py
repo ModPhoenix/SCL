@@ -11,12 +11,11 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class ImageOptimizer(ImageSpec):
-    #format = 'JPEG'
+    format = 'JPEG'
     options = {'quality': 99}
 
 class ImageCrop(ImageSpec):
     processors = [
-        #ResizeToFill(687,200),
         ResizeToFit(width=687)
     ]
 
@@ -32,8 +31,8 @@ def image_upload(request):
         # filetype = file['content-type']
         
         name = the_file.name
-        upload_to = 'uploads/%Y/%m/%d'
-        upload_crop = 'uploads/crop//%Y/%m/%d'
+        upload_to = 'uploads/'
+        upload_crop = 'uploads/crop670/'
         image_generator = ImageOptimizer(source=the_file)
         result_generator = image_generator.generate()
         path = default_storage.save(os.path.join(upload_to, the_file.name), result_generator)

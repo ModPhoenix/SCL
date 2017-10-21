@@ -24,6 +24,7 @@ class User(AbstractUser):
         verbose_name=_(u'Аватар пользователя'))
     birthdate = models.DateField(
         blank=True,
+        null=True,
         verbose_name=_(u'День рождения'))
     biography = models.TextField(
         blank=True,
