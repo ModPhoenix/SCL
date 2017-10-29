@@ -105,11 +105,6 @@ table caption {
   color: rgba(255, 255, 255, 0.882);
 }
 
-nav .profile .dropdown-menu {
-  right: 0;
-  left: initial;
-}
-
 nav .link-create {
   cursor: pointer;
   margin-right: 30px;
