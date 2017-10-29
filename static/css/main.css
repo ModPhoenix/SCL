@@ -449,13 +449,25 @@ p {
 
 /* profiles start */
 
-/* .user-info {
+.profile-info-container {
   background-color: #292929;
-  padding: 30px 20px;
-} */
+}
 
-.profile-info {
-  background-color: #292929;
+.user-name {
+  font-size: 25px;
+  font-weight: 400;
+  padding: 10px 0;
+}
+
+.profile-nav-container .list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.profile-nav-container .list-group-item:last-child {
+  margin-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 /* profiles end */

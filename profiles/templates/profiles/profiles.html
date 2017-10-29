@@ -3,11 +3,31 @@
 <div class="container main">
   <div class="row">
     <div class="col-md-3">
-        <div class="profile-info">
+        <div class="profile-info-container rounded-top" itemscope itemtype="http://schema.org/Person">
             <div class="user-avatar">
-                <img class="d-block" src="{{ user.avatar.url }}" alt="">
+                <img class="d-block rounded-top" src="{{ user_prolile.avatar.url }}" alt="">
             </div>
-            <div class="user-name text-center"><h1>{{ user_prolile.username }}</h1></div>
+            <div class="user-name-container text-center">
+              <h1 class="user-name">
+                <span itemprop="additionalName">{{ user_prolile.username }}</span>
+              </h1>
+            </div>
+        </div>
+        <div class="profile-nav-container">
+          <ul class="list-group">
+            <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+              Посты
+              <span class="badge badge-secondary badge-pill">{{ count_posts }}</span>
+            </a>
+            <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+              Комментарии
+              <span class="badge badge-secondary badge-pill">{{ count_comments }}</span>
+            </a>
+            <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+              Гайды
+              <span class="badge badge-secondary badge-pill">0</span>
+            </a>
+          </ul>
         </div>
     </div>
     <div class="col-md-6">
