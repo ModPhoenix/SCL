@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from editor.utils import screening
+import reversion
 
 from .models import Post
 from comments.models import Comment
@@ -20,7 +22,7 @@ def index(request):
     context = {
         'posts': posts,
         'funding': funding,
-        }
+    }
     return render(request, 'blog/home.html', context)
 
 
@@ -79,35 +81,45 @@ def post_detail(request, id, slug):
     }
     return render(request, 'blog/post_detail.html', context)
 
-
+@login_required
 def create_post(request):
-    attachments_list = Attachment.objects.all()
-
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.content = screening(form.cleaned_data['content'])
-            post.save()
-            return redirect(post.get_absolute_url())
+            with reversion.create_revision():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.content = screening(form.cleaned_data['content'])
+                post.save()
+
+                reversion.set_user(request.user)
+                reversion.set_comment(
+                    "Пост создан на сайте, пользователем: %s" % request.user.username)
+
+                return redirect(post.get_absolute_url())
     else:
         form = PostForm()
-    return render(request, 'blog/post_create.html', {'form': form, 'attachments': attachments_list,})
+    return render(request, 'blog/post_create.html', {'form': form})
 
-
+@login_required
 def edit(request, id, slug):
     post = get_object_or_404(Post, slug=slug, id=id)
 
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.content = screening(form.cleaned_data['content'])
-            post.updated_at = timezone.now()
-            post.save()
-            return redirect(post.get_absolute_url())
+            with reversion.create_revision():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.content = screening(form.cleaned_data['content'])
+                post.updated_at = timezone.now()
+                post.save()
+
+                reversion.set_user(request.user)
+                reversion.set_comment(
+                    "Пост отредактирован на сайте, пользователем: %s" % request.user.username)
+
+                return redirect(post.get_absolute_url())
     else:
         form = PostForm(instance=post)
 

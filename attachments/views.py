@@ -1,5 +1,6 @@
 import json
 import os
+import datetime
 
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFit
@@ -31,7 +32,8 @@ def image_upload(request):
         # filetype = file['content-type']
         
         name = the_file.name
-        upload_to = 'uploads/'
+        now_date = datetime.date.today()
+        upload_to = 'uploads/%d/%d/%d/' % (now_date.year, now_date.month, now_date.day)
         upload_crop = 'uploads/crop670/'
         image_generator = ImageOptimizer(source=the_file)
         result_generator = image_generator.generate()

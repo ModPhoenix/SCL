@@ -419,35 +419,43 @@ p {
 
 /* post-detail start */
 
-  .wrapper-post-detail {
-    background-color: #292929;
-    padding: 30px 40px;
-  }
+.wrapper-post-detail {
+  background-color: #292929;
+  padding: 30px 40px;
+}
 
-  .post-info {
-    margin-bottom: 15px;
-  }
-  
-  .post-info > div {
-    display: inline-block;
-    margin-right: 20px;
-  }
+.post-detail-content a {
+  outline: none;
+}
 
-  .post-detail-title {
-    margin-bottom: 20px;
-  }
+.post-info {
+  margin-bottom: 15px;
+}
 
-  .post-detail-content {
-    padding: 0;
-  }
+.post-info > div {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.post-detail-title {
+  margin-bottom: 20px;
+}
+
+.post-detail-content {
+  padding: 0;
+}
 
 /* post-detail end */
 
 /* profiles start */
 
-.user-info {
+/* .user-info {
   background-color: #292929;
   padding: 30px 20px;
+} */
+
+.profile-info {
+  background-color: #292929;
 }
 
 /* profiles end */

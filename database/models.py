@@ -1,4 +1,5 @@
 from django.db import models
+from simple_history.models import HistoricalRecords
 import scrapy
 from scrapy_djangoitem import DjangoItem
 
@@ -24,6 +25,7 @@ class Company(models.Model):
     founder = models.CharField(max_length=50, blank=True, null=True)
     founded = models.CharField(max_length=50, blank=True, null=True)
     demographic = models.CharField(max_length=50, blank=True, null=True)
+    history = HistoricalRecords()
 
     class Meta:
         ordering = ["name"]
@@ -57,6 +59,7 @@ class Ship(models.Model):
     length = models.FloatField(blank=True, null=True)
     height = models.FloatField(blank=True, null=True)
     beam = models.FloatField(blank=True, null=True)
+    history = HistoricalRecords()
 
     class Meta:
         ordering = ["name"]

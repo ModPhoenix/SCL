@@ -52,14 +52,24 @@ INSTALLED_APPS = [
     'comments',
     'editor',
     'attachments',
+    # 'simple_history',
+    'reversion',
+    'reversion_compare',
     'database',
 ]
+
+# Add reversion models to admin interface:
+ADD_REVERSION_ADMIN=True
 
 SITE_ID = 1
 
 INTERNAL_IPS = '127.0.0.1'
 
 AUTH_USER_MODEL = 'profiles.User'
+
+# ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'scl.urls'

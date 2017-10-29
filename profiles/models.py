@@ -18,7 +18,7 @@ class User(AbstractUser):
         default = 'avatars/1.jpg',
         blank=True,
         null=True,
-        processors=[ResizeToFill(250, 250)],
+        processors=[ResizeToFill(255, 255)],
         format='JPEG',
         options={'quality': 99},
         verbose_name=_(u'Аватар пользователя'))

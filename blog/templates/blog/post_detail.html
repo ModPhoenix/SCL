@@ -8,7 +8,15 @@
         <div class="post-info">
           <div class="date">{{ post.created_at }}</div>
           <div class="author">{{ post.author }}</div>
-          <div class="edit"><a href="{% url 'blog:edit_post' id=post.id slug=post.slug %}">Редактировать</a></div>
+
+          {% if user.is_authenticated %}
+            {% if user == post.author or user.is_active and user.is_superuser %}
+
+            <div class="edit"><a href="{% url 'blog:edit_post' id=post.id slug=post.slug %}">Редактировать</a></div>
+            
+            {% endif %}
+          {% endif %}
+
         </div>
         <article class="post-detail">
           <div class="post-detail-title">
@@ -139,7 +147,7 @@
   <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
   <script>
     $(document).ready(function() {
-      $('img').parents('a').magnificPopup({
+      $('.post-detail-content img').parents('a').magnificPopup({
         type: 'image',
         closeOnContentClick: true,
         showCloseBtn: false,

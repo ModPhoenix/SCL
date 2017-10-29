@@ -40,7 +40,7 @@ class ModerationBaseModel(BaseModel):
     moderation = models.BooleanField(
         _(u'Модерация'),
         default=False,
-        help_text=_('Запись заблокирована модератором.'))
+        help_text=_('Если отмечено, запись заблокирована модератором.'))
 
     class Meta:
         abstract = True
