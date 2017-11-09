@@ -6,7 +6,8 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container">  
+
 <form class="login form-signin" method="POST" action="{% url 'account_login' %}">
 <h2 class="form-signin-heading">{% trans "Sign In" %}</h2>
 
@@ -33,10 +34,29 @@
 {% endif %}
 
 {% csrf_token %}
+
+{% if form.non_field_errors %}
+  <div class="alert alert-warning" role="alert">
+  {% for error in form.non_field_errors %}
+    {{ error|escape }}
+  {% endfor %}
+  </div>
+{% endif %}
+
 <label for="id_login" class="sr-only">Имя пользователя:</label>
-<input type="text" class="form-control top" name="login" autofocus="autofocus" id="id_login" maxlength="150" required="" placeholder="Имя пользователя">
+<input type="text" class="form-control top {% if form.login.errors %}is-invalid{% endif %}" name="login" autofocus="autofocus" id="id_login" maxlength="150" required="" placeholder="Имя пользователя">
+{% if form.login.errors %}
+<div class="invalid-feedback">
+  {{ form.login.errors }}
+</div>
+{% endif %}
 <label for="id_password" class="sr-only">Пароль:</label>
-<input type="password" class="form-control bottom" name="password" placeholder="Пароль" id="id_password" required="">
+<input type="password" class="form-control bottom {% if form.password.errors %}is-invalid{% endif %}" name="password" placeholder="Пароль" id="id_password" required="">
+{% if form.password.errors %}
+<div class="invalid-feedback">
+  {{ form.password.errors }}
+</div>
+{% endif %}
 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
   <input type="checkbox" class="custom-control-input" name="remember">
   <span class="custom-control-indicator"></span>

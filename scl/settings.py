@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'mptt',
     'debug_toolbar',
     'imagekit',
     'profiles',
@@ -52,10 +53,10 @@ INSTALLED_APPS = [
     'comments',
     'editor',
     'attachments',
-    # 'simple_history',
     'reversion',
     'reversion_compare',
     'database',
+    'mttp_comments',
 ]
 
 # Add reversion models to admin interface:
@@ -80,7 +81,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'scl.urls'

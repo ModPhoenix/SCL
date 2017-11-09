@@ -11,11 +11,11 @@ class BaseModel(models.Model):
     """
     created_at = models.DateTimeField(
         default=timezone.now,
-        verbose_name=_(u'Дата создания'))
+        verbose_name=_(u'Creation date'))
     updated_at = models.DateTimeField(
         blank=True,
         null=True,
-        verbose_name=_(u'Дата изменения'))
+        verbose_name=_(u'Modification date'))
 
     objects = models.Manager()
 

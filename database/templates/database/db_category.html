@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<div class="container main database category">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrapper">
+        <h1 class="category-title">Star Citizen - Корабли</h1>
+
+        <div class="category-container">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Производитель</th>
+                <th scope="col">Основной фокус</th>
+                <th scope="col">Состояние разработки</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ship in ships %}
+                <tr>
+                  <td><a href="{% url 'database:ship_detail' slug=ship.slug  %}">{{ ship.name }}</a></th>
+                  <td>{{ ship.manufacturer }}</td>
+                  <td>{{ ship.focus }}</td>
+                  <td>{{ ship.prod_state }}</td>
+                </tr>
+              {% endfor %}
+            
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -2,21 +2,46 @@
 
 {% block content %}
 
-<div class="container main">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="wrapper">
-                <h1>Star Citizen - База знаний</h1>
+<div class="container main database">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrapper">
+        <h1 class="db-title">Star Citizen - База знаний</h1>
 
-                <h3>Корабли</h3>
-                <ul>
-                {% for ship in ships %}
-                    <li><a href="{% url 'database:ship_detail' slug=ship.slug %}">{{ ship.name }}</a></li>
-                {% endfor %}
-                </ul>
+        <div class="db-category">
+          <div class="row">
+            <div class="col-md-3">
+              {{ items }}
+                <div class="category ships">
+                  <div class="category-title">
+                    <h2><a href="{% url 'database:ships_category' %}">Корабли</a></h2>
+                  </div>
+                  <div class="category-container">
+                    <div class="title">Последние изменения</div>
+                    <div class="content">
+                      {% for ship in ships %}
+                        <div class="content-item">
+                          <a href="{% url 'database:ship_detail' slug=ship.slug  %}">{{ ship }}</a>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>    
+                </div>
             </div>
+            <div class="col-md-3">
+                <div class="category ships">
+                  <div class="category-title">
+                    <h2>Корпорации</h2>
+                  </div>    
+                </div>
+            </div>
+          </div>
         </div>
+
+          
+      </div>
     </div>
+  </div>
 </div>
 
 {% endblock content %}

@@ -274,92 +274,12 @@ article .post-author-img {
   margin-bottom: 40px;
 }
 
-#comments .comments-header h2 {
+.comments-title {
   font-size: 1.4rem;
-  margin: 0;
+  font-weight: 700;
 }
 
-#comments .comment {
-  margin-bottom: 20px;
-}
 
-#comments .comment-form {
-  margin-bottom: 20px;
-}
-
-#comments .form-wapper {
-  float: left;
-  width: calc(100% - 56px);
-}
-
-#comments .comment-form textarea {
-  margin-bottom: 10px;
-}
-
-#author-thumbnail {
-  width: 56px;
-  float: left;
-}
-
-#comments .author-comment-avatar {
-  margin-top: 4px;
-}
-
-#comment-body {
-  float: left;
-  width: calc(100% - 56px);
-}
-
-#comments .comment-header {
-    margin-bottom: 2px;
-}
-
-#comments .comment-header > div {
-  display: inline-block;
-}
-
-#comments .header-author {
-  margin-right: 10px;
-}
-
-#comments .comment-author {
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.882);
-}
-
-#comments .comment-reply {
-    margin-top: 20px;
-    margin-left: 55px;
-}
-
-#comments .comment-footer {
-  margin-top: 5px;
-  margin-left: 56px;
-}
-
-#comments .comment-form-reply {
-  display: none;
-  margin-top: 10px;
-  margin-left: 56px;
-}
-
-#comments .show-reply-form {
-  display: block;
-}
-
-.reply-btn {
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.498);
-  background-image: none;
-  background-color: transparent;
-  border: none;
-}
-
-.reply-btn:hover,
-.reply-btn:active {
-    color: rgba(255, 255, 255, 0.498);
-    background-color: rgba(255, 255, 255, 0.1);;
-}
 
 /* Comments end */
 

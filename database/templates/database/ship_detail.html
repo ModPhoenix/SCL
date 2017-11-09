@@ -7,65 +7,117 @@
             <div class="wrapper page-padding">
                 <div class="row">
                     <div class="col-md-8">
-                            <h1>{{ ship.name }}</h1>
-                            
-                            <h3>Характеристики:</h3>
-                            <ul>
-                                {% if ship.manufacturer  %}
-                                <li>Производитель - {{ ship.manufacturer }}</li>
-                                {% endif %}
-                                {% if ship.focus  %}
-                                <li>Фокус - {{ ship.focus }}</li>
-                                {% endif %}
-                                {% if ship.prod_state  %}
-                                <li>Состояние - {{ ship.prod_state }}</li>
-                                {% endif %}
-                                {% if ship.max_crew  %}
-                                <li>Экипаж - {{ ship.max_crew }}</li>
-                                {% endif %}
-                                {% if ship.cargo_capacity  %}
-                                <li>Грузопоемность - {{ ship.cargo_capacity }} SCU</li>
-                                {% endif %}
-                                {% if ship.rec_cost  %}
-                                <li>Цена в REC - {{ ship.rec_cost }} REC</li>
-                                {% endif %}
-                                {% if ship.pledge_cost  %}
-                                <li>Стоимость залога - $ {{ ship.pledge_cost }} USD</li>
-                                {% endif %}
-                                {% if ship.null_cargo_mass  %}
-                                <li>Масса нетто - {{ ship.null_cargo_mass }} кг</li>
-                                {% endif %}
-                                {% if ship.length  %}
-                                <li>Длинна - {{ ship.length }} м</li>
-                                {% endif %}
-                                {% if ship.height  %}
-                                <li>Высота - {{ ship.height }} м</li>
-                                {% endif %}
-                                {% if ship.beam  %}
-                                <li>Ширина - {{ ship.beam }} м</li>
-                                {% endif %}
-                            </ul>
+          <h1>{{ ship.name }}</h1>
+          
+          <h3>Характеристики:</h3>
+          <ul>
+              {% if ship.manufacturer  %}
+              <li>Производитель - {{ ship.manufacturer }}</li>
+              {% endif %}
+              {% if ship.focus  %}
+              <li>Фокус - {{ ship.focus }}</li>
+              {% endif %}
+              {% if ship.prod_state  %}
+              <li>Состояние - {{ ship.prod_state }}</li>
+              {% endif %}
+              {% if ship.max_crew  %}
+              <li>Экипаж - {{ ship.max_crew }}</li>
+              {% endif %}
+              {% if ship.cargo_capacity  %}
+              <li>Грузопоемность - {{ ship.cargo_capacity }} SCU</li>
+              {% endif %}
+              {% if ship.rec_cost  %}
+              <li>Цена в REC - {{ ship.rec_cost }} REC</li>
+              {% endif %}
+              {% if ship.pledge_cost  %}
+              <li>Стоимость залога - $ {{ ship.pledge_cost }} USD</li>
+              {% endif %}
+              {% if ship.null_cargo_mass  %}
+              <li>Масса нетто - {{ ship.null_cargo_mass }} кг</li>
+              {% endif %}
+              {% if ship.length  %}
+              <li>Длинна - {{ ship.length }} м</li>
+              {% endif %}
+              {% if ship.height  %}
+              <li>Высота - {{ ship.height }} м</li>
+              {% endif %}
+              {% if ship.beam  %}
+              <li>Ширина - {{ ship.beam }} м</li>
+              {% endif %}
+          </ul>
                     </div>
                     <div class="col-md-4">
-                            <table class="table table-bordered">
-                                    <caption>{{ ship.name }}</caption>
-                                    <tbody>
-                                      <tr>
-                                        {% if ship.manufacturer  %}
-                                        <td>Производитель</td>
-                                        <td>{{ ship.manufacturer }}</td>
-                                        {% endif %}
-                                      </tr>
-                                      <tr>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                      </tr>
-                                      <tr>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
+<table class="table table-bordered">
+  <caption>{{ ship.name }}</caption>
+  <tbody>
+    {% if ship.manufacturer  %}
+    <tr>
+      <td>Производитель</td>
+      <td>{{ ship.manufacturer }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.focus  %}
+    <tr>
+      <td>Фокус</td>
+      <td>{{ ship.focus }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.prod_state  %}
+    <tr>
+      <td>Состояние</td>
+      <td>{{ ship.prod_state }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.max_crew  %}
+    <tr>
+      <td>Экипаж</td>
+      <td>{{ ship.max_crew }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.cargo_capacity  %}
+    <tr>
+      <td>Грузопоемность</td>
+      <td>{{ ship.cargo_capacity }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.rec_cost  %}
+    <tr>
+      <td>Цена в REC</td>
+      <td>{{ ship.rec_cost }} SCU</td>
+    </tr>
+    {% endif %}
+    {% if ship.pledge_cost  %}
+    <tr>
+      <td>Стоимость залога</td>
+      <td>{{ ship.pledge_cost }}$</td>
+    </tr>
+    {% endif %}
+    {% if ship.null_cargo_mass  %}
+    <tr>
+      <td>Масса</td>
+      <td>{{ ship.null_cargo_mass }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.length  %}
+    <tr>
+      <td>Длинна</td>
+      <td>{{ ship.length }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.height  %}
+    <tr>
+      <td>Высота</td>
+      <td>{{ ship.height }}</td>
+    </tr>
+    {% endif %}
+    {% if ship.beam  %}
+    <tr>
+      <td>Ширина</td>
+      <td>{{ ship.beam }}</td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
                     </div>
                 </div>
            
