@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'database',
-    'mttp_comments',
 ]
 
 # Add reversion models to admin interface:

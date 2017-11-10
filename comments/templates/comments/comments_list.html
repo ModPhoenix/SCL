@@ -6,13 +6,13 @@
   </div>
   <div class="comments-content">
   {% for comment in comments %}
-    <div class="comments-item comments-item-level-{% if not comment.parent %}1{% else %}2{% endif %}">
+    <div class="comments-item comments-item-level-{% if comment.is_root_node %}1{% else %}2{% endif %}" data-comment-id="{{ comment.id }}" >
       <div class="comments-item-header">
         <a href="{% url 'profiles:user_profile' username=comment.user.username  %}" class="comments-item-user">
           {% thumbnail '40x40' comment.user.avatar -- alt="A picture of Me" class="comments-item-user-thumbnail" %}
           <p class="comments-item-user-name"><span>{{ comment.user.username }}</span></p>
         </a>
-        <a href="#comment-165242" class="comments-item-date">
+        <a href="#comment-{{ comment.id }}" class="comments-item-date">
           <time class="time" datetime="{{ comment.created_at|date:"Y-m-d" }} {{ comment.created_at|time:"H:i" }}" title="{{ comment.created_at }}">{{ comment.created_at|timesince|upto:',' }} назад</time>
         </a>
         <div class="clearfix"></div>
@@ -20,7 +20,11 @@
       <div class="comments-item-content">
         <p>{{ comment.comment}}</p>
       </div>
-      <div class="comments-item-footer"></div> 
+      <div class="comments-item-footer clearfix">
+        <div class="comments-item-button-reply">
+          <span>Ответить</span>
+        </div>
+      </div> 
     </div>
   {% endfor %}
   </div>

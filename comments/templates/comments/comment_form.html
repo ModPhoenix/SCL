@@ -1,0 +1,11 @@
+<div class="form-wapper">
+    <form method="POST" action="{% url 'comments:add_comment' %}">
+        {% csrf_token %}
+        <input type="hidden" name="content_type" value="{{ content_type }}" id="id_content_type">
+        <input type="hidden" name="object_id" value="{{ object_id }}" id="id_object_id">
+        <input type="hidden" name="parent_id" id="id_parent_id" value="">
+        <label for="id_comment" class="sr-only">Комментарий:</label>
+        <textarea name="comment" class="form-control" cols="40" rows="5" required="" id="id_comment" placeholder="Написать комментарий..."></textarea>
+        <button type="submit" class="btn btn-primary">Комментировать</button>
+    </form>
+</div>

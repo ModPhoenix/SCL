@@ -11,7 +11,7 @@
   {% endif %}
   <div class="post-footer">
     <div class="post-date">{{ post.created_at }}</div>
-    <div class="post-author"><a href="{% url 'profiles:user_profile' username=post.author  %}">
+    <div class="post-author"><a href="{% url 'profiles:user_profile' username=post.author %}">
       {% thumbnail '20x20' post.author.avatar -- alt="A picture of Me" class="rounded-circle post-author-img" %}
       {{ post.author }}
     </a></div>

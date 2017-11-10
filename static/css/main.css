@@ -270,10 +270,6 @@ article .post-author-img {
   margin-bottom: 40px;
 }
 
-.comments-item.comments-item-level-2 {
-  margin-left: 54px;
-}
-
 #comments .comments-content {
   position: relative;
 }
@@ -281,6 +277,10 @@ article .post-author-img {
 #comments .comments-item {
   margin-top: 25px;
   padding-left: 54px;
+}
+
+.comments-item.comments-item-level-2 {
+  margin-left: 54px;
 }
 
 .comments-item-header {
@@ -334,6 +334,25 @@ article .post-author-img {
 
 .comments-item-content {
   margin-top: 2px;
+}
+
+.comments-item-button-reply {
+  position: relative;
+  float: left;
+  color: #818181;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 17px;
+  border-bottom: 1px dotted #818181;
+}
+
+.comments-item-footer {
+  margin-top: 5px;
+}
+
+.comments-item-button-reply:hover {
+  color: #105990;
+  border-bottom-color: #105990;
 }
 
 /* Comments end */

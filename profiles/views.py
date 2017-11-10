@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 
 from .models import User
 from blog.models import Post
-from comments.models import Comment
 from .forms import PublicProfileForm
 from allauth.account.views import PasswordChangeView, EmailView
 
@@ -15,7 +14,7 @@ from allauth.account.views import PasswordChangeView, EmailView
 def user_profile(request, username):
     user_prolile = get_object_or_404(User, username=username)
     posts = Post.objects.filter(author=user_prolile).select_related()
-    comments = Comment.objects.filter(author=user_prolile)
+    comments = Comment.objects.filter(user=user_prolile)
     count_comments = comments.count()
     count_posts = posts.count()
     context = {

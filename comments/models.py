@@ -1,7 +1,14 @@
 from django.conf import settings
 from django.db import models
+from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
+
+from scl.models import BaseModel
+
+COMMENT_MAX_LENGTH = getattr(settings, 'COMMENT_MAX_LENGTH', 3000)
 
 
 class CommentManager(models.Manager):
@@ -14,8 +21,12 @@ class CommentManager(models.Manager):
         return qs
 
 
-class CommentAbstractModel(models.Model):
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+class CommentAbstractModel(MPTTModel):
+    content_type = models.ForeignKey(
+        ContentType,
+        verbose_name=_('content type'),
+        related_name="content_type_set_for_%(class)s",
+        on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
@@ -24,21 +35,51 @@ class CommentAbstractModel(models.Model):
 
 
 class Comment(CommentAbstractModel):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
-    content = models.TextField(unique=False)
-    date = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    karma = models.IntegerField(default=0)
-    parent = models.ForeignKey(
-        'self', on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('user'),
+        related_name="%(class)s_comments",
+        on_delete=models.CASCADE)
+    comment = models.TextField(
+        _('comment'),
+        max_length=COMMENT_MAX_LENGTH)
+    karma = models.SmallIntegerField(
+        default=0)
+    parent = TreeForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        related_name=_('children'),
+        db_index=True)
+    is_public = models.BooleanField(
+        _('is public'),
+        default=True,
+        help_text=_('Uncheck this box to make the comment effectively '
+                    'disappear from the site.'))
+    is_removed = models.BooleanField(
+        _('is removed'),
+        default=False,
+        help_text=_('Check this box if the comment is inappropriate. '
+                    'A "This comment has been removed" message will '
+                    'be displayed instead.'))
+    created_at = models.DateTimeField(
+        default=timezone.now,
+        verbose_name=_(u'Creation date'))
+    updated_at = models.DateTimeField(
+        blank=True,
+        null=True,
+        verbose_name=_(u'Modification date'))
+
+    def update(self):
+        self.updated_at = timezone.now()
+        self.save()
 
     objects = CommentManager()
 
     class Meta(CommentAbstractModel.Meta):
-        ordering = ['date']
+        ordering = ['-created_at']
+        verbose_name = _('comment')
+        verbose_name_plural = _('comments')
 
     def __str__(self):
-        return "%s: %s..." % (self.author.username, self.content[:50])
-
-    def children(self):
-        return Comment.objects.filter(parent=self)
+        return "%s: %s..." % (self.user.username, self.comment[:50])
