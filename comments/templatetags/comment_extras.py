@@ -9,21 +9,14 @@ register = template.Library()
 
 
 @register.inclusion_tag('comments/comments_list.html')
-def get_comments(instance):
+def get_comments(instance, object_id, user):
 
     comments = Comment.objects.filter_by_instance(
         instance).order_by('tree_id').select_related()
-
-    return {'comments': comments}
-
-@register.inclusion_tag('comments/comment_form.html')
-def get_comment_form(instance, object_id):
-
+    
     content_type = ContentType.objects.get_for_model(instance)
-    print('content_type:', content_type)
 
-    return {'content_type': content_type, 'object_id': object_id}
-
+    return {'comments': comments, 'content_type': content_type, 'object_id': object_id, 'user': user}
 
 @register.filter
 @stringfilter

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from imagekit.models import ProcessedImageField
+from imagekit.models import ProcessedImageField, ImageSpecField
 from imagekit.processors import ResizeToFill
 from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 
@@ -22,6 +22,13 @@ class User(AbstractUser):
         format='JPEG',
         options={'quality': 99},
         verbose_name=_(u'Аватар пользователя'))
+    
+    avatar_thumbnail_40 = ImageSpecField(
+        source='avatar',
+        processors=[ResizeToFill(40, 40)],
+        format='JPEG',
+        options={'quality': 99})
+
     birthdate = models.DateField(
         blank=True,
         null=True,

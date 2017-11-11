@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import User
 from blog.models import Post
+from comments.models import Comment
 from .forms import PublicProfileForm
 from allauth.account.views import PasswordChangeView, EmailView
 

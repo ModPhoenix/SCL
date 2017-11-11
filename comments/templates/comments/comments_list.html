@@ -1,15 +1,14 @@
-{% load imagekit %}
 {% load comment_extras %}
 <div id="comments">
-  <div class="comments-header">
+  <div class="comments-header comments-container">
     <p class="comments-title">5 комментариев</p>
   </div>
-  <div class="comments-content">
+  <div class="comments-content comments-container">
   {% for comment in comments %}
-    <div class="comments-item comments-item-level-{% if comment.is_root_node %}1{% else %}2{% endif %}" data-comment-id="{{ comment.id }}" >
+    <div id="comment-{{ comment.id }}" class="comments-item comments-item-level-{% if comment.is_root_node %}1{% else %}2{% endif %}">
       <div class="comments-item-header">
         <a href="{% url 'profiles:user_profile' username=comment.user.username  %}" class="comments-item-user">
-          {% thumbnail '40x40' comment.user.avatar -- alt="A picture of Me" class="comments-item-user-thumbnail" %}
+          <img alt="@{{ comment.user.username }}" class="comments-item-user-thumbnail rounded" width="40" height="40" src="{{ comment.user.avatar_thumbnail_40.url }}">
           <p class="comments-item-user-name"><span>{{ comment.user.username }}</span></p>
         </a>
         <a href="#comment-{{ comment.id }}" class="comments-item-date">
@@ -27,5 +26,21 @@
       </div> 
     </div>
   {% endfor %}
+  </div>
+  <div class="comments-footer comments-container">
+    <div class="comments-form-reply">
+      <img alt="@{{ user.username }}" class="comments-form-user-thumbnail rounded" width="40" height="40" src="{{ user.avatar_thumbnail_40.url }}">
+      <form class="clearfix" method="POST" action="{% url 'comments:add_comment' %}">
+        {% csrf_token %}
+        <input type="hidden" name="content_type" value="{{ content_type }}" id="id_content_type">
+        <input type="hidden" name="object_id" value="{{ object_id }}" id="id_object_id">
+        <label for="id_comment" class="sr-only">Комментарий:</label>
+        <textarea name="comment" class="form-control" cols="40" rows="5" required="" id="id_comment" placeholder="Написать комментарий..."></textarea>
+        <div class="form-reply-footer">
+          <button type="submit" class="btn btn-primary btn-comment-reply">Комментировать</button>
+          <div class="btn-comment-reply-cancel">Отменить</div>
+        </div>
+      </form>
+  </div>
   </div>
 </div>

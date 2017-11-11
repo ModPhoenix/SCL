@@ -29,8 +29,7 @@
     <div class="col-md-12">
       <div class="mttp-comments">
           {% load comment_extras %}
-          {% get_comments post %}
-          {% get_comment_form post post.id %}
+          {% get_comments post post.id user %}
       </div>
     </div>
   </div>
