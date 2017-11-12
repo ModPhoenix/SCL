@@ -22,7 +22,6 @@ def add_comment(request):
             parent_id = None
 
         if parent_id != None:
-            print("parent_id != None")
             parent_qs = Comment.objects.filter(id=parent_id)
             if parent_qs.exists():
                 parent_object = parent_qs.first()
@@ -34,4 +33,5 @@ def add_comment(request):
             comment=comment_data,
             parent=parent_object,
         )
+        
         return HttpResponseRedirect("%s#comment-%s" % (new_comment.content_object.get_absolute_url(), new_comment.id))

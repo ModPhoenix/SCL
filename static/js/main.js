@@ -51,7 +51,6 @@ $(".comments-item-button-reply").click(function () {
     $("#" + commentId + " .comments-form-reply form").append('<input class="form-reply-js" type="hidden" name="parent_id" id="id_parent_id" value="' + commentIdValue + '">');
 });
 
-$(".btn-comment-reply-cancel").click(function () {
+$("#comments").on("click", ".btn-comment-reply-cancel", function () { 
     $(".form-reply-js").remove();
-    console.log('sdsdsdsd')
 });

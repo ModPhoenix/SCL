@@ -266,7 +266,9 @@ article .post-author-img {
 }
 
 .comments-container {
-  margin: 0 130px;
+  margin: 0;
+  margin-left: 100px;
+  margin-right: 200px;
 }
 
 /* #comments .comments-header {
@@ -389,7 +391,7 @@ article .post-author-img {
 }
 
 .btn-comment-reply-cancel {
-  display: block;
+  display: none;
   float: right;
   cursor: pointer;
   font-size: 14px;
@@ -398,6 +400,10 @@ article .post-author-img {
   margin-right: 20px;
   color: #818181;
   border-bottom: 1px dotted #818181;
+}
+
+.form-reply-js .btn-comment-reply-cancel {
+  display: block;
 }
 
 /* Comments end */

@@ -1,7 +1,7 @@
 {% load comment_extras %}
 <div id="comments">
   <div class="comments-header comments-container">
-    <p class="comments-title">5 комментариев</p>
+    <p class="comments-title">Комментариев {{ comments_count }}</p>
   </div>
   <div class="comments-content comments-container">
   {% for comment in comments %}
