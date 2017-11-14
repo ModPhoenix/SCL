@@ -108,11 +108,21 @@ table caption {
 
 nav .link-create {
   cursor: pointer;
-  margin-right: 30px;
+  margin-right: 70px;
 }
 
 nav .btn-create {
   cursor: pointer;
+}
+
+.nav-user {
+  position: relative;
+}
+
+.user-thumbnail {
+  position: absolute;
+  top: 1px;
+  left: -45px;
 }
 
 /* Header end */
