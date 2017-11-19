@@ -23,4 +23,34 @@ function getCookie(name) {
         }
     }
     return cookieValue;
-  };
+};
+
+var csrfToken = getCookie("csrftoken");
+
+/* 
+* Comments
+*/
+
+// Плавный скролинг
+$(".comments-item-date").click(function () {
+    console.log(csrfToken);
+    var elementClick = $(this).attr("href");
+    var destination = $(elementClick).offset().top-100;
+    jQuery("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 500);
+    return false;
+});
+
+var commentForm = $(".comments-form-reply").clone();
+
+$(".comments-item-button-reply").click(function () {
+    var commentId = $(this).closest(".comments-item").attr("id");
+    var commentIdValue = Number(commentId.split('-').slice(1));
+    $(".form-reply-js").remove();
+    $("#" + commentId).append(commentForm);
+    $("#" + commentId + " .comments-form-reply").addClass("form-reply-js");
+    $("#" + commentId + " .comments-form-reply form").append('<input class="form-reply-js" type="hidden" name="parent_id" id="id_parent_id" value="' + commentIdValue + '">');
+});
+
+$("#comments").on("click", ".btn-comment-reply-cancel", function () { 
+    $(".form-reply-js").remove();
+});
