@@ -210,6 +210,14 @@ article .post-author-img {
     margin: 0 5px 3px 0;
 }
 
+.post-thumbnail-small {
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  width: 100px;
+  height: 100px;
+}
+
 /* Article end */
 
 /* Post_create start */

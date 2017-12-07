@@ -13,7 +13,7 @@ from attachments.models import Attachment
 
 
 def index(request):
-    posts = Post.objects.all().select_related()
+    posts = Post.objects.all().select_related()[:10]
 
     context = {
         'posts': posts,

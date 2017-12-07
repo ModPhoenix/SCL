@@ -1,12 +1,17 @@
 {% load imagekit %}
 <article class="post">
-  <div class="post-content">
+  <div class="post-content clearfix">
+    {% if post.thumbnail and not post.big_thumbnail %}
+    <div class="post-thumbnail-small">
+      <img class="img-fluid" src="{{ post.thumbnail_100.url }}">
+    </div>
+    {% endif %}
     <a href="{{ post.get_absolute_url }}"><h3 class="post-title">{{ post.title }}</h3></a>
     {{ post.excerpt|safe }}
   </div>
-  {% if post.thumbnail %}
-  <div class="post-img">
-    <img class="img-fluid" src="{{ post.thumbnail_540.url }}" alt="">
+  {% if post.thumbnail and post.big_thumbnail %}
+  <div class="post-thumbnail-big">
+    <img class="img-fluid" src="{{ post.thumbnail_540.url }}">
   </div>
   {% endif %}
   <div class="post-footer">

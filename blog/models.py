@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
@@ -7,7 +8,7 @@ from django.template.defaultfilters import slugify
 from django.utils.html import strip_tags
 from unidecode import unidecode
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFit
+from imagekit.processors import ResizeToFit, ResizeToFill
 
 from .utils import get_image
 
@@ -31,9 +32,18 @@ class Post(ModerationBaseModel):
     thumbnail = models.ImageField(
         blank=True,
         null=True)
+    big_thumbnail = models.BooleanField(
+        _('Большая миниатюра'),
+        default=False,
+        help_text=_('Если отмечено, на превью будет большая миниатюра.'))
     thumbnail_540 = ImageSpecField(
         source='thumbnail',
         processors=[ResizeToFit(width=540)],
+        format='JPEG',
+        options={'quality': 95})
+    thumbnail_100 = ImageSpecField(
+        source='thumbnail',
+        processors=[ResizeToFill(100, 100)],
         format='JPEG',
         options={'quality': 95})
 
@@ -49,10 +59,15 @@ class Post(ModerationBaseModel):
     def save(self, *args, **kwargs):
         if self.slug == '':
             self.slug = slugify(unidecode(self.title)[:60])
-        if self.thumbnail == '':
+        if self.thumbnail == None or self.thumbnail == '':
             self.thumbnail = get_image(self.content)
         if self.excerpt == '':
-            self.excerpt = strip_tags(self.content)[:100] + '...'
+            if len(strip_tags(self.content)) < 100:
+                self.excerpt = strip_tags(self.content)
+            else:
+                self.excerpt = strip_tags(self.content)[:100] + '...'
+        
+            
         return super(Post, self).save(*args, **kwargs)
 
     def get_conttent_type(self):
