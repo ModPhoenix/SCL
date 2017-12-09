@@ -10,7 +10,7 @@ from unidecode import unidecode
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 
-from .utils import get_image
+from .utils import get_image, get_excerpt
 
 from scl.models import (
     BaseModel,
@@ -62,12 +62,8 @@ class Post(ModerationBaseModel):
         if self.thumbnail == None or self.thumbnail == '':
             self.thumbnail = get_image(self.content)
         if self.excerpt == '':
-            if len(strip_tags(self.content)) < 100:
-                self.excerpt = strip_tags(self.content)
-            else:
-                self.excerpt = strip_tags(self.content)[:100] + '...'
+            self.excerpt = strip_tags(get_excerpt(self.content))
         
-            
         return super(Post, self).save(*args, **kwargs)
 
     def get_conttent_type(self):
