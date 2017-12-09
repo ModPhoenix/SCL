@@ -11,10 +11,6 @@ from django.core.files.storage import default_storage
 from django.utils.translation import ugettext_lazy as _
 
 
-class ImageOptimizer(ImageSpec):
-    format = 'JPEG'
-    options = {'quality': 99}
-
 class ImageCrop(ImageSpec):
     processors = [
         ResizeToFit(width=687)
@@ -34,16 +30,12 @@ def image_upload(request):
         name = the_file.name
         now_date = datetime.date.today()
         upload_to = 'uploads/%d/%d/%d/' % (now_date.year, now_date.month, now_date.day)
-        upload_crop = 'uploads/crop670/'
-        image_generator = ImageOptimizer(source=the_file)
-        result_generator = image_generator.generate()
-        path = default_storage.save(os.path.join(upload_to, the_file.name), result_generator)
-        image_crop = ImageCrop(source=result_generator)
+        upload_crop = 'uploads/%d/%d/%d/crop670/' % (now_date.year, now_date.month, now_date.day)
+        path = default_storage.save(os.path.join(upload_to, the_file.name), the_file)
+        image_crop = ImageCrop(source=the_file)
         result_crop = image_crop.generate()
         path_crop = default_storage.save(os.path.join(upload_crop, the_file.name), result_crop)
-        print(7)
         link = default_storage.url(path)
         link_crop = default_storage.url(path_crop)
-        print()
         # return JsonResponse({'link': link})
         return HttpResponse(json.dumps({'link': link, 'name': name, 'link_crop': link_crop, }), content_type="application/json")
