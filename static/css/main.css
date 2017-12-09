@@ -474,6 +474,7 @@ article .post-author-img {
     background-color: #404040;
     border-color: #303030;
     outline: 0;
+    box-shadow: none;
 }
 
 .hide {
