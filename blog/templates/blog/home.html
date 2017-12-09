@@ -3,10 +3,16 @@
 {% block content %}
 <div class="container main">
   <div class="row">
-    <div class="posts-list col-md-6">
+    <div class="col-md-6 posts-list">
       {% for post in posts %}
       {% include "blog/post_block.html" %}
       {% endfor %}
+    </div>
+    <div class="col-md-6 ad">
+      <div class="referral-program">
+        <p>Зарегистрируйся в Star Citizen <a rel="nofollow" target="_blank" href="https://robertsspaceindustries.com/enlist?referral=STAR-LVR3-GPFZ">по этой ссылке</a> 
+        или самостоятельно введи код STAR-LVR3-GPFZ при регистрации, что бы получить бонус 5000 UEC эквивалент 5$.</p>
+      </div>
     </div>
     <div class="col-md-4">
       <div class="stats">

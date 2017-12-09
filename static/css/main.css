@@ -245,6 +245,16 @@ article .post-author-img {
 
 /* Article end */
 
+/* Referral program  start */
+
+.referral-program {
+  padding: 20px;
+  color: rgb(180, 180, 180);
+  background-color: rgb(40, 40, 40);
+}
+
+/* Referral program  end */
+
 /* Post_create start */
 
 .btn-modal-unload {
