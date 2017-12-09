@@ -37,11 +37,11 @@ class User(AbstractUser):
         blank=True,
         verbose_name=_(u'О себе'))
     location = models.CharField(
-        max_length=60,
+        max_length=255,
         blank=True,
         verbose_name=_(u'Локация'))
     organization = models.CharField(
-        max_length=60,
+        max_length=255,
         blank=True,
         verbose_name=_(u'Игровая Организация'))
     handle = models.CharField(

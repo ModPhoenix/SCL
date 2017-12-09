@@ -184,9 +184,24 @@ nav .btn-create {
 article.post {
   margin-bottom: 20px;
 }
+
+article .post-title {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.882);
+}
+
+article .post-link:hover {
+  text-decoration: none;
+}
+
+article .post-excerpt {
+  color: rgb(180, 180, 180);
+}
+
+
 article .post-content,
 article .post-footer {
-  background-color: #323232;
+  background-color: rgb(40, 40, 40);
 }
 
 article .post-content {
@@ -199,6 +214,16 @@ article .post-text {
 
 article .post-footer {
   padding: 10px 1.25rem;
+  color: rgb(136, 136, 136);
+}
+
+article .post-footer .post-author a {
+  color: rgb(136, 136, 136);
+}
+
+article .post-footer .post-author a:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.882);
 }
 
 article .post-footer > div {

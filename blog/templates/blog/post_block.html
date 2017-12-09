@@ -6,8 +6,8 @@
       <img class="img-fluid" src="{{ post.thumbnail_100.url }}">
     </div>
     {% endif %}
-    <a href="{{ post.get_absolute_url }}"><h3 class="post-title">{{ post.title }}</h3></a>
-    {{ post.excerpt|safe }}
+    <a href="{{ post.get_absolute_url }}" class="post-link"><h3 class="post-title">{{ post.title }}</h3></a>
+    <div class="post-excerpt">{{ post.excerpt|safe }}</div>
   </div>
   {% if post.thumbnail and post.big_thumbnail %}
   <div class="post-thumbnail-big">
