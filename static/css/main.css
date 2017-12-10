@@ -8,7 +8,6 @@ color {
 }
 
 html {
-  height: 300%;
   margin-top: 56px !important;
 }
 
@@ -126,6 +125,43 @@ nav .btn-create {
 }
 
 /* Header end */
+
+/* Footer start */
+
+#footer {
+  margin-top: 40px;
+  min-height: 150px;
+  color: rgb(180, 180, 180);
+  background-color: rgb(40, 40, 40);
+}
+
+.nav-footer,
+.contact-info-footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+#footer a {
+  margin-right: 15px;
+  color: rgb(180, 180, 180);
+}
+
+#footer a:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.882);
+}
+
+.site-footer .site-name {
+  color: rgba(255, 255, 255, 0.882);
+  font-weight: bold;
+}
+
+.site-footer {
+
+}
+
+/* Footer end */
 
 /* Signin start */
 .form-signin {
