@@ -47,7 +47,7 @@ class Category(MPTTModel, BaseModel):
         verbose_name=_('Родитель'))
 
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         verbose_name = _('Категория')
