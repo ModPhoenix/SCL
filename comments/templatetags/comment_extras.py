@@ -19,11 +19,11 @@ def get_comments(instance, object_id, user):
         instance).order_by('tree_id').select_related()
     comments_count = comments.count()
 
-    content_type = ContentType.objects.get_for_model(instance)
-
+    instance_class = instance.__class__.__name__.lower()
+    
     context = {
         'comments': comments,
-        'content_type': content_type,
+        'content_type': instance_class,
         'object_id': object_id,
         'user': user,
         'comments_count': comments_count,
