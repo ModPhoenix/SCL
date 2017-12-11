@@ -16,7 +16,8 @@ from .utils import get_image, get_excerpt
 from scl.models import (
     BaseModel,
     ModerationBaseModel,
-    )
+)
+
 
 class Category(MPTTModel, BaseModel):
     """
@@ -50,6 +51,7 @@ class Category(MPTTModel, BaseModel):
 
     class MPTTMeta:
         order_insertion_by = ['name']
+
 
 class Post(ModerationBaseModel):
     author = models.ForeignKey(
@@ -116,7 +118,7 @@ class Post(ModerationBaseModel):
             self.thumbnail = get_image(self.content)
         if self.excerpt == '':
             self.excerpt = strip_tags(get_excerpt(self.content))
-        
+
         return super(Post, self).save(*args, **kwargs)
 
     def get_conttent_type(self):

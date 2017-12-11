@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'database',
+    'guides',
     'old',
 ]
 
