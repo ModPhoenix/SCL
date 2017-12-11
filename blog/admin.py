@@ -10,5 +10,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(CompareVersionAdmin):
-    list_display = ('id', 'title', 'slug',)
+    list_display = ('title', 'author', 'category', 'created_at', 'updated_at', 'published', 'moderation',)
     list_display_links = ('title',)

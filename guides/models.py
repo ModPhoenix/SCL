@@ -61,6 +61,8 @@ class Guide(ModerationBaseModel):
 
     class Meta:
         ordering = ["-created_at"]
+        verbose_name = _('Гайд')
+        verbose_name_plural = _('Гайды')
 
     def __str__(self):
         return self.title

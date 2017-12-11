@@ -103,6 +103,8 @@ class Post(ModerationBaseModel):
 
     class Meta:
         ordering = ["-created_at"]
+        verbose_name = _('Пост')
+        verbose_name_plural = _('Посты')
 
     def __str__(self):
         return self.title
