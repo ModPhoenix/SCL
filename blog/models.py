@@ -54,22 +54,35 @@ class Category(MPTTModel, BaseModel):
 class Post(ModerationBaseModel):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        verbose_name=_('Автор'))
     title = models.CharField(
+        _('Заголовок'),
         max_length=150)
     slug = models.SlugField(
+        _('Слаг'),
         max_length=60,
-        unique=False)
+        unique=False,
+        help_text=_('Слаг — это вариант названия, подходящий для URL. Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.'))
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
         verbose_name=_("Катерогия"))
-    content = models.TextField()
+    content = models.TextField(
+        _('Контент'),)
     excerpt = models.TextField(
-        blank=True)
+        _('Описание'),
+        blank=True,
+        help_text=_('По Умолчанию первый абзац Контента, при необходимости можно изменить.'))
+    ordering = models.SmallIntegerField(
+        _('Сортировка'),
+        default=0,
+        blank=True,
+        null=True)
     thumbnail = models.ImageField(
+        _('Миниатюра'),
         blank=True,
         null=True)
     big_thumbnail = models.BooleanField(
