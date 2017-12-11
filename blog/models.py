@@ -4,7 +4,6 @@ from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
-from django.utils.encoding import force_text
 from django.template.defaultfilters import slugify
 from django.utils.html import strip_tags
 from unidecode import unidecode
