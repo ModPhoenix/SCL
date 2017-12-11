@@ -15,13 +15,13 @@
     {% block extend %}{% endblock extend %}
   </head>
   <body>
-    {% include 'blog/nav.html' %}
+    {% include 'nav.html' %}
     {% block content %}{% endblock content %}
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="{% static 'js/popper.min.js' %}" ></script>
     <script src="{% static 'js/bootstrap.min.js' %}" ></script>
     <script src="{% static 'js/main.js' %}" ></script>
     {% block javascript %}{% endblock %}
-    {% include 'blog/footer.html' %}
+    {% include 'footer.html' %}
   </body>
 </html>
