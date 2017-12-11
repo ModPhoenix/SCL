@@ -40,6 +40,22 @@ table caption {
   background-color: #232323!important;
 }
 
+.dropdown-menu {
+  color: rgba(255, 255, 255, 0.882);
+  background-color: rgb(35,35,35);
+  border: 1px solid rgba(0,0,0,.15);
+}
+
+.dropdown-item {
+  color: rgba(255, 255, 255, 0.882);
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: rgba(255, 255, 255, 0.882);
+  background-color: #4b4b4b;
+}
+
 .Subhead-heading {
   font-size: 24px;
   font-weight: normal;
