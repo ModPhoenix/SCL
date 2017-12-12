@@ -1,3 +1,4 @@
+from django.views.generic import ListView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.contenttypes.models import ContentType
@@ -12,13 +13,10 @@ from .forms import PostForm
 from attachments.models import Attachment
 
 
-def index(request):
-    posts = Post.objects.all().select_related()[:10]
-
-    context = {
-        'posts': posts,
-    }
-    return render(request, 'home.html', context)
+class PostList(ListView):
+    context_object_name = 'posts'
+    queryset = Post.objects.all().select_related()[:10]
+    template_name = 'home.html'
 
 
 def post_detail(request, id, slug):
@@ -42,7 +40,7 @@ def create_post(request):
 
                 reversion.set_user(request.user)
                 reversion.set_comment(
-                    "Пост создан на сайте, пользователем: %s" % request.user.username)
+                    "Пост создан, пользователем: %s" % request.user.username)
 
                 return redirect(post.get_absolute_url())
     else:
