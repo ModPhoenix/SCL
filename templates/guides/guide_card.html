@@ -1,0 +1,24 @@
+{% load imagekit %}
+<article class="post">
+  <div class="post-content clearfix">
+    {% if guide.thumbnail and not guide.big_thumbnail %}
+    <div class="post-thumbnail-small">
+      <img class="img-fluid" src="{{ guide.thumbnail_100.url }}">
+    </div>
+    {% endif %}
+    <a href="{{ guide.get_absolute_url }}" class="post-link"><h3 class="post-title">{{ guide.title }}</h3></a>
+    <div class="post-excerpt">{{ guide.excerpt|safe }}</div>
+  </div>
+  {% if guide.thumbnail and guide.big_thumbnail %}
+  <div class="post-thumbnail-big">
+    <img class="img-fluid" src="{{ guide.thumbnail_540.url }}">
+  </div>
+  {% endif %}
+  <div class="post-footer">
+    <div class="post-date">{{ guide.created_at }}</div>
+    <div class="post-author"><a href="{% url 'profiles:user_profile' username=guide.author %}">
+      {% thumbnail '20x20' guide.author.avatar -- alt="A picture of Me" class="rounded-circle post-author-img" %}
+      {{ guide.author }}
+    </a></div>
+  </div>
+</article>

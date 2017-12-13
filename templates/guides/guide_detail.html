@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container main">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrapper-post-detail">
+        <div class="post-info">
+          <div class="date">{{ guide.created_at }}</div>
+          <div class="author">{{ guide.author }}</div>
+
+          {% if user.is_authenticated %}
+            {% if user == guide.author or user.is_active and user.is_superuser %}
+
+            <div class="edit"><a href="{% url 'guides:edit_guide' id=guide.id slug=guide.slug %}">Редактировать</a></div>
+            
+            {% endif %}
+          {% endif %}
+
+        </div>
+        <article class="post-detail">
+          <div class="post-detail-title">
+            <h1>{{ guide.title }}</h1>
+          </div>
+          <div class="post-detail-content my-gallery ql-editor col-md-8">{{ guide.content|safe }}</div>
+        </article>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="mttp-comments">
+          {% load comment_extras %}
+          {% get_comments guide guide.id user %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $('.post-detail-content img').parents('a').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        showCloseBtn: false,
+        closeBtnInside: false,
+        fixedContentPos: false,
+        mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+        image: {
+          verticalFit: true
+        },
+        zoom: {
+          enabled: true,
+          duration: 300 // don't foget to change the duration also in CSS
+        }
+      });
+    });
+    </script>
+{% endblock %}
