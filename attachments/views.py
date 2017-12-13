@@ -2,6 +2,7 @@ import json
 import os
 import datetime
 
+from PIL import Image
 from imagekit import ImageSpec
 from imagekit.processors import ResizeToFit
 from django.http import JsonResponse
@@ -28,14 +29,21 @@ def image_upload(request):
         # filetype = file['content-type']
         
         name = the_file.name
+        im = Image.open(the_file)
+        (width, height) = im.size
+        print(width, height)
         now_date = datetime.date.today()
         upload_to = 'uploads/%d/%d/%d/' % (now_date.year, now_date.month, now_date.day)
-        upload_crop = 'uploads/%d/%d/%d/crop670/' % (now_date.year, now_date.month, now_date.day)
         path = default_storage.save(os.path.join(upload_to, the_file.name), the_file)
-        image_crop = ImageCrop(source=the_file)
-        result_crop = image_crop.generate()
-        path_crop = default_storage.save(os.path.join(upload_crop, the_file.name), result_crop)
         link = default_storage.url(path)
-        link_crop = default_storage.url(path_crop)
-        # return JsonResponse({'link': link})
+        link_crop = None
+        if width > 687:
+            upload_crop = 'uploads/%d/%d/%d/crop670/' % (now_date.year, now_date.month, now_date.day)
+            image_crop = ImageCrop(source=the_file)
+            result_crop = image_crop.generate()
+            path_crop = default_storage.save(os.path.join(upload_crop, the_file.name), result_crop)
+            link_crop = default_storage.url(path_crop)
+
+        print(HttpResponse(json.dumps({'link': link, 'name': name, 'link_crop': link_crop, }), content_type="application/json"))
+        
         return HttpResponse(json.dumps({'link': link, 'name': name, 'link_crop': link_crop, }), content_type="application/json")

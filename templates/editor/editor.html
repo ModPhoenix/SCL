@@ -92,7 +92,13 @@
   function insertToEditor(data) {
     // push image url to rich editor.
     const range = quill.getSelection();
-    quill.pasteHTML(range.index, `<a href="${data.link}" class="img"><img src="${data.link_crop}" class="img-fluid" alt="${data.name}"></a>`);
+    console.log(data.link_crop);
+    if (data.link_crop == null) {
+      quill.pasteHTML(range.index, `<a href="${data.link}" class="img"><img src="${data.link}" class="img-fluid" alt="${data.name}"></a>`);
+    }
+    else {
+      quill.pasteHTML(range.index, `<a href="${data.link}" class="img"><img src="${data.link_crop}" class="img-fluid" alt="${data.name}"></a>`);
+    }
   }
 
   // quill editor add image handler
