@@ -17,6 +17,13 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+
+from blog.models import PostSitemap
+
+sitemaps = {
+    'posts': PostSitemap,
+}
 
 urlpatterns = [
     url(r'^', include('blog.urls', namespace='blog')),
@@ -28,6 +35,8 @@ urlpatterns = [
     url(r'^db/', include('database.urls', namespace='database')),
     url(r'^', include('attachments.urls', namespace='attachments')),
     url(r'^admin/', admin.site.urls),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+    name='django.contrib.sitemaps.views.sitemap')
 ]
 
 if settings.DEBUG:

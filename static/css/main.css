@@ -295,6 +295,15 @@ article .post-author-img {
   height: 100px;
 }
 
+.wrapper-post-detail #i-eye {
+  top: 3px;
+  position: relative;
+}
+
+.wrapper-post-detail .views-counter span {
+  margin-left: 2px;
+}
+
 /* Article end */
 
 /* Referral program  start */

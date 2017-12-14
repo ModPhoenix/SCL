@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.redirects',
     'django.contrib.humanize',
+    'django.contrib.sitemaps',
     'mptt',
     'debug_toolbar',
     'imagekit',

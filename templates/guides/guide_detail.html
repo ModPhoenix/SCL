@@ -14,7 +14,13 @@
         <div class="post-info">
           <div class="date">{{ guide.created_at }}</div>
           <div class="author">{{ guide.author }}</div>
-          <div class="views-counter">{% get_hit_count for guide %}</div>
+          <div class="views-counter">
+              <svg xmlns="http://www.w3.org/2000/svg" id="i-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye" data-reactid="486">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            <span>{% get_hit_count for guide %}</span>
+          </div>
 
           {% if user.is_authenticated %}
             {% if user == guide.author or user.is_active and user.is_superuser %}
