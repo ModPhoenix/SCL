@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^', include('blog.urls', namespace='blog')),
     url(r'^guides/', include('guides.urls', namespace='guides')),
     url(r'^comments/', include('comments.urls', namespace='comments')),
+    url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('profiles.urls', namespace='profiles')),
     url(r'^db/', include('database.urls', namespace='database')),

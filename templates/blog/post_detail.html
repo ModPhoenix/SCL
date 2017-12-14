@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load hitcount_tags %}
+{% load comment_extras %}
+
 {% block content %}
+
+{% insert_hit_count_js for post%}
+
 <div class="container main">
   <div class="row">
     <div class="col-md-12">
@@ -8,7 +14,8 @@
         <div class="post-info">
           <div class="date">{{ post.created_at }}</div>
           <div class="author">{{ post.author }}</div>
-
+          <div class="views-counter">{% get_hit_count for post %}</div>
+          
           {% if user.is_authenticated %}
             {% if user == post.author or user.is_active and user.is_superuser %}
 
@@ -28,7 +35,6 @@
     </div>
     <div class="col-md-12">
       <div class="mttp-comments">
-          {% load comment_extras %}
           {% get_comments post post.id user %}
       </div>
     </div>
@@ -38,6 +44,7 @@
 
 {% block javascript %}
   <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
   <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
   <script>
     $(document).ready(function() {

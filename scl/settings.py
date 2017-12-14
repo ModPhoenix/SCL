@@ -52,12 +52,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',
     'blog',
     'comments',
+    'guides',
+    'hitcount',
     'editor',
     'attachments',
     'reversion',
     'reversion_compare',
     'database',
-    'guides',
     'old',
 ]
 
@@ -173,3 +174,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+
+
+# Django Hitcount
+
+HITCOUNT_KEEP_HIT_ACTIVE = { 'days': 1 }
+
+HITCOUNT_HITS_PER_IP_LIMIT = 0
