@@ -3,6 +3,9 @@
 {% load hitcount_tags %}
 {% load comment_extras %}
 
+{% block title %}{{ guide.title }}{% endblock title %}
+{% block description %}{{ guide.excerpt }}{% endblock description %}
+
 {% block content %}
 
 {% insert_hit_count_js for guide%}
