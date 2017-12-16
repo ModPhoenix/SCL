@@ -15,7 +15,8 @@ from attachments.models import Attachment
 
 class PostList(ListView):
     context_object_name = 'posts'
-    queryset = Post.objects.all().select_related()[:10]
+    paginate_by = 10
+    queryset = Post.objects.all().select_related()
     template_name = 'home.html'
 
 
