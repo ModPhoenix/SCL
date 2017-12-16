@@ -569,7 +569,7 @@ p {
 .wrapper-post-detail .ql-editor {
   line-height: inherit !important;
   overflow: hidden;
-  padding: 0 !important;
+  padding: 0 15px;
 }
 
 #editor-container .ql-editor {
@@ -601,10 +601,6 @@ p {
 
 .post-detail-title {
   margin-bottom: 20px;
-}
-
-.post-detail-content {
-  padding: 0;
 }
 
 /* post-detail end */
