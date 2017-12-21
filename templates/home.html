@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load humanize %}
+{% load popular_posts %}
 {% block content %}
 <div class="container main">
   <div class="row">
@@ -35,6 +36,8 @@
         <p>Зарегистрируйся в Star Citizen <a rel="nofollow" target="_blank" href="https://robertsspaceindustries.com/enlist?referral=STAR-LVR3-GPFZ">по этой ссылке</a> 
         или самостоятельно введи код STAR-LVR3-GPFZ при регистрации, что бы получить бонус 5000 UEC эквивалент 5$.</p>
       </div>
+      {% get_popular_posts %}
+      <div>{{ posts.get_popular }}</div>
     </div>
     <div class="col-md-4">
       <div class="stats">

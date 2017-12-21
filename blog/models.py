@@ -3,6 +3,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.utils.html import strip_tags
@@ -11,6 +12,8 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 from django.contrib.sitemaps import Sitemap
 
+from hitcount.models import HitCountMixin
+from hitcount.models import HitCount
 
 from .utils import get_image, get_excerpt
 
@@ -54,7 +57,7 @@ class Category(MPTTModel, BaseModel):
         order_insertion_by = ['name']
 
 
-class Post(ModerationBaseModel):
+class Post(ModerationBaseModel, HitCountMixin):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -79,11 +82,19 @@ class Post(ModerationBaseModel):
         _('Описание'),
         blank=True,
         help_text=_('По Умолчанию первый абзац Контента, при необходимости можно изменить.'))
+    main = models.BooleanField(
+        _('Главная страница'),
+        default=False,
+        help_text=_('Решает будет ли запись видна на главной странице.'))
     ordering = models.SmallIntegerField(
         _('Сортировка'),
         default=0,
         blank=True,
         null=True)
+    hit_count_generic = GenericRelation(
+        HitCount,
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation')
     thumbnail = models.ImageField(
         _('Миниатюра'),
         blank=True,
@@ -127,6 +138,7 @@ class Post(ModerationBaseModel):
     def get_conttent_type(self):
         conttent_type = ContentType.objects.get_for_model(self.__class__)
         return conttent_type
+
 
 class PostSitemap(Sitemap):
     changefreq = "daily"

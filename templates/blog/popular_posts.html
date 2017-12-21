@@ -1,0 +1,17 @@
+<div class="popular-posts col-md-6">
+    <div class="header-popular">
+        <p>Популярные посты</p>
+    </div>
+    <div class="list-popular">
+        {% for post in popular %}
+            <div class="item-popular">
+                {% if post.thumbnail %}
+                    <img class="item-img img-fluid" src="{{ post.thumbnail_100.url }}">
+                {% endif %}
+                <div class="content-popular">
+                    <a href="{{ post.get_absolute_url }}" class="item-title">{{ post.title }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
