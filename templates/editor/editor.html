@@ -1,42 +1,6 @@
 {% load staticfiles %}
-<div id="standalone-container">
-  <div id="toolbar-container">
-    <span class="ql-formats">
-      <select class="ql-header"></select>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-bold"></button>
-      <button class="ql-italic"></button>
-      <button class="ql-underline"></button>
-      <button class="ql-strike"></button>
-    </span>
-    <span class="ql-formats">
-      <select class="ql-align"></select>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-list" value="ordered"></button>
-      <button class="ql-list" value="bullet"></button>
-      <button class="ql-indent" value="-1"></button>
-      <button class="ql-indent" value="+1"></button>
-    </span>
-    <span class="ql-formats">
-      <select class="ql-color"></select>
-      <select class="ql-background"></select>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-blockquote"></button>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-link"></button>
-      <button class="ql-image"></button>
-      <button class="ql-video"></button>
-    </span>
-    <span class="ql-formats">
-      <button class="ql-clean"></button>
-    </span>
-  </div>
-  <div id="editor-container"></div>
-</div>
+
+<div id="editor-container"></div>
 
 <script src="{% static 'js/quill.min.js' %}"></script>
 
@@ -46,9 +10,27 @@
   Image.className = 'img-fluid';
   Quill.register(Image, true);
 
+  var toolbarOptions = [
+    [{ 'header': [2, 3, 4, false] }],
+    
+    ['bold', 'italic', 'underline', 'strike'],
+
+    [{ 'align': [] }],
+
+    ['blockquote',],
+
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+
+    [{ 'color': [] }, { 'background': [] }],
+
+    ['link', 'image', 'video'],
+
+    ['clean']
+  ];
+
   const quill = new Quill('#editor-container', {
     modules: {
-      toolbar: '#toolbar-container'
+      toolbar: toolbarOptions
     },
     placeholder: 'Напишите что то...',
     theme: 'snow'

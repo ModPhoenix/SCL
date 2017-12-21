@@ -653,6 +653,58 @@ p {
   background-color: rgb(40, 40, 40);
 }
 
+.editor .ql-snow .ql-picker.ql-header {
+  width: 110px;
+}
+
+.editor .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="1"]::before,
+.editor .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
+  content: 'Заголовок 1';
+}
+
+.editor .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before,
+.editor .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+  content: 'Заголовок 2';
+}
+
+.editor .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before,
+.editor .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+  content: 'Заголовок 3';
+}
+
+.editor .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="4"]::before,
+.editor .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
+  content: 'Заголовок 4';
+}
+
+.editor .ql-snow .ql-picker.ql-header .ql-picker-label::before,
+.editor .ql-snow .ql-picker.ql-header .ql-picker-item::before {
+  content: 'Параграф';
+}
+
+.editor .ql-snow .ql-tooltip[data-mode=link]::before {
+  content: "Ссылка:";
+}
+
+.editor .ql-snow .ql-tooltip[data-mode=video]::before {
+  content: "Видео:";
+}
+
+.editor .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
+  content: 'Сохранить';
+}
+
+.editor .ql-snow .ql-tooltip::before {
+  content: "Перейти по URL:";
+}
+
+.editor .ql-snow .ql-tooltip a.ql-action::after {
+  content: 'Изменить';
+}
+
+.editor .ql-snow .ql-tooltip a.ql-remove::before {
+  content: 'Удалить';
+}
 
 /* Quill editor end */
 

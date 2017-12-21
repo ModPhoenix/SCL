@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'database',
+    'taggit',
     'old',
 ]
 

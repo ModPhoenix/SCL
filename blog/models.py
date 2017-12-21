@@ -12,6 +12,8 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
 from django.contrib.sitemaps import Sitemap
 
+from taggit.managers import TaggableManager
+
 from hitcount.models import HitCountMixin
 from hitcount.models import HitCount
 
@@ -113,6 +115,8 @@ class Post(ModerationBaseModel, HitCountMixin):
         processors=[ResizeToFill(100, 100)],
         format='JPEG',
         options={'quality': 95})
+
+    tags = TaggableManager(blank=True)
 
     class Meta:
         ordering = ["-created_at"]
