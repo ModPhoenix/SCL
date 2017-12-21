@@ -313,6 +313,15 @@ article .post-author-img {
   margin-left: 2px;
 }
 
+.loading {
+  height: 90px;
+  text-align: center;
+}
+
+.infinite-more-link {
+  display: none;
+}
+
 /* Article end */
 
 /* Referral program  start */
@@ -630,6 +639,20 @@ p {
   border-left: 4px solid #6d6d6d;
   padding-left: 1rem;
 }
+
+.editor .ql-snow .ql-stroke {
+  stroke: rgba(255, 255, 255, 0.882);
+}
+
+.editor .ql-snow .ql-fill,
+.editor .ql-snow .ql-stroke.ql-fill {
+  fill: rgba(255, 255, 255, 0.882);
+}
+
+.editor .ql-snow .ql-picker-options {
+  background-color: rgb(40, 40, 40);
+}
+
 
 /* Quill editor end */
 

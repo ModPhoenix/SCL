@@ -12,24 +12,39 @@
           {% endfor %}
       </div>
       <div class="loading" style="display: none;">
-        Loading...
+        <span class="loading-name">Загрузка...</span>
+        <div class="svg-img">
+            <svg width="60px"  height="60px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="loading-svg" style="background: none;">
+              <g transform="translate(50,50)">
+                <g ng-attr-transform="scale({{config.scale}})" transform="scale(0.7)">
+                  <g transform="translate(-50,-50)">
+                    <g transform="rotate(192 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.75s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c1}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" fill-opacity="0.8" fill="#ffffcb"></path>
+                    </g>
+                    <g transform="rotate(54 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c2}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(90 50 50)" fill-opacity="0.8" fill="#fac090"></path>
+                    </g>
+                    <g transform="rotate(276 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1.5s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c3}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(180 50 50)" fill-opacity="0.8" fill="#ff7c81"></path>
+                    </g>
+                    <g transform="rotate(138 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="3s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c4}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(270 50 50)" fill-opacity="0.8" fill="#c0f6d2"></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+        </div>
       </div>
 
       {% if page_obj.has_next %}
         <a class="infinite-more-link" href="{% url 'blog:index_pagination' page=page_obj.next_page_number %}">Далее</a>
       {% endif %}
 
-      <script>
-        var infinite = new Waypoint.Infinite({
-          element: $('.posts-list')[0],
-          onBeforePageLoad: function () {
-            $('.loading').show();
-          },
-          onAfterPageLoad: function ($items) {
-            $('.loading').hide();
-          }
-        });
-      </script>
     </div>
     <div class="col-md-6 ad">
       <div class="referral-program">
@@ -37,19 +52,25 @@
         или самостоятельно введи код STAR-LVR3-GPFZ при регистрации, что бы получить бонус 5000 UEC эквивалент 5$.</p>
       </div>
       {% get_popular_posts %}
-      <div>{{ posts.get_popular }}</div>
-    </div>
-    <div class="col-md-4">
-      <div class="stats">
-        <div class="stats-title">
-          <h2>Статистика</h2>
-        </div>
+      <div class="aside-footer">
+        {% include 'footer.html' %}
       </div>
     </div>
   </div>
 </div>
 {% endblock content %}
-{% block extend %}
+{% block javascript %}
 <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/infinite.min.js' %}"></script>
-{% endblock %}
+<script>
+  var infinite = new Waypoint.Infinite({
+    element: $('.posts-list')[0],
+    onBeforePageLoad: function () {
+      $('.loading').show();
+    },
+    onAfterPageLoad: function ($items) {
+      $('.loading').hide();
+    }
+  });
+</script>
+{% endblock javascript %}
