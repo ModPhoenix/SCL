@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class ImageCrop(ImageSpec):
     processors = [
-        ResizeToFit(width=687)
+        ResizeToFit(width=770)
     ]
 
 def image_upload(request):
@@ -38,7 +38,7 @@ def image_upload(request):
         link = default_storage.url(path)
         link_crop = None
         if width > 687:
-            upload_crop = 'uploads/%d/%d/%d/crop670/' % (now_date.year, now_date.month, now_date.day)
+            upload_crop = 'uploads/%d/%d/%d/crop770/' % (now_date.year, now_date.month, now_date.day)
             image_crop = ImageCrop(source=the_file)
             result_crop = image_crop.generate()
             path_crop = default_storage.save(os.path.join(upload_crop, the_file.name), result_crop)

@@ -103,12 +103,12 @@ class Post(ModerationBaseModel, HitCountMixin):
         _('Большая миниатюра'),
         default=False,
         help_text=_('Если отмечено, на превью будет большая миниатюра.'))
-    thumbnail_540 = ImageSpecField(
+    thumbnail_big = ImageSpecField(
         source='thumbnail',
-        processors=[ResizeToFit(width=540)],
+        processors=[ResizeToFit(width=610)],
         format='JPEG',
         options={'quality': 95})
-    thumbnail_100 = ImageSpecField(
+    thumbnail_small = ImageSpecField(
         source='thumbnail',
         processors=[ResizeToFill(100, 100)],
         format='JPEG',
