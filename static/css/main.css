@@ -145,6 +145,15 @@ nav .btn-create {
   position: relative;
 }
 
+.login-link {
+  position: relative;
+}
+
+.login-svg {
+  position: absolute;
+  left: -20px;
+}
+
 .user-thumbnail {
   position: absolute;
   top: 1px;
@@ -166,10 +175,13 @@ nav .btn-create {
 /* Footer start */
 
 .footer {
-  margin-top: 40px;
   min-height: 150px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
+}
+
+.aside-footer {
+  margin-top: 20px;
 }
 
 .nav-footer {
@@ -781,6 +793,15 @@ p {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.profile footer.footer {
+  display: none;
+}
+
+.profile .aside-footer footer.footer {
+  display: block;
+}
+
 
 /* profiles end */
 

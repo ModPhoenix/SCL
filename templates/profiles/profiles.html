@@ -5,6 +5,8 @@
 {% block title %}{{ user_prolile.username }} на Star Citizen Life{% endblock title %}
 {% block description %}{{ user_prolile.biography }}{% endblock description %}
 
+{% block bodyclass %}class="profile"{% endblock bodyclass %}
+
 {% block content %}
 <div class="container main">
   <div class="row">
@@ -21,18 +23,18 @@
         </div>
         <div class="profile-nav-container">
           <ul class="list-group">
-            <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
               Посты
               <span class="badge badge-secondary badge-pill">{{ count_posts }}</span>
-            </a>
-            <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
               Комментарии
               <span class="badge badge-secondary badge-pill">{{ count_comments }}</span>
-            </a>
-            <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
               Гайды
               <span class="badge badge-secondary badge-pill">0</span>
-            </a>
+            </li>
           </ul>
         </div>
         <div class="aside-footer">
