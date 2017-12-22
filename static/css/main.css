@@ -109,6 +109,8 @@ table caption {
   width: 250px;
 }
 
+
+
 /* list-group star */
 
 .list-group-item {
@@ -151,28 +153,45 @@ nav .btn-create {
 
 /* Header end */
 
+/* Home */
+
+.home footer.footer {
+  display: none;
+}
+
+.home .aside-footer footer.footer {
+  display: block;
+}
+
 /* Footer start */
 
-#footer {
+.footer {
   margin-top: 40px;
   min-height: 150px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
 }
 
-.nav-footer,
-.contact-info-footer {
+.nav-footer {
   padding-top: 20px;
-  padding-bottom: 20px;
 
 }
 
-#footer a {
+.site-footer {
+  padding-bottom: 20px;
+}
+
+.footer-links,
+.footer-contact {
+  margin-bottom: 10px;
+}
+
+.footer a {
   margin-right: 15px;
   color: rgb(180, 180, 180);
 }
 
-#footer a:hover {
+.footer a:hover {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.882);
 }
@@ -180,10 +199,6 @@ nav .btn-create {
 .site-footer .site-name {
   color: rgba(255, 255, 255, 0.882);
   font-weight: bold;
-}
-
-.site-footer {
-
 }
 
 /* Footer end */
@@ -316,6 +331,7 @@ article .post-author-img {
 .loading {
   height: 90px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .infinite-more-link {
@@ -745,6 +761,14 @@ p {
   font-size: 25px;
   font-weight: 400;
   padding: 10px 0;
+}
+
+.no-content {
+  padding: 20px;
+  padding-top: 150px;
+  height: 400px;
+  background-color: rgb(40, 40, 40);
+  text-align: center;
 }
 
 .profile-nav-container .list-group-item:first-child {

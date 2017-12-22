@@ -15,7 +15,7 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}" ></script>
     {% block extend %}{% endblock extend %}
   </head>
-  <body>
+  <body {% block bodyclass %}{% endblock bodyclass %}>
     {% include 'nav.html' %}
     {% block content %}{% endblock content %}
     <!-- jQuery first, then Tether, then Bootstrap JS. -->

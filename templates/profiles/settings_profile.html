@@ -18,11 +18,7 @@
           </div>
           <div class="avatar-upload float-right col-md-4 p-0">
             <div class="mb-2">Изображение профиля</div>
-            <img alt="{{ user.username }}" class="rounded" {% if user.avatar %} src="{{ user.avatar.url }}" height="{{ user.avatar.height }}" width="{{ user.avatar.width }}" {% endif %}>
-            <!-- <label class="btn custom-file">
-              <input type="file" id="file2" class="custom-file-input">
-              <span class="custom-file-control"></span>
-            </label>   -->
+            <img alt="{{ user.username }}" class="rounded" {% if user.avatar %} src="{{ user.avatar.url }}" height="250" width="250" {% endif %}>
             <button type="button" class="btn btn-secondary btn-avatar-upload">Загрузить изображение</button>
           </div>
           <script>

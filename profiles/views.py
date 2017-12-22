@@ -1,9 +1,12 @@
 import json
 
+from django.views.generic import ListView
 from django.http import JsonResponse, HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 
 from .models import User
 from blog.models import Post
@@ -12,19 +15,48 @@ from .forms import PublicProfileForm
 from allauth.account.views import PasswordChangeView, EmailView
 
 
-def user_profile(request, username):
-    user_prolile = get_object_or_404(User, username=username)
-    posts = Post.objects.filter(author=user_prolile).select_related()
-    comments = Comment.objects.filter(user=user_prolile)
-    count_comments = comments.count()
-    count_posts = posts.count()
-    context = {
-        'user_prolile': user_prolile,
-        'posts': posts,
-        'count_posts': count_posts,
-        'count_comments': count_comments,
-    }
-    return render(request, 'profiles/profiles.html', context)
+# def user_profile(request, username, page):
+#     user_prolile = get_object_or_404(User, username=username)
+#     posts_list = Post.objects.filter(author=user_prolile).select_related()
+
+#     paginator = Paginator(posts_list, 25)
+
+#     page = request.GET.get('page')
+#     try:
+#         page_obj = paginator.page(page)
+#     except PageNotAnInteger:
+#         page_obj = paginator.page(1)
+#     except EmptyPage:
+#         page_obj = paginator.page(paginator.num_pages)
+
+#     comments = Comment.objects.filter(user=user_prolile)
+#     count_comments = comments.count()
+#     count_posts = posts_list.count()
+#     context = {
+#         'user_prolile': user_prolile,
+#         'page_obj': page_obj,
+#         'count_posts': count_posts,
+#         'count_comments': count_comments,
+#     }
+#     return render(request, 'profiles/profiles.html', context)
+
+class UserProfile(ListView):
+    paginate_by = 20
+    template_name = 'profiles/profiles.html'
+
+    def get_queryset(self):
+        self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
+        return Post.objects.filter(author=self.user_prolile).select_related()
+
+        
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfile, self).get_context_data(**kwargs)
+        
+        context['user_prolile'] = self.user_prolile
+        context['count_posts'] = self.object_list.count()
+        context['count_comments'] = Comment.objects.filter(user=self.user_prolile).count()
+        return context
 
 def settings_profile(request):
 
@@ -57,11 +89,11 @@ def avatar_upload(request):
         # Other data on the request.FILES dictionary:
         # filesize = len(file['content'])
         # filetype = file['content-type']
-        user = request.user
-        user.avatar = the_file
-        user.save()
+        user_prof = request.user
+        user_prof.avatar = the_file
+        user_prof.save()
 
-        link = user.avatar.url
+        link = user_prof.avatar.url
 
         # return JsonResponse({'link': link})
         return HttpResponse(json.dumps({'link': link, 'name': "name",}), content_type="application/json")

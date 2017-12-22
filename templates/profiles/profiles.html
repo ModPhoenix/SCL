@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{ user_prolile.username }} на Star Citizen Life{% endblock title %}
+{% block description %}{{ user_prolile.biography }}{% endblock description %}
+
 {% block content %}
 <div class="container main">
   <div class="row">
@@ -29,16 +35,77 @@
             </a>
           </ul>
         </div>
+        <div class="aside-footer">
+          {% include 'footer.html' %}
+        </div>
     </div>
     <div class="col-md-6">
       <div class="posts-list">
-        {% for post in posts %}
+        {% for post in page_obj %}
           {% include "blog/post_block.html" %}
         {% endfor %}
+        {% if not page_obj %}
+          <div class="no-content">
+            <p><b>Пока здесь пусто</b></p>
+            <p>Но если вам есть чем поделится</p>
+            <p><a class="post-create" href="{% url 'blog:create_post' %}">Напишите прямо сейчас</a></p>
+          </div>
+        {% endif %}
       </div>
+
+      <div class="loading" style="display: none;">
+        <span class="loading-name">Загрузка...</span>
+        <div class="svg-img">
+            <svg width="60px"  height="60px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="loading-svg" style="background: none;">
+              <g transform="translate(50,50)">
+                <g ng-attr-transform="scale({{config.scale}})" transform="scale(0.7)">
+                  <g transform="translate(-50,-50)">
+                    <g transform="rotate(192 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.75s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c1}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" fill-opacity="0.8" fill="#ffffcb"></path>
+                    </g>
+                    <g transform="rotate(54 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c2}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(90 50 50)" fill-opacity="0.8" fill="#fac090"></path>
+                    </g>
+                    <g transform="rotate(276 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1.5s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c3}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(180 50 50)" fill-opacity="0.8" fill="#ff7c81"></path>
+                    </g>
+                    <g transform="rotate(138 50 50)">
+                      <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="3s" begin="0s" repeatCount="indefinite"></animateTransform>
+                      <path ng-attr-fill-opacity="{{config.opacity}}" ng-attr-fill="{{config.c4}}" d="M50 50L50 0A50 50 0 0 1 100 50Z" transform="rotate(270 50 50)" fill-opacity="0.8" fill="#c0f6d2"></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+        </div>
+      </div>
+
+      {% if page_obj.has_next %}
+        <a class="infinite-more-link" href="{% url 'profiles:user_profile_pagination' username=user_prolile.username page=page_obj.next_page_number %}">Далее</a>
+      {% endif %}
+
     </div>
     <div class="col-md-3"></div>
   </div>
 </div>
    
 {% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+<script>
+  var infinite = new Waypoint.Infinite({
+    element: $('.posts-list')[0],
+    onBeforePageLoad: function () {
+      $('.loading').show();
+    },
+    onAfterPageLoad: function ($items) {
+      $('.loading').hide();
+    }
+  });
+</script>
+{% endblock javascript %}
