@@ -162,23 +162,27 @@ nav .btn-create {
 
 /* Header end */
 
-/* Home */
-
-.home footer.footer {
-  display: none;
-}
-
-.home .aside-footer footer.footer {
-  display: block;
-}
 
 /* Footer start */
 
 .footer {
   min-height: 150px;
+  margin-top: 50px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
 }
+
+.profile footer.footer,
+.home footer.footer {
+  display: none;
+}
+
+.profile .aside-footer footer.footer,
+.home .aside-footer footer.footer {
+  display: block;
+  margin-top: 0;
+}
+
 
 .aside-footer {
   margin-top: 20px;
@@ -216,11 +220,17 @@ nav .btn-create {
 /* Footer end */
 
 /* Signin start */
+
 .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 40px auto 0;
 }
+
+.signup-redirect-registration {
+  margin-bottom: 10px;
+}
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
@@ -241,8 +251,8 @@ nav .btn-create {
 }
 
 .form-signin .btn-block {
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .form-signin .top {
@@ -767,12 +777,14 @@ p {
 
 .profile-info-container {
   background-color: #292929;
+  margin-bottom: 20px;
 }
 
 .user-name {
   font-size: 25px;
   font-weight: 400;
   padding: 10px 0;
+  margin: 0;
 }
 
 .no-content {
@@ -792,14 +804,6 @@ p {
   margin-bottom: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-}
-
-.profile footer.footer {
-  display: none;
-}
-
-.profile .aside-footer footer.footer {
-  display: block;
 }
 
 

@@ -9,7 +9,7 @@
 <form class="signup form-signin" id="signup_form" method="post" action="{% url 'account_signup' %}">
   <h2 class="form-signin-heading">{% trans "Sign Up" %}</h2>
 
-  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+  <p class="signup-redirect-registration">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
   {% csrf_token %}
 

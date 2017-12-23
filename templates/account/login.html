@@ -14,7 +14,7 @@
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
-<p>Войдите на сайт при помощии одной из социальных сетей:</p>
+<p>Войдите через:</p>
 
 <div class="socialaccount_ballot">
 
@@ -22,7 +22,7 @@
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
   </ul>
 
-  <div class="login-or">{% trans 'or' %}</div>
+  <div class="login-or">или через SCL</div>
 
 </div>
 
