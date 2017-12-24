@@ -9,16 +9,16 @@
 <div class="container">  
 
 <form class="login form-signin" method="POST" action="{% url 'account_login' %}">
-<h2 class="form-signin-heading">{% trans "Sign In" %}</h2>
+<h2 class="form-signin-heading">Вход на сайт</h2>
 
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
-<p>Войдите через:</p>
+<p class="signin-social-text">Войдите через</p>
 
 <div class="socialaccount_ballot">
 
-  <ul class="socialaccount_providers">
+  <ul class="socialaccount_providers clearfix">
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
   </ul>
 

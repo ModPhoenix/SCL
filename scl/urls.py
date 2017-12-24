@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 
+from django.contrib.flatpages.views import flatpage
+
 from blog.models import PostSitemap
 
 sitemaps = {
@@ -36,7 +38,8 @@ urlpatterns = [
     url(r'^', include('attachments.urls', namespace='attachments')),
     url(r'^admin/', admin.site.urls),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
-    name='django.contrib.sitemaps.views.sitemap')
+    name='django.contrib.sitemaps.views.sitemap'),
+     url(r'^about/$', flatpage, {'url': '/about/'}, name='about'),
 ]
 
 if settings.DEBUG:
