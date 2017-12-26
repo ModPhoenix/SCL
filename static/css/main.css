@@ -172,11 +172,13 @@ nav .btn-create {
   background-color: rgb(40, 40, 40);
 }
 
+.guides footer.footer,
 .profile footer.footer,
 .home footer.footer {
   display: none;
 }
 
+.guides .aside-footer footer.footer,
 .profile .aside-footer footer.footer,
 .home .aside-footer footer.footer {
   display: block;
