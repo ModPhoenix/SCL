@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic.edit import UpdateView
 from django.shortcuts import get_object_or_404
 
 from .models import Guide
@@ -26,6 +27,11 @@ class GuideCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super(GuideCreateView, self).form_valid(form)
+
+class GuideUpdateView(UpdateView):
+    model = Guide
+    fields = ['title', 'content', 'published']
+    template_name = 'blog/post_create.html'
 
 def create_guide(request):
     pass
