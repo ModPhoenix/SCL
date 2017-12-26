@@ -1,5 +1,6 @@
 from lxml import etree
 from urllib import parse
+import re
 
 def get_image(html):
     '''
@@ -11,7 +12,9 @@ def get_image(html):
         url = tree.xpath('//img/parent::a/@href')[0]
         img_url = url.split('/', 2)[2:][0]
         url_unicode = parse.unquote(img_url)
-        return url_unicode
+        upload = re.match(r'uploads', url_unicode)
+        if upload:
+            return url_unicode
     except:
         return None
 
