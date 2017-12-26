@@ -36,7 +36,9 @@
     <ul class="navbar-nav profile">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle nav-user" href="{% url 'profiles:user_profile' username=user.username %}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img alt="@{{ user.username }}" class="user-thumbnail rounded" width="40" height="40" src="{{ user.avatar_thumbnail_40.url }}">
+          {% if user.avatar %}
+            <img alt="@{{ user.username }}" class="user-thumbnail rounded" width="40" height="40" src="{{ user.avatar_thumbnail_40.url }}">
+          {% endif %}
           <span>{{ user.username }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-menu">

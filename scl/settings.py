@@ -185,3 +185,15 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 HITCOUNT_KEEP_HIT_ACTIVE = { 'days': 1 }
 
 HITCOUNT_HITS_PER_IP_LIMIT = 0
+
+# mailgun
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@mg.starcitizenlife.com'
+EMAIL_HOST_PASSWORD = '29feeb4e5415d440e3c3746e62e26236'
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = 'Star Citizen Life <noreply@starcitizenlife.com>'
+EMAIL_SUBJECT_PREFIX = '[Star Citizen Life] '
