@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.utils.html import strip_tags
@@ -11,12 +12,15 @@ from imagekit.processors import ResizeToFit, ResizeToFill
 
 from blog.utils import get_image, get_excerpt
 
+from hitcount.models import HitCountMixin
+from hitcount.models import HitCount
+
 from scl.models import (
     BaseModel,
     ModerationBaseModel,
 )
 
-class Guide(ModerationBaseModel):
+class Guide(ModerationBaseModel, HitCountMixin):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -40,6 +44,10 @@ class Guide(ModerationBaseModel):
         default=0,
         blank=True,
         null=True)
+    hit_count_generic = GenericRelation(
+        HitCount,
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation')
     thumbnail = models.ImageField(
         _('Миниатюра'),
         blank=True,

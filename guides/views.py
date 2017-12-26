@@ -5,13 +5,14 @@ from .models import Guide
 
 class GuideListView(ListView):
     context_object_name = 'guides'
+    paginate_by = 10
     queryset = Guide.objects.all().select_related()
     template_name = 'guides/guides_index.html'
 
 class GuideDetailView(DetailView):
     model = Guide
     context_object_name = 'guide'
-    pk_url_kwarg = 'pk'
+    pk_url_kwarg = 'id'
     slug_url_kwarg = 'slug'
     query_pk_and_slug = True
     template_name = 'guides/guide_detail.html'

@@ -1,0 +1,17 @@
+<div class="popular-posts col-md-6">
+    <div class="header-popular">
+        <p>Популярные гайды</p>
+    </div>
+    <div class="list-popular">
+        {% for popular in popular_guides %}
+            <div class="item-popular">
+                {% if popular.thumbnail %}
+                    <img class="item-img img-fluid" src="{{ popular.thumbnail_small.url }}">
+                {% endif %}
+                <div class="content-popular">
+                    <a href="{{ popular.get_absolute_url }}" class="item-title">{{ popular.title }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

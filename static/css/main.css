@@ -662,6 +662,12 @@ article .post-author-img {
 
 /* Quill editor start */
 
+.sticky-editor {
+  position: fixed;
+  top: 0px;
+  z-index: 101;
+}
+
 .form-control {
   color: #eeeeee;
   background-color: #404040;
