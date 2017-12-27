@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'g&v@a%9kqwv(lc*((w!qr$k&r6bwaa2*fidj89&=yzqo1(%c1_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['alpha.starcitizenlife.com', 'localhost', '127.0.0.1',]
 
