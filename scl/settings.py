@@ -118,8 +118,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_starcitizenlife',
-        'USER': 'u_starcitizen',
-        'PASSWORD': 'kRB$5fgh8lkFb#5jrF5',
+        'USER': 'starcitizen',
+        'PASSWORD': 'sdGV552ae3234HdgnD7436df4F9412',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
