@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('profiles.urls', namespace='profiles')),
-    url(r'^db/', include('database.urls', namespace='database')),
+    # url(r'^db/', include('database.urls', namespace='database')),
     url(r'^', include('attachments.urls', namespace='attachments')),
     url(r'^admin/', admin.site.urls),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},

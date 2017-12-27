@@ -53,6 +53,9 @@
 
     </div>
     <div class="col-md-6 ad">
+      <div class="add-guide">
+          <a class="link-create" href="{% url 'guides:create_guide' %}"><button type="button" class="btn btn-outline-info btn-create">Написать Гайд</button></a>
+      </div>
       {% get_popular_guides %}
       <div class="aside-footer">
         {% include 'footer.html' %}

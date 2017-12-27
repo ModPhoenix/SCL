@@ -61,9 +61,7 @@ INSTALLED_APPS = [
     'attachments',
     'reversion',
     'reversion_compare',
-    'database',
     'taggit',
-    'old',
 ]
 
 # Add reversion models to admin interface:

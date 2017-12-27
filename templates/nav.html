@@ -8,16 +8,13 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Новости <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Новости <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'guides:index' %}">Гайды <span class="badge badge-info">Новое</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'database:db_index' %}">База Знаний <span class="badge badge-info">Скоро</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Форум</a>
+        <a class="nav-link disabled" href="#">База Знаний <span class="badge badge-info">Скоро</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"

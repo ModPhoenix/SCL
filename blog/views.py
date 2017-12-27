@@ -8,9 +8,7 @@ from editor.utils import screening
 import reversion
 
 from .models import Post
-from database.models import Funding
 from .forms import PostForm
-from attachments.models import Attachment
 
 
 class PostList(ListView):

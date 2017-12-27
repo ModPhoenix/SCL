@@ -163,6 +163,12 @@ nav .btn-create {
 /* Header end */
 
 
+/* Guides */
+
+.add-guide {
+  margin-bottom: 20px;
+}
+
 /* Footer start */
 
 .footer {
@@ -725,7 +731,7 @@ p {
 .post-detail .ql-editor .ql-video {
   display: block;
   width: 100%;
-  height: 330px;
+  height: 410px;
 }
 
 .post-detail .ql-editor blockquote {
