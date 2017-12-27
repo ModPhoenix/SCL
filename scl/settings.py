@@ -117,8 +117,8 @@ WSGI_APPLICATION = 'scl.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_starcitizenlife',
-        'USER': 'starcitizen',
+        'NAME': 'db_scl',
+        'USER': 'db_scl',
         'PASSWORD': 'sdGV552ae3234HdgnD7436df4F9412',
         'HOST': '127.0.0.1',
         'PORT': '5432',
