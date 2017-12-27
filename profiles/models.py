@@ -6,7 +6,7 @@ from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 
 
 def user_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    # file will be uploaded to MEDIA_ROOT/<id>/<filename>
     return 'avatars/{0}/{1}'.format(instance.id, filename)
 
 class User(AbstractUser):

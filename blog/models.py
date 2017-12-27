@@ -1,5 +1,4 @@
 from django.db import models
-from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
@@ -19,44 +18,7 @@ from hitcount.models import HitCount
 
 from .utils import get_image, get_excerpt
 
-from scl.models import (
-    BaseModel,
-    ModerationBaseModel,
-)
-
-
-class Category(MPTTModel, BaseModel):
-    """
-    Модель категорий для постов 
-    """
-    name = models.CharField(
-        _("Название"),
-        max_length=250,
-        help_text=_('Название определяет, как катерогия будет отображаться на сайте.'))
-    slug = models.SlugField(
-        _("Слаг"),
-        help_text=_('Слаг — это вариант названия, подходящий для URL. Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.'))
-    description = models.TextField(
-        _("Описание"),
-        blank=True,
-        help_text=_('Описание - будет выводится в мета теге description.'))
-    parent = TreeForeignKey(
-        'self',
-        null=True,
-        blank=True,
-        related_name='children',
-        verbose_name=_('Родительская'),
-        help_text=_('Категории, в отличие от меток, могут иметь иерархию.'))
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = _('Категория')
-        verbose_name_plural = _('Категории')
-
-    class MPTTMeta:
-        order_insertion_by = ['name']
+from scl.models import ModerationBaseModel
 
 
 class Post(ModerationBaseModel, HitCountMixin):
@@ -72,12 +34,6 @@ class Post(ModerationBaseModel, HitCountMixin):
         max_length=60,
         unique=False,
         help_text=_('Слаг — это вариант названия, подходящий для URL. Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.'))
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        verbose_name=_("Катерогия"))
     content = models.TextField(
         _('Контент'),)
     excerpt = models.TextField(

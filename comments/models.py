@@ -50,23 +50,16 @@ class Comment(CommentAbstractModel):
         related_name=_('children'),
         db_index=True)
     is_public = models.BooleanField(
-        _('is public'),
+        _('Публичный'),
         default=True,
-        help_text=_('Uncheck this box to make the comment effectively '
-                    'disappear from the site.'))
-    is_removed = models.BooleanField(
-        _('is removed'),
-        default=False,
-        help_text=_('Check this box if the comment is inappropriate. '
-                    'A "This comment has been removed" message will '
-                    'be displayed instead.'))
+        help_text=_('Если отмечено комментарий виден на сайте.'))
     created_at = models.DateTimeField(
         default=timezone.now,
-        verbose_name=_(u'Creation date'))
+        verbose_name=_(u'Дата Создания'))
     updated_at = models.DateTimeField(
         blank=True,
         null=True,
-        verbose_name=_(u'Modification date'))
+        verbose_name=_(u'Дата Редактирования'))
 
     def update(self):
         self.updated_at = timezone.now()
