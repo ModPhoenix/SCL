@@ -24,6 +24,7 @@ var/
 wheels/
 *.egg-info/
 .installed.cfg
+db.sqlite3
 *.egg
 *.sqlite3
 *.json

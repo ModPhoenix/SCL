@@ -25,7 +25,7 @@ SECRET_KEY = 'g&v@a%9kqwv(lc*((w!qr$k&r6bwaa2*fidj89&=yzqo1(%c1_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['alpha.starcitizenlife.com', 'localhost', '127.0.0.1',]
 
 
 # Application definition
@@ -69,7 +69,7 @@ ADD_REVERSION_ADMIN=True
 
 SITE_ID = 1
 
-INTERNAL_IPS = '127.0.0.1'
+INTERNAL_IPS = ''159.89.25.75''
 
 AUTH_USER_MODEL = 'profiles.User'
 
@@ -116,16 +116,13 @@ WSGI_APPLICATION = 'scl.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    # 'old': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'wp',
-    #     'USER': 'root',
-    #     'PASSWORD': '',
-    #     'HOST': '127.0.0.1',
-    # }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_starcitizenlife',
+        'USER': 'u_starcitizen',
+        'PASSWORD': 'kRB$5fgh8lkFb#5jrF5',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
 
 
