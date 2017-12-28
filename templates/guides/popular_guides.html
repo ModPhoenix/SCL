@@ -6,7 +6,7 @@
         {% for popular in popular_guides %}
             <div class="item-popular">
                 {% if popular.thumbnail %}
-                    <img class="item-img img-fluid" src="{{ popular.thumbnail_small.url }}">
+                    <img class="item-img img-fluid" src="{{ popular.thumbnail_100.url }}">
                 {% endif %}
                 <div class="content-popular">
                     <a href="{{ popular.get_absolute_url }}" class="item-title">{{ popular.title }}</a>
