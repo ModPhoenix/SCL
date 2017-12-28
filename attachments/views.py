@@ -13,9 +13,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class ImageCrop(ImageSpec):
-    processors = [
-        ResizeToFit(width=770)
-    ]
+    processors = [ResizeToFit(width=770)]
+    options = {'quality': 95}
 
 def image_upload(request):
     if request.FILES:
