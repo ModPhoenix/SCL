@@ -19,14 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g&v@a%9kqwv(lc*((w!qr$k&r6bwaa2*fidj89&=yzqo1(%c1_'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['alpha.starcitizenlife.com', 'localhost', '127.0.0.1',]
-
 
 # Application definition
 
@@ -68,8 +60,6 @@ INSTALLED_APPS = [
 ADD_REVERSION_ADMIN=True
 
 SITE_ID = 1
-
-INTERNAL_IPS = '159.89.25.75'
 
 AUTH_USER_MODEL = 'profiles.User'
 
@@ -113,17 +103,6 @@ WSGI_APPLICATION = 'scl.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_scl',
-        'USER': 'db_scl',
-        'PASSWORD': 'sdGV552ae3234HdgnD7436df4F9412',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
 
 
 # Password validation
@@ -181,14 +160,8 @@ HITCOUNT_KEEP_HIT_ACTIVE = { 'days': 1 }
 
 HITCOUNT_HITS_PER_IP_LIMIT = 0
 
-# mailgun
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'postmaster@mg.starcitizenlife.com'
-EMAIL_HOST_PASSWORD = '29feeb4e5415d440e3c3746e62e26236'
-EMAIL_USE_TLS = True
-
-DEFAULT_FROM_EMAIL = 'Star Citizen Life <noreply@starcitizenlife.com>'
-EMAIL_SUBJECT_PREFIX = '[Star Citizen Life] '
+try:
+    from local_settings import *
+except ImportError:
+    pass
