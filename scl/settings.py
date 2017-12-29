@@ -162,6 +162,6 @@ HITCOUNT_HITS_PER_IP_LIMIT = 0
 
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
