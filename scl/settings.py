@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'reversion',
     'reversion_compare',
     'taggit',
+    'compressor',
 ]
 
 # Add reversion models to admin interface:
@@ -97,6 +98,12 @@ TEMPLATES = [
         },
     },
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 WSGI_APPLICATION = 'scl.wsgi.application'
 
@@ -160,6 +167,9 @@ HITCOUNT_KEEP_HIT_ACTIVE = { 'days': 1 }
 
 HITCOUNT_HITS_PER_IP_LIMIT = 0
 
+#Django Compressor
+
+COMPRESS_ENABLED = True
 
 try:
     from .local_settings import *

@@ -1,18 +1,27 @@
 {% extends "base.html" %}
-{% block extend %}
-  {% load staticfiles %}
-  <link rel='stylesheet' href='{% static "css/quill.snow.css" %}' />
-  <script src="{% static 'js/jquery.sticky-kit.js' %}"></script>
-  <style>
-    body > #standalone-container {
-      margin: 50px auto;
-      max-width: 720px;
-    }
-    #editor-container {
-      min-height: 500px;
-    }
-  </style>
-{% endblock extend %}
+
+{% load staticfiles %}
+
+{% block css %}
+<link rel='stylesheet' href='{% static "css/quill.snow.css" %}' />
+
+<style>
+  body > #standalone-container {
+    margin: 50px auto;
+    max-width: 720px;
+  }
+  #editor-container {
+    min-height: 500px;
+  }
+</style>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/jquery.sticky-kit.js' %}"></script>
+<script src="{% static 'js/quill.min.js' %}"></script>
+<script src="{% static 'js/editor.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container main editor">
     <h2>Создать Пост</h2>
@@ -25,7 +34,7 @@
             <textarea name="content" cols="40" rows="10" class="form-control hide" required="" id="id_content">{% if form.content.value %}{{ form.content.value }}{% endif %}</textarea>
           </div>
           <div class="form-group">
-            {% include 'editor/editor.html' %}
+            <div id="editor-container"></div>
           </div>
           <div class="form-group">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">

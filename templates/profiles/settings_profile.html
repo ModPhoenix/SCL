@@ -21,53 +21,6 @@
             <img alt="{{ user.username }}" class="rounded" {% if user.avatar %} src="{{ user.avatar.url }}" height="250" width="250" {% endif %}>
             <button type="button" class="btn btn-secondary btn-avatar-upload">Загрузить изображение</button>
           </div>
-          <script>
-            function selectLocalImageAvatar() {
-              const input = document.createElement('input');
-              input.setAttribute('type', 'file');
-              input.click();
-
-              // Listen upload local image and save to server
-              input.onchange = () => {
-                const file = input.files[0];
-
-                // file type is only image.
-                if (/^image\//.test(file.type)) {
-                  saveToServer(file);
-                } else {
-                  console.warn('You could only upload images.');
-                }
-              };
-            }
-
-            function insertAvatar(data) {
-              $("img").attr("src", data.link);
-
-            }
-
-            function saveToServer(file) {
-              const fd = new FormData();
-              fd.append('image', file);
-
-              const xhr = new XMLHttpRequest();
-              xhr.open('POST', '/settings/profile/upload/', true);
-              xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
-              xhr.onload = () => {
-                if (xhr.status === 200) {
-                  // this is callback data: url
-                  const data = JSON.parse(xhr.responseText);
-                  insertAvatar(data);
-                  console.log(data.link);
-                }
-              };
-              xhr.send(fd);
-            }
-
-            $('.btn-avatar-upload').click(function() {   
-              selectLocalImageAvatar();
-            });
-
-          </script>
           <form enctype="multipart/form-data" method="POST" class="profile float-left post-form col-md-7 p-0">
             {% csrf_token %}
             <div class="form-group">
@@ -101,3 +54,53 @@
 </div>
    
 {% endblock content %}
+
+{% block javascript %}
+<script>
+  function selectLocalImageAvatar() {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.click();
+
+    // Listen upload local image and save to server
+    input.onchange = () => {
+      const file = input.files[0];
+
+      // file type is only image.
+      if (/^image\//.test(file.type)) {
+        saveToServer(file);
+      } else {
+        console.warn('You could only upload images.');
+      }
+    };
+  }
+
+  function insertAvatar(data) {
+    $("img").attr("src", data.link);
+
+  }
+
+  function saveToServer(file) {
+    const fd = new FormData();
+    fd.append('image', file);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/settings/profile/upload/', true);
+    xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        // this is callback data: url
+        const data = JSON.parse(xhr.responseText);
+        insertAvatar(data);
+        console.log(data.link);
+      }
+    };
+    xhr.send(fd);
+  }
+
+  $('.btn-avatar-upload').click(function() {   
+    selectLocalImageAvatar();
+  });
+
+</script>
+{% endblock %}

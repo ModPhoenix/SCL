@@ -8,7 +8,9 @@
 
 {% block content %}
 
+{% block jsnocompress %}
 {% insert_hit_count_js for guide%}
+{% endblock jsnocompress %}
 
 <div class="container main">
   <div class="row">
@@ -53,8 +55,11 @@
 </div>
 {% endblock content %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+{% endblock %}
+
 {% block javascript %}
-  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
   <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
   <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
   <script>
