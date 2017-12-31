@@ -6,10 +6,10 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-<div class="container">  
+<div class="container main">  
 
 <form class="login form-signin" method="POST" action="{% url 'account_login' %}">
-<h2 class="form-signin-heading">Вход на сайт</h2>
+<h2 class="form-signin-heading">Войти</h2>
 
 {% get_providers as socialaccount_providers %}
 
@@ -50,6 +50,7 @@
   {{ form.login.errors }}
 </div>
 {% endif %}
+
 <label for="id_password" class="sr-only">Пароль:</label>
 <input type="password" class="form-control bottom {% if form.password.errors %}is-invalid{% endif %}" name="password" placeholder="Пароль" id="id_password" required="">
 {% if form.password.errors %}
@@ -57,6 +58,7 @@
   {{ form.password.errors }}
 </div>
 {% endif %}
+
 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
   <input type="checkbox" class="custom-control-input" name="remember">
   <span class="custom-control-indicator"></span>
