@@ -29,6 +29,7 @@
   </div>
   <div class="comments-footer comments-container">
     <div class="comments-form-reply">
+      {% if user.is_authenticated %}
       <img alt="@{{ user.username }}" class="comments-form-user-thumbnail rounded" width="40" height="40" src="{{ user.avatar_thumbnail_40.url }}">
       <form class="clearfix" method="POST" action="{% url 'comments:add_comment' %}">
         {% csrf_token %}
@@ -41,6 +42,11 @@
           <div class="btn-comment-reply-cancel">Отменить</div>
         </div>
       </form>
+      {% else %}
+      <div class="alert alert-dark not-authenticated" role="alert">
+        <p>Только авторизованные пользователи могут оставлять комментарии. Пожалуйста, <a href="{% url 'account_login' %}" class="alert-link">Войдите</a> на сайт.</p>
+      </div>
+      {% endif %}
   </div>
   </div>
 </div>

@@ -311,7 +311,6 @@ nav .btn-create {
 /* Footer start */
 
 .footer {
-  min-height: 150px;
   margin-top: 50px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
@@ -344,9 +343,18 @@ nav .btn-create {
   padding-bottom: 20px;
 }
 
+.footer-agreement,
 .footer-links,
 .footer-contact {
   margin-bottom: 10px;
+}
+
+.footer .footer-agreement a {
+  color: rgba(180, 180, 180, 0.5);
+}
+
+.footer .footer-agreement a:hover {
+  color: rgb(180, 180, 180);
 }
 
 .footer a {
