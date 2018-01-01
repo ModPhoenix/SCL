@@ -67,6 +67,8 @@ AUTH_USER_MODEL = 'profiles.User'
 
 # ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 
+ACCOUNT_EMAIL_REQUIRED = True
+
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
@@ -107,11 +109,6 @@ STATICFILES_FINDERS = (
 )
 
 WSGI_APPLICATION = 'scl.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
