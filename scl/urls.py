@@ -40,6 +40,8 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
     name='django.contrib.sitemaps.views.sitemap'),
     url(r'^about/$', flatpage, {'url': '/about/'}, name='about'),
+    url(r'^terms/$', flatpage, {'url': '/terms/'}, name='terms'),
+    url(r'^privacy/$', flatpage, {'url': '/privacy/'}, name='privacy'),
     url(r'^tellme/', include("tellme.urls")),
 ]
 
