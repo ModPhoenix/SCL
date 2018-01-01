@@ -1,0 +1,24 @@
+<div id="feedback-welcome">
+    <div class="feedback-logo clearfix">
+        <div class="svg-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+        </div>
+        <span>Обратная связь</span>
+    </div>
+    <p>Обратная связь позволяет вам написать отвыв о сайте. Мы приветствуем отчеты о проблемах, идеи и общие комментарии.</p>
+    {% if not user.is_authenticated %}
+        <p>Пожалуйста, оставьте свой адрес электронной почты:</p>
+        <input type='email' name="Email" id="feedback-user-email" required>
+    {% endif %}
+    <p>Начните с изложения краткого описания:</p>
+    <textarea id="feedback-note-tmp"></textarea>
+    <p>Затем у вас будет возможность выделить области страницы, связанные с вашим описанием.</p>
+    <button id="feedback-welcome-next" class="btn btn-primary btn-sm">Далее</button>
+    <div id="feedback-welcome-error">Пожалуйста, введите описание.</div>
+    <div class="feedback-wizard-close"></div>
+</div>

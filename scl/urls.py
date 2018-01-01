@@ -39,7 +39,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
     name='django.contrib.sitemaps.views.sitemap'),
-     url(r'^about/$', flatpage, {'url': '/about/'}, name='about'),
+    url(r'^about/$', flatpage, {'url': '/about/'}, name='about'),
+    url(r'^tellme/', include("tellme.urls")),
 ]
 
 if settings.DEBUG:

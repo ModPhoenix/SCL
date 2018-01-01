@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'reversion_compare',
     'taggit',
     'compressor',
+    'tellme',
 ]
 
 # Add reversion models to admin interface:

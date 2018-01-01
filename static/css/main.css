@@ -34,6 +34,49 @@ body {
   flex-shrink: 0;
 }
 
+#feedback-welcome,
+#feedback-highlighter,
+#feedback-overview,
+#feedback-submit-success,
+#feedback-submit-error {
+  font-family: inherit;
+  z-index: 40000;
+  background: rgb(40, 40, 40);
+  border: 1px solid rgba(0,0,0,.333);
+  padding: 30px 42px;
+  width: 540px;
+  border: 1px solid rgba(0,0,0,.333);
+  outline: 0;
+  -webkit-box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  background-clip: padding-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-transform: translateZ(0);
+}
+
+#feedback-highlighter {
+  height: 295px;
+}
+
+.feedback-logo {
+  background: none;
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 32px;
+  padding-left: 0;
+  height: 32px;
+}
+
+.svg-logo {
+  float: left;
+  margin-right: 10px;
+}
+
 a:hover {
   color: #3a99ff;
   text-decoration: none;
