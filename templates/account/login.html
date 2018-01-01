@@ -11,27 +11,8 @@
 <form class="login form-signin" method="POST" action="{% url 'account_login' %}">
 <h2 class="form-signin-heading">Войти на сайт</h2>
 
-{% get_providers as socialaccount_providers %}
-
-{% if socialaccount_providers %}
-<p class="signin-social-text">Войдите через</p>
-
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers clearfix">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">или через SCL</div>
-
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
 <p>{% blocktrans %}If you have not created an account yet, then please
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
 
 {% csrf_token %}
 
@@ -69,7 +50,6 @@
 {% endif %}
 <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign In" %}</button>
 <div><a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></div>
-<div><a href="{% url 'account_signup' %}">Зарегистрироватся</a></div>
 </form>
 
 </div>

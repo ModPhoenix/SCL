@@ -375,6 +375,10 @@ nav .btn-create {
   margin: 40px auto 0;
 }
 
+.form-signin p {
+  margin-bottom: 10px;
+}
+
 .account-form h1 {
   font-size: 24px;
 }
