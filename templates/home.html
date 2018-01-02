@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load humanize %}
 {% load popular_posts %}
+{% load popular_guides %}
 {% block bodyclass %}class="home"{% endblock bodyclass %}
 {% block content %}
 <div class="container main">
@@ -52,7 +53,16 @@
         <p>Зарегистрируйся в Star Citizen <a rel="nofollow" target="_blank" href="https://robertsspaceindustries.com/enlist?referral=STAR-LVR3-GPFZ">по этой ссылке</a> 
         или самостоятельно введи код STAR-LVR3-GPFZ при регистрации, что бы получить бонус 5000 UEC эквивалент 5$.</p>
       </div>
-      {% get_popular_posts %}
+      <div class="row">
+        <div class="col-md-6">
+          {% get_popular_posts %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          {% get_popular_guides %}
+        </div>
+      </div>
       <div class="aside-footer">
         {% include 'footer.html' %}
       </div>

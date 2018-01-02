@@ -330,11 +330,6 @@ nav .btn-create {
   margin-top: 0;
 }
 
-
-.aside-footer {
-  margin-top: 20px;
-}
-
 .nav-footer {
   padding-top: 20px;
 
@@ -566,13 +561,19 @@ article .post-author-img {
 
 .popular-posts {
   padding: 20px;
+  margin-bottom: 20px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
+}
+
+.post-detail .popular-posts {
+  padding: 0;
 }
 
 .item-popular {
   padding-top: 10px;
   padding-bottom: 10px;
+  clear: both;
 }
 
 .item-title {

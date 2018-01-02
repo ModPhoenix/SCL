@@ -1,10 +1,10 @@
-<div class="popular-posts col-md-6">
+<div class="popular-posts">
     <div class="header-popular">
         <p>Популярные посты</p>
     </div>
     <div class="list-popular">
         {% for post in popular %}
-            <div class="item-popular">
+            <div class="item-popular clearfix">
                 {% if post.thumbnail %}
                     <img class="item-img img-fluid" src="{{ post.thumbnail_small.url }}">
                 {% endif %}
