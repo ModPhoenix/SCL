@@ -173,6 +173,7 @@ table caption {
   position: absolute;
   right: 20px;
   top: 105px;
+  z-index: 999;
 }
 
 .alert-message {

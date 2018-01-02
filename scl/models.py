@@ -38,9 +38,9 @@ class ModerationBaseModel(BaseModel):
         help_text=_('Решает будет ли запись видна на сайте.'))
     
     moderation = models.BooleanField(
-        _(u'Модерация'),
-        default=False,
-        help_text=_('Если отмечено, запись заблокирована модератором.'))
+        _(u'Одобренный Пост'),
+        default=True,
+        help_text=_('По умолчанию все новые посты одобреные, что бы это изменить уберите галочку, пост будет считатся отклоненым и не будет видет на сайте.'))
 
     class Meta:
         abstract = True

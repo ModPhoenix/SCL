@@ -10,7 +10,7 @@ from .models import Guide
 class GuideListView(ListView):
     context_object_name = 'guides'
     paginate_by = 10
-    queryset = Guide.objects.all().select_related()
+    queryset = Guide.objects.filter(published=True, moderation=True).select_related()
     template_name = 'guides/guides_index.html'
 
 
@@ -34,6 +34,7 @@ class GuideCreateView(CreateView):
         return super(GuideCreateView, self).form_valid(form)
 
 
+@method_decorator(login_required, name='dispatch')
 class GuideUpdateView(UpdateView):
     model = Guide
     fields = ['title', 'content', 'published']

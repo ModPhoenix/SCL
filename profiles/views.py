@@ -1,6 +1,8 @@
 import json
 
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.http import JsonResponse, HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
@@ -11,34 +13,10 @@ from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 from .models import User
 from blog.models import Post
 from comments.models import Comment
+from guides.models import Guide
 from .forms import PublicProfileForm
 from allauth.account.views import PasswordChangeView, EmailView
 
-
-# def user_profile(request, username, page):
-#     user_prolile = get_object_or_404(User, username=username)
-#     posts_list = Post.objects.filter(author=user_prolile).select_related()
-
-#     paginator = Paginator(posts_list, 25)
-
-#     page = request.GET.get('page')
-#     try:
-#         page_obj = paginator.page(page)
-#     except PageNotAnInteger:
-#         page_obj = paginator.page(1)
-#     except EmptyPage:
-#         page_obj = paginator.page(paginator.num_pages)
-
-#     comments = Comment.objects.filter(user=user_prolile)
-#     count_comments = comments.count()
-#     count_posts = posts_list.count()
-#     context = {
-#         'user_prolile': user_prolile,
-#         'page_obj': page_obj,
-#         'count_posts': count_posts,
-#         'count_comments': count_comments,
-#     }
-#     return render(request, 'profiles/profiles.html', context)
 
 class UserProfile(ListView):
     paginate_by = 20
@@ -46,7 +24,7 @@ class UserProfile(ListView):
 
     def get_queryset(self):
         self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
-        return Post.objects.filter(author=self.user_prolile).select_related()
+        return Post.objects.filter(author=self.user_prolile, published=True, moderation=True).select_related()
 
         
 
@@ -55,7 +33,32 @@ class UserProfile(ListView):
         
         context['user_prolile'] = self.user_prolile
         context['count_posts'] = self.object_list.count()
+        context['count_posts_drafts'] = Post.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
         context['count_comments'] = Comment.objects.filter(user=self.user_prolile).count()
+        context['count_guides'] = Guide.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
+        context['count_guides_drafts'] = Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
+        return context
+
+@method_decorator(login_required, name='dispatch')
+class UserProfileDrafts(ListView):
+    paginate_by = 20
+    template_name = 'profiles/profiles.html'
+
+    def get_queryset(self):
+        self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
+        return Post.objects.filter(author=self.user_prolile, published=False, moderation=True).select_related()
+
+        
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileDrafts, self).get_context_data(**kwargs)
+        
+        context['user_prolile'] = self.user_prolile
+        context['count_posts'] = Post.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
+        context['count_posts_drafts'] = self.object_list.count()
+        context['count_comments'] = Comment.objects.filter(user=self.user_prolile).count()
+        context['count_guides'] = Guide.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
+        context['count_guides_drafts'] = Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
         return context
 
 def settings_profile(request):

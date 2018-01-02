@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http import Http404
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -14,12 +15,12 @@ from .forms import PostForm
 class PostList(ListView):
     context_object_name = 'posts'
     paginate_by = 10
-    queryset = Post.objects.all().select_related()
+    queryset = Post.objects.filter(published=True, moderation=True).select_related()
     template_name = 'home.html'
 
 
 def post_detail(request, id, slug):
-    post = get_object_or_404(Post.objects.select_related(), slug=slug, id=id)
+    post = get_object_or_404(Post.objects.select_related(), slug=slug, id=id, moderation=True)
 
     context = {
         'post': post,

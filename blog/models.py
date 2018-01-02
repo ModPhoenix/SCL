@@ -105,7 +105,7 @@ class PostSitemap(Sitemap):
     priority = 1
 
     def items(self):
-        return Post.objects.filter(published=True, moderation=False)
+        return Post.objects.filter(published=True, moderation=True)
 
     def lastmod(self, obj):
         return obj.created_at
