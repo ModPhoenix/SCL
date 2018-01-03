@@ -55,6 +55,8 @@ $("#comments").on("click", ".btn-comment-reply-cancel", function () {
     $(".form-reply-js").remove();
 });
 
+/* Плавающий блок, aside */
+
 (function(){
     var a = document.querySelector('.post-detail .aside'), b = null, P = 67;  // если ноль заменить на число, то блок будет прилипать до того, как верхний край окна браузера дойдёт до верхнего края элемента. Может быть отрицательным числом
     window.addEventListener('scroll', Ascroll, false);
