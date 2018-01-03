@@ -63,7 +63,7 @@ class Post(ModerationBaseModel, HitCountMixin):
         help_text=_('Если отмечено, на превью будет большая миниатюра.'))
     thumbnail_big = ImageSpecField(
         source='thumbnail',
-        processors=[ResizeToFit(width=610)],
+        processors=[ResizeToFit(width=620)],
         format='JPEG',
         options={'quality': 95})
     thumbnail_small = ImageSpecField(
