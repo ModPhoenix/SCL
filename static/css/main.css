@@ -544,6 +544,20 @@ article .post-author-img {
   display: none;
 }
 
+.post-detail aside {
+
+}
+
+.sticky-aside-detail {
+  position: fixed;
+  z-index: 101;
+}
+
+.stop-aside-detail {
+  position: relative;
+  z-index: 101;
+}
+
 /* Article end */
 
 /* Referral program  start */
