@@ -26,7 +26,6 @@ class UserProfile(ListView):
         self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
         return Post.objects.filter(author=self.user_prolile, published=True, moderation=True).select_related()
 
-        
 
     def get_context_data(self, **kwargs):
         context = super(UserProfile, self).get_context_data(**kwargs)
@@ -39,6 +38,7 @@ class UserProfile(ListView):
         context['count_guides_drafts'] = Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
         return context
 
+
 @method_decorator(login_required, name='dispatch')
 class UserProfileDrafts(ListView):
     paginate_by = 20
@@ -48,7 +48,6 @@ class UserProfileDrafts(ListView):
         self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
         return Post.objects.filter(author=self.user_prolile, published=False, moderation=True).select_related()
 
-        
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileDrafts, self).get_context_data(**kwargs)
@@ -60,6 +59,50 @@ class UserProfileDrafts(ListView):
         context['count_guides'] = Guide.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
         context['count_guides_drafts'] = Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
         return context
+
+
+class UserProfileGuides(ListView):
+    paginate_by = 20
+    template_name = 'profiles/profiles.html'
+
+    def get_queryset(self):
+        self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
+        return Guide.objects.filter(author=self.user_prolile, published=True, moderation=True).select_related()
+
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileGuides, self).get_context_data(**kwargs)
+        
+        context['user_prolile'] = self.user_prolile
+        context['count_posts'] = Post.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
+        context['count_posts_drafts'] = Post.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
+        context['count_comments'] = Comment.objects.filter(user=self.user_prolile).count()
+        context['count_guides'] = self.object_list.count()
+        context['count_guides_drafts'] = Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
+        return context
+
+
+@method_decorator(login_required, name='dispatch')
+class UserProfileGuidesDrafts(ListView):
+    paginate_by = 20
+    template_name = 'profiles/profiles.html'
+
+    def get_queryset(self):
+        self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
+        return Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).select_related()
+
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileGuidesDrafts, self).get_context_data(**kwargs)
+        
+        context['user_prolile'] = self.user_prolile
+        context['count_posts'] = Post.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
+        context['count_posts_drafts'] = Post.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
+        context['count_comments'] = Comment.objects.filter(user=self.user_prolile).count()
+        context['count_guides'] = Guide.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
+        context['count_guides_drafts'] = self.object_list.count()
+        return context
+
 
 def settings_profile(request):
 
@@ -82,6 +125,7 @@ def settings_profile(request):
     
     return render(request, 'profiles/settings_profile.html', {'form': form})
 
+
 def avatar_upload(request):
     if request.FILES:
         the_file = request.FILES['image']
@@ -101,12 +145,14 @@ def avatar_upload(request):
         # return JsonResponse({'link': link})
         return HttpResponse(json.dumps({'link': link, 'name': "name",}), content_type="application/json")
 
+
 class SettingsPasswordChangeView(PasswordChangeView):
     template_name = (
         "profiles/settings_password_change.html")
     success_url = reverse_lazy("profiles:settings_password_change")
 
 settings_password_change = login_required(SettingsPasswordChangeView.as_view())
+
 
 class SettingsEmailView(EmailView):
     template_name = (

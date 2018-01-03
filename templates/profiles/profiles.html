@@ -36,13 +36,13 @@
             {% endif %}
             {% endif %}
             {% if count_guides > 0 %}
-            <a class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'profiles:user_profile_guides' username=user_prolile.username %}" class="list-group-item d-flex justify-content-between align-items-center">
               Гайды
               <span class="badge badge-secondary badge-pill">{{ count_guides }}</span>
             </a>
             {% endif %}
             {% if count_guides_drafts > 0 %}
-            <a class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'profiles:user_profile_guides_drafts' username=user_prolile.username %}" class="list-group-item d-flex justify-content-between align-items-center">
               Гайды черновики
               <span class="badge badge-secondary badge-pill">{{ count_guides_drafts }}</span>
             </a>
