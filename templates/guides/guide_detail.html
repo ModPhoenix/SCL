@@ -1,16 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load hitcount_tags %}
+{% load popular_posts %}
+{% load popular_guides %}
 {% load comment_extras %}
 
 {% block title %}{{ guide.title }}{% endblock title %}
 {% block description %}{{ guide.excerpt }}{% endblock description %}
 
 {% block content %}
-
-{% block jsnocompress %}
-{% insert_hit_count_js for guide%}
-{% endblock jsnocompress %}
 
 <div class="container main">
   <div class="row">
@@ -42,11 +40,15 @@
           </div>
           <div class="row">
             <div class="post-detail-content my-gallery ql-editor col-md-8">{{ guide.content|safe }}</div>
+            <div class="col-md-4 aside">
+              {% get_popular_posts %}
+              {% get_popular_guides %}
+            </div>
           </div>
         </article>
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 comments-wrap">
       <div class="mttp-comments">
           {% get_comments guide guide.id user %}
       </div>
@@ -62,6 +64,7 @@
 {% block javascript %}
   <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
   <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  {% insert_hit_count_js for guide%}
   <script>
     $(document).ready(function() {
       $('.post-detail-content img').parents('a').magnificPopup({
