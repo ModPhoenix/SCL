@@ -68,7 +68,6 @@
 {% block javascript %}
   <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
   <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-  {% insert_hit_count_js for post%}
 
   <script>
     $(document).ready(function() {
@@ -89,4 +88,8 @@
       });
     });
   </script>
+{% endblock %}
+
+{% block jsnocompress %}
+{% insert_hit_count_js for post%}
 {% endblock %}

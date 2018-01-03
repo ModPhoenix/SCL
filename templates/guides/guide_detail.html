@@ -64,7 +64,6 @@
 {% block javascript %}
   <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
   <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-  {% insert_hit_count_js for guide%}
   <script>
     $(document).ready(function() {
       $('.post-detail-content img').parents('a').magnificPopup({
@@ -84,4 +83,8 @@
       });
     });
   </script>
+{% endblock %}
+
+{% block jsnocompress %}
+{% insert_hit_count_js for guide%}
 {% endblock %}
