@@ -3,7 +3,7 @@
   <div class="post-content clearfix">
     {% if guide.thumbnail and not guide.big_thumbnail %}
     <div class="post-thumbnail-small">
-      <img class="img-fluid" src="{{ guide.thumbnail_100.url }}">
+      <img class="img-fluid" src="{{ guide.thumbnail_small.url }}">
     </div>
     {% endif %}
     <a href="{{ guide.get_absolute_url }}" class="post-link"><h3 class="post-title">{{ guide.title }}</h3></a>
@@ -11,7 +11,7 @@
   </div>
   {% if guide.thumbnail and guide.big_thumbnail %}
   <div class="post-thumbnail-big">
-    <img class="img-fluid" src="{{ guide.thumbnail_540.url }}">
+    <img class="img-fluid" src="{{ guide.thumbnail_big.url }}">
   </div>
   {% endif %}
   <div class="post-footer">

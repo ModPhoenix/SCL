@@ -12,6 +12,8 @@ from imagekit.processors import ResizeToFit, ResizeToFill
 
 from blog.utils import get_image, get_excerpt
 
+from taggit.managers import TaggableManager
+
 from hitcount.models import HitCountMixin
 from hitcount.models import HitCount
 
@@ -56,16 +58,18 @@ class Guide(ModerationBaseModel, HitCountMixin):
         _('Большая миниатюра'),
         default=False,
         help_text=_('Если отмечено, на превью будет большая миниатюра.'))
-    thumbnail_540 = ImageSpecField(
+    thumbnail_big = ImageSpecField(
         source='thumbnail',
         processors=[ResizeToFit(width=540)],
         format='JPEG',
         options={'quality': 95})
-    thumbnail_100 = ImageSpecField(
+    thumbnail_small = ImageSpecField(
         source='thumbnail',
         processors=[ResizeToFill(100, 100)],
         format='JPEG',
         options={'quality': 95})
+
+    tags = TaggableManager(blank=True)
 
     class Meta:
         ordering = ["-created_at"]

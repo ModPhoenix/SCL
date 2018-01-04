@@ -22,6 +22,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.flatpages.views import flatpage
 
 from blog.models import PostSitemap
+from .views import TaggedList
 
 sitemaps = {
     'posts': PostSitemap,
@@ -36,6 +37,8 @@ urlpatterns = [
     url(r'^', include('profiles.urls', namespace='profiles')),
     # url(r'^db/', include('database.urls', namespace='database')),
     url(r'^', include('attachments.urls', namespace='attachments')),
+    url(r'^tag/(?P<slug>[\w-]+)/$', TaggedList.as_view(), name='tagged'),
+    url(r'^tag/(?P<slug>[\w-]+)/page/(?P<page>\d+)/$', TaggedList.as_view(), name='tagged_pagination'),
     url(r'^admin/', admin.site.urls),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
     name='django.contrib.sitemaps.views.sitemap'),

@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import to_locale, get_language, ugettext_lazy as _
 
-
 class BaseModel(models.Model):
     """
     Absrtact model
@@ -35,12 +34,13 @@ class ModerationBaseModel(BaseModel):
     published = models.BooleanField(
         _(u'Опубликовано'),
         default=True,
-        help_text=_('Решает будет ли запись видна на сайте.'))
+        help_text=_('Без галочки запись будет считаться черновиком.'))
     
     moderation = models.BooleanField(
-        _(u'Одобренный Пост'),
+        _(u'Одобрено'),
         default=True,
-        help_text=_('По умолчанию все новые посты одобреные, что бы это изменить уберите галочку, пост будет считатся отклоненым и не будет видет на сайте.'))
+        help_text=_('По умолчанию все новые публикации одобреные, что бы это изменить уберите галочку, после чего запись будет считатся отклоненной.'))
 
     class Meta:
         abstract = True
+

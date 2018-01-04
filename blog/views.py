@@ -18,6 +18,12 @@ class PostList(ListView):
     queryset = Post.objects.filter(published=True, moderation=True).select_related()
     template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(PostList, self).get_context_data(**kwargs)
+        
+        context['tags'] = Post.tags.most_common()[:10]
+        return context
+
 
 def post_detail(request, id, slug):
     post = get_object_or_404(Post.objects.select_related(), slug=slug, id=id, moderation=True)

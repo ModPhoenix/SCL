@@ -55,14 +55,25 @@
       </div>
       <div class="row">
         <div class="col-md-6">
+          <div class="aside-block popular-tags">
+            <div class="header-popular">
+              <p>Популярное сейчас</p>
+            </div>
+            {% for tag in tags %}
+            <a class="tag-item" href="{% url 'tagged' slug=tag.slug %}">{{ tag.name }}</a>
+            {% endfor %}
+          </div>
           {% get_popular_posts %}
+          {% get_popular_guides %}
+          <div class="aside-footer">
+            {% include 'footer.html' %}
+          </div>
         </div>
         <div class="col-md-6">
-          {% get_popular_guides %}
+          <div class="advertising">
+
+          </div>
         </div>
-      </div>
-      <div class="aside-footer">
-        {% include 'footer.html' %}
       </div>
     </div>
   </div>

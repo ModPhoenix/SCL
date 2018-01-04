@@ -5,7 +5,7 @@
 {% load popular_guides %}
 {% load comment_extras %}
 
-{% block title %}{{ post.title }}{% endblock title %}
+{% block head_title %}{{ post.title }}{% endblock %}
 {% block description %}{{ post.excerpt }}{% endblock description %}
 
 {% block bodyclass %}class="post-detail"{% endblock bodyclass %}
@@ -42,7 +42,7 @@
           </div>
           
           <div class="row">
-          <div class="post-detail-content my-gallery ql-editor col-md-8">{{ post.content|safe }}</div>
+          <div class="post-detail-content my-gallery ql-editor col-md-8">{{ post.content|safe }}{% if post.tags %}<div class="tags">{% for tag in post.tags.all %}<a href="{% url 'tagged' slug=tag.slug %}">#{{ tag.name }}</a> {% endfor %}</div>{% endif %}</div>
           <div class="col-md-4 aside">
             {% get_popular_posts %}
             {% get_popular_guides %}

@@ -1,22 +1,62 @@
 {% extends "base.html" %}
+
 {% load staticfiles %}
-{% load popular_guides %}
+{% load imagekit %}
 
-{% block head_title %}Star Citizen Гайды{% endblock %}
-{% block description %}Гайды и руководства по игре Star Citizen и Squadron 42.{% endblock description %}
+{% block head_title %} {{ tag.name }} на Star Citizen Life{% endblock %}
+{% block description %}{% endblock description %}
 
-{% block bodyclass %}class="guides"{% endblock bodyclass %}
-
+{% block bodyclass %}class="tag"{% endblock bodyclass %}
 
 {% block content %}
+<div class="search-container">
+    <div class="container">
+        <h1 class="search-heading">{{ tag.name }}</h1>
+    </div>
+</div>
 <div class="container main">
   <div class="row">
+    <div class="col-md-3">
+       
+        <div class="aside-footer">
+          {% include 'footer.html' %}
+        </div>
+    </div>
     <div class="col-md-6">
       <div class="posts-list">
-          {% for guide in guides %}
-          {% include "guides/guide_card.html" %}
-          {% endfor %}
+        {% for item in tagged_list %}
+            <article class="post infinite-item">
+                <div class="post-content clearfix">
+                    {% if item.content_object.thumbnail and not item.content_object.big_thumbnail %}
+                    <div class="post-thumbnail-small">
+                    <img class="img-fluid" src="{{ item.content_object.thumbnail_small.url }}">
+                    </div>
+                    {% endif %}
+                    <a href="{{ item.content_object.get_absolute_url }}" class="post-link"><h3 class="post-title">{{ item.content_object.title }}</h3></a>
+                    <div class="post-excerpt">{{ item.content_object.excerpt|safe }}</div>
+                </div>
+                {% if item.content_object.thumbnail and item.content_object.big_thumbnail %}
+                <div class="post-thumbnail-big">
+                    <img class="img-fluid" src="{{ item.content_object.thumbnail_big.url }}">
+                </div>
+                {% endif %}
+                <div class="post-footer">
+                    <div class="post-date">{{ item.content_object.created_at }}</div>
+                    <div class="post-author"><a href="{% url 'profiles:user_profile' username=item.content_object.author %}">
+                    {% thumbnail '20x20' item.content_object.author.avatar -- alt="A picture of Me" class="rounded-circle post-author-img" %}
+                    {{ item.content_object.author }}
+                    </a></div>
+                </div>
+            </article>
+        {% empty %}
+        <div class="no-content">
+            <p><b>Пока здесь пусто</b></p>
+            <p>Но если вам есть чем поделится</p>
+            <p><a class="post-create" href="{% url 'blog:create_post' %}">Напишите прямо сейчас</a></p>
+        </div>
+        {% endfor %}
       </div>
+
       <div class="loading" style="display: none;">
         <span class="loading-name">Загрузка...</span>
         <div class="svg-img">
@@ -48,26 +88,16 @@
       </div>
 
       {% if page_obj.has_next %}
-        <a class="infinite-more-link" href="{% url 'guides:index_pagination' page=page_obj.next_page_number %}">Далее</a>
+        <a class="infinite-more-link" href="{% url 'tagged_pagination' slug=tag.slug page=page_obj.next_page_number %}">Далее</a>
       {% endif %}
 
     </div>
-    <div class="col-md-6 ad">
-      <div class="add-guide">
-          <a class="link-create" href="{% url 'guides:create_guide' %}"><button type="button" class="btn btn-outline-info btn-create">Написать Гайд</button></a>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-            {% get_popular_guides %}
-        </div>
-      </div>
-      <div class="aside-footer">
-        {% include 'footer.html' %}
-      </div>
-    </div>
+    <div class="col-md-3"></div>
   </div>
 </div>
+   
 {% endblock content %}
+
 {% block javascript %}
 <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/infinite.min.js' %}"></script>
