@@ -14,7 +14,7 @@ from .forms import PostForm
 
 class PostList(ListView):
     context_object_name = 'posts'
-    paginate_by = 10
+    paginate_by = 20
     queryset = Post.objects.filter(published=True, moderation=True).select_related()
     template_name = 'home.html'
 
