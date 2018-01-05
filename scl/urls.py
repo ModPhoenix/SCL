@@ -22,7 +22,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.flatpages.views import flatpage
 
 from blog.models import PostSitemap
-from .views import TaggedList
+from .views import TaggedList, TagAutocomplete
 
 sitemaps = {
     'posts': PostSitemap,
@@ -40,6 +40,9 @@ urlpatterns = [
     url(r'^tag/(?P<slug>[\w-]+)/$', TaggedList.as_view(), name='tagged'),
     url(r'^tag/(?P<slug>[\w-]+)/page/(?P<page>\d+)/$', TaggedList.as_view(), name='tagged_pagination'),
     url(r'^admin/', admin.site.urls),
+
+    url(r'^tag-autocomplete/$',TagAutocomplete.as_view(),name='tag-autocomplete',),
+    
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
     name='django.contrib.sitemaps.views.sitemap'),
     url(r'^about/$', flatpage, {'url': '/about/'}, name='about'),
