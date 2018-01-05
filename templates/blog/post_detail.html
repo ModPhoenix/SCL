@@ -44,6 +44,17 @@
           <div class="row">
           <div class="post-detail-content my-gallery ql-editor col-md-8">{{ post.content|safe }}{% if post.tags %}<div class="tags">{% for tag in post.tags.all %}<a href="{% url 'tagged' slug=tag.slug %}">#{{ tag.name }}</a> {% endfor %}</div>{% endif %}</div>
           <div class="col-md-4 aside">
+            <div class="advertising">
+              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- 300600 -->
+              <ins class="adsbygoogle"
+                    style="display:inline-block;width:300px;height:600px"
+                    data-ad-client="ca-pub-3856937532939139"
+                    data-ad-slot="4740491338"></ins>
+              <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
             {% get_popular_posts %}
             {% get_popular_guides %}
           </div>
@@ -87,49 +98,6 @@
         }
       });
     });
-
-    (function(){
-    var a = document.querySelector('.post-detail .aside'), b = null, P = 67;  // если ноль заменить на число, то блок будет прилипать до того, как верхний край окна браузера дойдёт до верхнего края элемента. Может быть отрицательным числом
-    window.addEventListener('scroll', Ascroll, false);
-    document.body.addEventListener('scroll', Ascroll, false);
-    function Ascroll() {
-      if (b == null) {
-        var Sa = getComputedStyle(a, ''), s = '';
-        for (var i = 0; i < Sa.length; i++) {
-          if (Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
-            s += Sa[i] + ': ' +Sa.getPropertyValue(Sa[i]) + '; '
-          }
-        }
-        b = document.createElement('div');
-        b.style.cssText = s + ' box-sizing: border-box; width: ' + a.offsetWidth + 'px;';
-        a.insertBefore(b, a.firstChild);
-        var l = a.childNodes.length;
-        for (var i = 1; i < l; i++) {
-          b.appendChild(a.childNodes[1]);
-        }
-        a.style.height = b.getBoundingClientRect().height + 'px';
-        a.style.padding = '0';
-        a.style.border = '0';
-      }
-      var Ra = a.getBoundingClientRect(),
-          R = Math.round(Ra.top + b.getBoundingClientRect().height - document.querySelector('.comments-wrap').getBoundingClientRect().top + 25);  // селектор блока, при достижении верхнего края которого нужно открепить прилипающий элемент;  Math.round() только для IE; если ноль заменить на число, то блок будет прилипать до того, как нижний край элемента дойдёт до футера
-      if ((Ra.top - P) <= 0) {
-        if ((Ra.top - P) <= R) {
-          b.className = 'stop-aside-detail';
-          b.style.top = - R +'px';
-        } else {
-          b.className = 'sticky-aside-detail';
-          b.style.top = P + 'px';
-        }
-      } else {
-        b.className = '';
-        b.style.top = '';
-      }
-      window.addEventListener('resize', function() {
-        a.children[0].style.width = getComputedStyle(a, '').width
-      }, false);
-    }
-    })()
   </script>
 {% endblock %}
 

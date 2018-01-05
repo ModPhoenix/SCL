@@ -446,9 +446,8 @@ nav .btn-create {
 /* advertising */
 
 .advertising {
-  width: 300;
   height: 600px;
-  padding: 20px;
+  width: 300px;
   margin-bottom: 20px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
@@ -666,6 +665,7 @@ article .post-author-img {
 
 .post-detail .popular-posts {
   padding: 0;
+  width: 300px;
 }
 
 .item-popular {
