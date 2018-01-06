@@ -20,6 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 
+ADMINS = [('Bogdan', 'modhands@gmail.com')]
+
+MANAGERS = [('Bogdan', 'modhands@gmail.com')]
+
 # Application definition
 
 INSTALLED_APPS = [
