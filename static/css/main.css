@@ -453,7 +453,8 @@ nav .btn-create {
 
 .advertising {
   height: 600px;
-  width: 300px;
+  max-width: 300px;
+  float: right;
   margin-bottom: 20px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
@@ -670,9 +671,11 @@ article .post-author-img {
 }
 
 .post-detail .popular-posts {
+  float: right;
   padding: 0;
-  width: 300px;
+  max-width: 300px;
 }
+
 
 .item-popular {
   padding-top: 10px;
