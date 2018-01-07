@@ -9,7 +9,6 @@ from django.utils.html import strip_tags
 from unidecode import unidecode
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
-from django.contrib.sitemaps import Sitemap
 
 from taggit.managers import TaggableManager
 
@@ -99,13 +98,3 @@ class Post(ModerationBaseModel, HitCountMixin):
         conttent_type = ContentType.objects.get_for_model(self.__class__)
         return conttent_type
 
-
-class PostSitemap(Sitemap):
-    changefreq = "daily"
-    priority = 1
-
-    def items(self):
-        return Post.objects.filter(published=True, moderation=True)
-
-    def lastmod(self, obj):
-        return obj.created_at

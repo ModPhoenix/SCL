@@ -2,17 +2,22 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
-from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import views
+
 from django.contrib.flatpages.views import flatpage
 
-from blog.models import PostSitemap
 from .views import TaggedList, TagAutocomplete
+
+from .sitemaps import PostSitemap, GuideSitemap, StaticViewSitemap
 
 sitemaps = {
     'posts': PostSitemap,
+    'guides': GuideSitemap,
+    'pages': StaticViewSitemap,
 }
 
 urlpatterns = [
@@ -30,13 +35,16 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^tag-autocomplete/$',TagAutocomplete.as_view(),name='tag-autocomplete',),
-    
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
-    name='django.contrib.sitemaps.views.sitemap'),
+
     url(r'^about/$', flatpage, {'url': '/about/'}, name='about'),
     url(r'^careers/$', flatpage, {'url': '/careers/'}, name='careers'),
     url(r'^terms/$', flatpage, {'url': '/terms/'}, name='terms'),
     url(r'^privacy/$', flatpage, {'url': '/privacy/'}, name='privacy'),
+
+    url(r'^sitemap\.xml$', views.index, {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
+
     url(r'^tellme/', include("tellme.urls")),
 ]
 

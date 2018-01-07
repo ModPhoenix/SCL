@@ -94,4 +94,3 @@ class Guide(ModerationBaseModel, HitCountMixin):
     def get_conttent_type(self):
         conttent_type = ContentType.objects.get_for_model(self.__class__)
         return conttent_type
-
