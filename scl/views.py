@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.http import Http404
 
 from dal import autocomplete
 
@@ -15,8 +16,13 @@ class TaggedList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TaggedList, self).get_context_data(**kwargs)
+
+        try:
+            tag = Tag.objects.get(slug=self.kwargs['slug'])
+        except Tag.DoesNotExist:
+            raise Http404("Тег не найден.")
         
-        context['tag'] = Tag.objects.get(slug=self.kwargs['slug'])
+        context['tag'] = tag
         return context
 
 
