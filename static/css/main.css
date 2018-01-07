@@ -1026,6 +1026,12 @@ p {
   padding: 0 10px;
 }
 
+@media (max-width: 480px) {
+  .wrapper-post-detail .ql-editor {
+    padding: 0;
+  }
+}
+
 #editor-container .ql-editor {
   min-height: 500px;
 }
