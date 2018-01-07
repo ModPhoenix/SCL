@@ -301,14 +301,34 @@ nav .btn-create {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .nav-user {
+    margin-left: 46px;
+    margin-top: 10px;
+  }
+}
+
 .login-link {
   position: relative;
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .login-link {
+    margin-top: 10px;
+    margin-left: 27px;
+  }
+}
+
 .login-svg {
   position: absolute;
   left: -20px;
+}
+
+@media (max-width: 768px) {
+  .login-svg {
+    left: -27px;
+  }
 }
 
 .user-thumbnail {
@@ -332,6 +352,12 @@ nav .btn-create {
   margin-top: 50px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    padding: 0 20px;
+  }
 }
 
 .guides footer.footer,
@@ -453,11 +479,26 @@ nav .btn-create {
 
 .advertising {
   height: 600px;
-  max-width: 300px;
-  float: right;
+  overflow: hidden;
   margin-bottom: 20px;
   color: rgb(180, 180, 180);
   background-color: rgb(40, 40, 40);
+}
+
+.post-detail .advertising {
+  float: right;
+}
+
+@media (max-width: 1024px) {
+  .post-detail .advertising {
+   float: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .advertising {
+    display: none;
+  }
 }
 
 /* account-forms start */
@@ -634,8 +675,10 @@ article .post-author-img {
   display: none;
 }
 
-.post-detail aside {
-
+@media (max-width: 480px) {
+  .post-detail .aside {
+    padding: 20px;
+  }
 }
 
 .sticky-aside-detail {
@@ -674,6 +717,13 @@ article .post-author-img {
   float: right;
   padding: 0;
   max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .post-detail .popular-posts {
+    float: none;
+    margin-top: 20px;
+  }
 }
 
 
@@ -771,6 +821,12 @@ article .post-author-img {
   margin: 0;
   margin-left: 100px;
   margin-right: 200px;
+}
+
+@media (max-width: 1024px) {
+  .comments-container {
+    margin: 0 20px;
+  }
 }
 
 /* #comments .comments-header {
@@ -1060,6 +1116,12 @@ p {
   padding: 30px 40px;
 }
 
+@media (max-width: 480px) {
+  .wrapper-post-detail {
+    padding: 20px;
+  }
+}
+
 .post-detail-content a {
   outline: none;
 }
@@ -1076,6 +1138,12 @@ p {
 
 .post-detail-title {
   margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .post-detail-title h1 {
+    font-size: 1.5rem;
+  }
 }
 
 /* post-detail end */
@@ -1153,3 +1221,20 @@ p {
 
 /* database end */
 
+@media (max-width: 480px) {
+  .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3,
+  .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto,
+  .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12,
+  .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6,
+  .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md,
+  .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2,
+  .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8,
+  .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11,
+  .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7,
+  .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11,
+  .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6,
+  .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
