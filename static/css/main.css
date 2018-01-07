@@ -46,6 +46,15 @@ body {
   flex-shrink: 0;
 }
 
+a {
+  color: #17a2b8;
+}
+
+a:hover {
+  color: #13c5e0;
+  text-decoration: none;
+}
+
 #feedback-welcome,
 #feedback-highlighter,
 #feedback-overview,
@@ -87,11 +96,6 @@ body {
 .svg-logo {
   float: left;
   margin-right: 10px;
-}
-
-a:hover {
-  color: #3a99ff;
-  text-decoration: none;
 }
 
 button.close {
