@@ -1227,6 +1227,13 @@ p {
 
 /* database end */
 
+.error404 {
+  max-width: 360px;
+  margin: 0 auto;
+  margin-top: calc(15% - 50px);
+  padding: 20px;
+}
+
 @media (max-width: 480px) {
 
   .container {
