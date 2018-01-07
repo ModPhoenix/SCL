@@ -299,6 +299,7 @@ nav .btn-create {
 
 .login-link {
   position: relative;
+  cursor: pointer;
 }
 
 .login-svg {
@@ -364,20 +365,21 @@ nav .btn-create {
   margin-bottom: 10px;
 }
 
-.footer .footer-agreement a {
+.footer .footer-agreement .footer-link {
   color: rgba(180, 180, 180, 0.5);
 }
 
-.footer .footer-agreement a:hover {
+.footer .footer-agreement .footer-link:hover {
   color: rgb(180, 180, 180);
 }
 
-.footer a {
+.footer .footer-link {
+  cursor: pointer;
   margin-right: 15px;
   color: rgb(180, 180, 180);
 }
 
-.footer a:hover {
+.footer .footer-link:hover {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.882);
 }
@@ -897,6 +899,10 @@ article .post-author-img {
 
 .form-reply-js .btn-comment-reply-cancel {
   display: block;
+}
+
+.link-comment-auth {
+  cursor: pointer;
 }
 
 /* Comments end */

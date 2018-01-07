@@ -33,7 +33,6 @@ var csrfToken = getCookie("csrftoken");
 
 // Плавный скролинг
 $(".comments-item-date").click(function () {
-    console.log(csrfToken);
     var elementClick = $(this).attr("href");
     var destination = $(elementClick).offset().top - 100;
     jQuery("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 500);
@@ -53,4 +52,11 @@ $(".comments-item-button-reply").click(function () {
 
 $("#comments").on("click", ".btn-comment-reply-cancel", function () {
     $(".form-reply-js").remove();
+});
+
+// js ссылка
+
+$(".js-link").click(function () {
+    var href = $(this).data("href");
+    $(location).attr('href', href);
 });

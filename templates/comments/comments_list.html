@@ -44,7 +44,7 @@
       </form>
       {% else %}
       <div class="alert alert-dark not-authenticated" role="alert">
-        <p>Только авторизованные пользователи могут оставлять комментарии. Пожалуйста, <a href="{% url 'account_login' %}" class="alert-link">Войдите</a> на сайт.</p>
+        <p>Только авторизованные пользователи могут оставлять комментарии. Пожалуйста, <span class="alert-link link-comment-auth js-link" data-href="{% url 'account_login' %}">Войдите</span> на сайт.</p>
       </div>
       {% endif %}
   </div>
