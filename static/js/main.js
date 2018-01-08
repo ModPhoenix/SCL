@@ -56,7 +56,7 @@ $("#comments").on("click", ".btn-comment-reply-cancel", function () {
 
 // js ссылка
 
-$(".js-link").click(function () {
+$(document).on('click','.js-link', function(){
     var href = $(this).data("href");
     $(location).attr('href', href);
 });
