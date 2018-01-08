@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.edit import UpdateView
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404
@@ -14,6 +15,7 @@ class GuideListView(ListView):
     template_name = 'guides/guides_index.html'
 
 
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class GuideDetailView(DetailView):
     model = Guide
     context_object_name = 'guide'

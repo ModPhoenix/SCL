@@ -1,4 +1,5 @@
 from django.views.generic import ListView
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
@@ -25,6 +26,7 @@ class PostList(ListView):
         return context
 
 
+@ensure_csrf_cookie
 def post_detail(request, id, slug):
     post = get_object_or_404(Post.objects.select_related(), slug=slug, id=id, moderation=True)
 
