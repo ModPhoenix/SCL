@@ -26,7 +26,6 @@ class PostList(ListView):
         return context
 
 
-@ensure_csrf_cookie
 def post_detail(request, id, slug):
     post = get_object_or_404(Post.objects.select_related(), slug=slug, id=id, moderation=True)
 

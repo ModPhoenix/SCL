@@ -15,7 +15,6 @@ class GuideListView(ListView):
     template_name = 'guides/guides_index.html'
 
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
 class GuideDetailView(DetailView):
     model = Guide
     context_object_name = 'guide'
