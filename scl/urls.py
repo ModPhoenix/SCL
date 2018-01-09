@@ -14,6 +14,8 @@ from .views import TaggedList, TagAutocomplete
 
 from .sitemaps import PostSitemap, GuideSitemap, StaticViewSitemap
 
+from scl.feed import LatestPostsFeed, LatestGuidesFeed
+
 sitemaps = {
     'posts': PostSitemap,
     'guides': GuideSitemap,
@@ -44,6 +46,9 @@ urlpatterns = [
     url(r'^sitemap\.xml$', views.index, {'sitemaps': sitemaps}),
     url(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),
+    
+    url(r'^feed/posts/$', LatestPostsFeed()),
+    url(r'^feed/guides/$', LatestGuidesFeed()),
 
     url(r'^tellme/', include("tellme.urls")),
 ]
