@@ -17,9 +17,14 @@ class LatestPostsFeed(Feed):
     def item_description(self, item):
         return item.excerpt
 
-    # item_link is only needed if NewsItem has no get_absolute_url method.
     def item_link(self, item):
         return reverse('blog:detail', args=[item.id, item.slug])
+
+    def item_pubdate(self, item):
+        return item.created_at
+
+    def item_updateddate(self, item):
+        return item.updated_at
 
 
 class LatestGuidesFeed(Feed):
@@ -36,6 +41,11 @@ class LatestGuidesFeed(Feed):
     def item_description(self, item):
         return item.excerpt
 
-    # item_link is only needed if NewsItem has no get_absolute_url method.
     def item_link(self, item):
         return reverse('guides:guide_detail', args=[item.id, item.slug])
+
+    def item_pubdate(self, item):
+        return item.created_at
+
+    def item_updateddate(self, item):
+        return item.updated_at
