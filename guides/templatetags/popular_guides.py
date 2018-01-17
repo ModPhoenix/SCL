@@ -13,7 +13,7 @@ def get_popular_guides():
     гайдов
     '''
     
-    popular_guides = Guide.objects.all().order_by('-hit_count_generic__hits')[:5]
+    popular_guides = Guide.objects.filter(published=True, moderation=True).order_by('-hit_count_generic__hits')[:5]
 
     context = {
         'popular_guides': popular_guides,

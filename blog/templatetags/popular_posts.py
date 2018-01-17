@@ -14,7 +14,7 @@ def get_popular_posts():
     '''
     
     #popular = HitCount.objects.filter(content_type='13')[:5]
-    popular = Post.objects.all().order_by('-hit_count_generic__hits')[:5]
+    popular = Post.objects.filter(published=True, moderation=True).order_by('-hit_count_generic__hits')[:5]
 
     context = {
         'popular': popular,
