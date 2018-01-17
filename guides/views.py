@@ -1,7 +1,9 @@
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.edit import UpdateView
+from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.shortcuts import get_object_or_404
 
@@ -21,6 +23,7 @@ class GuideDetailView(DetailView):
     pk_url_kwarg = 'id'
     slug_url_kwarg = 'slug'
     query_pk_and_slug = True
+    context_object_name = 'guide'
     template_name = 'guides/guide_detail.html'
 
 
@@ -32,7 +35,22 @@ class GuideCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        if self.request.user.is_staff:
+            form.instance.moderation = True
+        else:
+            form.instance.moderation = False
         return super(GuideCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        if self.request.user.is_staff:
+            messages.info(
+                self.request, 'Гайд успешно опубликован.')
+            return self.object.get_absolute_url()
+        else:
+            messages.info(
+                self.request, 'Гайд успешно добавлен и был отправлен на модерацию.')
+
+            return reverse("blog:index")
 
 
 @method_decorator(login_required, name='dispatch')
@@ -41,10 +59,3 @@ class GuideUpdateView(UpdateView):
     fields = ['title', 'content', 'published']
     template_name = 'blog/post_create.html'
 
-
-def create_guide(request):
-    pass
-
-
-def edit_guide(request):
-    pass

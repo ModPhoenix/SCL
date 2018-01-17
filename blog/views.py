@@ -5,8 +5,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils import timezone
 from editor.utils import screening
+from django.urls import reverse
 import reversion
 
 from .models import Post
@@ -43,13 +45,26 @@ def create_post(request):
                 post = form.save(commit=False)
                 post.author = request.user
                 post.content = screening(form.cleaned_data['content'])
+
+                if request.user.is_staff:
+                    post.moderation = True
+                else:
+                    post.moderation = False
+
                 post.save()
 
                 reversion.set_user(request.user)
                 reversion.set_comment(
                     "Пост создан, пользователем: %s" % request.user.username)
 
-                return redirect(post.get_absolute_url())
+                if request.user.is_staff:
+                    messages.info(
+                        request, 'Пост успешно опубликован.')
+                    return redirect(post.get_absolute_url())
+                else:
+                    messages.info(
+                        request, 'Пост успешно добавлен и был отправлен на модерацию.')
+                    return redirect(reverse("blog:index"))
     else:
         form = PostForm()
     return render(request, 'blog/post_create.html', {'form': form})
