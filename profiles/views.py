@@ -1,14 +1,11 @@
 import json
-
 from django.views.generic import ListView
-from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.utils.translation import to_locale, get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 from .models import User
 from blog.models import Post
@@ -26,16 +23,18 @@ class UserProfile(ListView):
         self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
         return Post.objects.filter(author=self.user_prolile, published=True, moderation=True).select_related()
 
-
     def get_context_data(self, **kwargs):
         context = super(UserProfile, self).get_context_data(**kwargs)
         
         context['user_prolile'] = self.user_prolile
         context['count_posts'] = self.object_list.count()
-        context['count_posts_drafts'] = Post.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
+        context['count_posts_drafts'] = Post.objects.filter(author=self.user_prolile,
+                                                            published=False, moderation=True).count()
         context['count_comments'] = Comment.objects.filter(user=self.user_prolile).count()
-        context['count_guides'] = Guide.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
-        context['count_guides_drafts'] = Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
+        context['count_guides'] = Guide.objects.filter(author=self.user_prolile,
+                                                       published=True, moderation=True).count()
+        context['count_guides_drafts'] = Guide.objects.filter(author=self.user_prolile,
+                                                              published=False, moderation=True).count()
         return context
 
 
@@ -47,7 +46,6 @@ class UserProfileDrafts(ListView):
     def get_queryset(self):
         self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
         return Post.objects.filter(author=self.user_prolile, published=False, moderation=True).select_related()
-
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileDrafts, self).get_context_data(**kwargs)
@@ -69,10 +67,9 @@ class UserProfileGuides(ListView):
         self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
         return Guide.objects.filter(author=self.user_prolile, published=True, moderation=True).select_related()
 
-
     def get_context_data(self, **kwargs):
         context = super(UserProfileGuides, self).get_context_data(**kwargs)
-        
+
         context['user_prolile'] = self.user_prolile
         context['count_posts'] = Post.objects.filter(author=self.user_prolile, published=True, moderation=True).count()
         context['count_posts_drafts'] = Post.objects.filter(author=self.user_prolile, published=False, moderation=True).count()
@@ -90,7 +87,6 @@ class UserProfileGuidesDrafts(ListView):
     def get_queryset(self):
         self.user_prolile = get_object_or_404(User, username=self.kwargs['username'])
         return Guide.objects.filter(author=self.user_prolile, published=False, moderation=True).select_related()
-
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileGuidesDrafts, self).get_context_data(**kwargs)
@@ -113,7 +109,7 @@ def settings_profile(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.first_name = form.cleaned_data['first_name']
-            #user.birthdate = form.cleaned_data['birthdate']
+            # user.birthdate = form.cleaned_data['birthdate']
             user.biography = form.cleaned_data['biography']
             user.location = form.cleaned_data['location']
             user.organization = form.cleaned_data['organization']
@@ -151,6 +147,7 @@ class SettingsPasswordChangeView(PasswordChangeView):
         "profiles/settings_password_change.html")
     success_url = reverse_lazy("profiles:settings_password_change")
 
+
 settings_password_change = login_required(SettingsPasswordChangeView.as_view())
 
 
@@ -158,5 +155,6 @@ class SettingsEmailView(EmailView):
     template_name = (
         "profiles/settings_email.html")
     success_url = reverse_lazy("profiles:settings_email")
+
 
 settings_email = login_required(SettingsEmailView.as_view())

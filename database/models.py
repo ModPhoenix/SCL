@@ -23,7 +23,8 @@ class KnowledgeBaseAbstractModel(BaseModel):
         _("Опубликовано"),
         default=True,
         help_text=_("Если стоит галочка запись будет доступна на сайте."))
-    
+
+
 class Category(MPTTModel, BaseModel):
     """
     Категория в Базе Знаний, расширена

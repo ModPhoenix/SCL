@@ -3,6 +3,7 @@ from django.urls import reverse
 from blog.models import Post
 from guides.models import Guide
 
+
 class LatestPostsFeed(Feed):
     title = "Star Citizen Life Посты"
     link = "/"

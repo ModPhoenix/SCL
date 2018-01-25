@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import to_locale, get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation
@@ -9,14 +9,11 @@ from django.utils.html import strip_tags
 from unidecode import unidecode
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
-
 from taggit.managers import TaggableManager
-
 from hitcount.models import HitCountMixin
 from hitcount.models import HitCount
 
 from .utils import get_image, get_excerpt
-
 from scl.models import ModerationBaseModel
 
 
@@ -32,7 +29,8 @@ class Post(ModerationBaseModel, HitCountMixin):
         _('Слаг'),
         max_length=60,
         unique=False,
-        help_text=_('Слаг — это вариант названия, подходящий для URL. Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.'))
+        help_text=_('Слаг — это вариант названия, подходящий для URL. '
+                    'Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.'))
     content = models.TextField(
         _('Контент'),)
     excerpt = models.TextField(
@@ -87,7 +85,7 @@ class Post(ModerationBaseModel, HitCountMixin):
     def save(self, *args, **kwargs):
         if self.slug == '':
             self.slug = slugify(unidecode(self.title)[:60])
-        if self.thumbnail == None or self.thumbnail == '':
+        if self.thumbnail is None or self.thumbnail == '':
             self.thumbnail = get_image(self.content)
         if self.excerpt == '':
             self.excerpt = strip_tags(get_excerpt(self.content))
@@ -97,4 +95,3 @@ class Post(ModerationBaseModel, HitCountMixin):
     def get_conttent_type(self):
         conttent_type = ContentType.objects.get_for_model(self.__class__)
         return conttent_type
-

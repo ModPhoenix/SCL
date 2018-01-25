@@ -2,11 +2,13 @@ from lxml import etree
 from urllib import parse
 import re
 
+
 def get_image(html):
-    '''
+    """
     Находит первое изображение
     и возвращает ссылку на него
-    '''
+    """
+
     tree = etree.HTML(html)
     try:
         url = tree.xpath('//img/parent::a/@href')[0]
@@ -18,8 +20,9 @@ def get_image(html):
     except:
         return None
 
+
 def get_excerpt(html):
-    ''' Возвращает первый параграф '''
+    """ Возвращает первый параграф """
     tree = etree.HTML(html)
     try:
         first_p = tree.xpath('//p[1]//text()')[0]

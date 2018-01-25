@@ -21,7 +21,7 @@ def add_comment(request):
         except:
             parent_id = None
 
-        if parent_id != None:
+        if parent_id is not None:
             parent_qs = Comment.objects.filter(id=parent_id)
             if parent_qs.exists():
                 parent_object = parent_qs.first()

@@ -5,7 +5,6 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
-from django.contrib.sitemaps.views import sitemap
 from django.contrib.sitemaps import views
 
 from django.contrib.flatpages.views import flatpage

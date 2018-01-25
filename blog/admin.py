@@ -5,6 +5,7 @@ from .models import Post
 
 from .forms import PostAdminForm
 
+
 @admin.register(Post)
 class PostAdmin(CompareVersionAdmin):
     form = PostAdminForm

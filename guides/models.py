@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.translation import to_locale, get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation
@@ -22,6 +22,7 @@ from scl.models import (
     ModerationBaseModel,
 )
 
+
 class Guide(ModerationBaseModel, HitCountMixin):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -34,7 +35,8 @@ class Guide(ModerationBaseModel, HitCountMixin):
         _('Слаг'),
         max_length=60,
         unique=False,
-        help_text=_('Слаг — это вариант названия, подходящий для URL. Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.'))
+        help_text=_('Слаг — это вариант названия, подходящий для URL.'
+                    ' Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.'))
     content = models.TextField(
         _('Контент'),)
     excerpt = models.TextField(
@@ -85,7 +87,7 @@ class Guide(ModerationBaseModel, HitCountMixin):
     def save(self, *args, **kwargs):
         if self.slug == '':
             self.slug = slugify(unidecode(self.title)[:60])
-        if self.thumbnail == None or self.thumbnail == '':
+        if self.thumbnail is None or self.thumbnail == '':
             self.thumbnail = get_image(self.content)
         if self.excerpt == '':
             self.excerpt = strip_tags(get_excerpt(self.content))

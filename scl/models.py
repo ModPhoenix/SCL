@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import to_locale, get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
+
 
 class BaseModel(models.Model):
     """
@@ -25,6 +26,7 @@ class BaseModel(models.Model):
         self.updated_at = timezone.now()
         self.save()
 
+
 class ModerationBaseModel(BaseModel):
     """
     Absrtact model
@@ -39,8 +41,8 @@ class ModerationBaseModel(BaseModel):
     moderation = models.BooleanField(
         _(u'Одобрено'),
         default=True,
-        help_text=_('По умолчанию все новые публикации одобреные, что бы это изменить уберите галочку, после чего запись будет считатся отклоненной.'))
+        help_text=_('По умолчанию все новые публикации одобреные, что бы это изменить уберите галочку, '
+                    'после чего запись будет считатся отклоненной.'))
 
     class Meta:
         abstract = True
-

@@ -1,9 +1,5 @@
 from django.views.generic import ListView
-from django.views.decorators.csrf import ensure_csrf_cookie
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
-from django.http import Http404
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
@@ -18,23 +14,26 @@ from .forms import PostForm
 class PostList(ListView):
     context_object_name = 'posts'
     paginate_by = 10
-    queryset = Post.objects.filter(published=True, moderation=True).select_related()
+    queryset = Post.objects.filter(
+        published=True, moderation=True).select_related()
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         context = super(PostList, self).get_context_data(**kwargs)
-        
+
         context['tags'] = Post.tags.most_common()[:10]
         return context
 
 
 def post_detail(request, id, slug):
-    post = get_object_or_404(Post.objects.select_related(), slug=slug, id=id, moderation=True)
+    post = get_object_or_404(
+        Post.objects.select_related(), slug=slug, id=id, moderation=True)
 
     context = {
         'post': post,
     }
     return render(request, 'blog/post_detail.html', context)
+
 
 @login_required
 def create_post(request):
@@ -68,6 +67,7 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'blog/post_create.html', {'form': form})
+
 
 @login_required
 def edit(request, id, slug):

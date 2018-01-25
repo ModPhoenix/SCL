@@ -65,7 +65,7 @@ INSTALLED_APPS = [
 ]
 
 # Add reversion models to admin interface:
-ADD_REVERSION_ADMIN=True
+ADD_REVERSION_ADMIN = True
 
 SITE_ID = 1
 
@@ -116,7 +116,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
-
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
@@ -197,7 +196,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
 # Django Hitcount
 
-HITCOUNT_KEEP_HIT_ACTIVE = { 'days': 1 }
+HITCOUNT_KEEP_HIT_ACTIVE = {'days': 1}
 
 HITCOUNT_HITS_PER_IP_LIMIT = 0
 

@@ -1,7 +1,5 @@
 from django import forms
-
 from dal import autocomplete
-
 from .models import Post
 
 
@@ -15,6 +13,7 @@ class PostForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'class': 'form-control hide'}),
             'published': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
         }
+
 
 class PostAdminForm(autocomplete.FutureModelForm):
     class Meta:

@@ -1,22 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from imagekit.models import ProcessedImageField, ImageSpecField
-from imagekit.processors import ResizeToFit, ResizeToFill
-from django.utils.translation import to_locale, get_language, ugettext_lazy as _
+from imagekit.processors import ResizeToFill
+from django.utils.translation import ugettext_lazy as _
 
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/<id>/<filename>
     return 'avatars/{0}/{1}'.format(instance.id, filename)
 
+
 class User(AbstractUser):
-    ''' 
+    """
     Расширенная модель пользователя
     Добавляет к стандартной поля
     avatar, birthdate, biography,
     location, organization,
     handle
-    '''
+    """
     avatar = ProcessedImageField(
         upload_to=user_directory_path,
         default = 'avatars/1.jpg',

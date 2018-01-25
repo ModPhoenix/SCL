@@ -1,10 +1,10 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.http import Http404
 
 from dal import autocomplete
 
 from taggit.models import Tag, TaggedItem
+
 
 class TaggedList(ListView):
     context_object_name = 'tagged_list'
@@ -12,7 +12,9 @@ class TaggedList(ListView):
     template_name = 'tags/tag_item_list.html'
 
     def get_queryset(self):
-        return TaggedItem.objects.filter(tag__slug=self.kwargs['slug']).prefetch_related('content_object', 'content_object__author').order_by('id').reverse()
+        return TaggedItem.objects.filter(
+            tag__slug=self.kwargs['slug']).prefetch_related(
+            'content_object', 'content_object__author').order_by('id').reverse()
 
     def get_context_data(self, **kwargs):
         context = super(TaggedList, self).get_context_data(**kwargs)

@@ -1,6 +1,6 @@
 from dal import autocomplete
-
 from .models import Guide
+
 
 class GuideAdminForm(autocomplete.FutureModelForm):
     class Meta:

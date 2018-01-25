@@ -1,8 +1,7 @@
 from django.contrib import admin
-
 from .models import Guide
-
 from .forms import GuideAdminForm
+
 
 @admin.register(Guide)
 class CategoryAdmin(admin.ModelAdmin):

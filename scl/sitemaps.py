@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from blog.models import Post
 from guides.models import Guide
-from taggit.models import Tag
+
 
 class PostSitemap(Sitemap):
     changefreq = "daily"
