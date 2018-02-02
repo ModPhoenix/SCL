@@ -11,6 +11,17 @@
       <div class="posts-list">
           {% for post in posts %}
           {% include "blog/post_block.html" %}
+              {% if forloop.counter == 2 or forloop.counter|divisibleby:"10" %}
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout-key="-f9-g+7u-ly+fv"
+                     data-ad-client="ca-pub-3856937532939139"
+                     data-ad-slot="7078583283"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+              {% endif %}
           {% endfor %}
       </div>
       <div class="loading" style="display: none;">
