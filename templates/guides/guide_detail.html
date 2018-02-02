@@ -39,7 +39,16 @@
             <h1>{{ guide.title }}</h1>
           </div>
           <div class="row">
-            <div class="post-detail-content my-gallery ql-editor col-md-8">{{ guide.content|safe }}{% if guide.tags %}<div class="tags">{% for tag in guide.tags.all %}<a href="{% url 'tagged' slug=tag.slug %}">#{{ tag.name }}</a> {% endfor %}</div>{% endif %}</div>
+            <div class="post-detail-content my-gallery ql-editor col-md-8">{{ guide.content|safe }}
+              <ins class="adsbygoogle"
+                   style="display:block; text-align:center;"
+                   data-ad-layout="in-article"
+                   data-ad-format="fluid"
+                   data-ad-client="ca-pub-3856937532939139"
+                   data-ad-slot="4998380701"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>{% if guide.tags %}<div class="tags">{% for tag in guide.tags.all %}<a href="{% url 'tagged' slug=tag.slug %}">#{{ tag.name }}</a> {% endfor %}</div>{% endif %}</div>
             <div class="col-md-4 aside">
               <div class="advertising">
                 <!-- 300600 -->
