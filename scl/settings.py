@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'reversion_compare',
     'taggit',
     'compressor',
+    'embed_video',
     'tellme',
 ]
 

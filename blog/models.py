@@ -54,6 +54,10 @@ class Post(ModerationBaseModel, HitCountMixin):
         _('Миниатюра'),
         blank=True,
         null=True)
+    iframe = models.TextField(
+        _('iframe'),
+        blank=True,
+        default='')
     big_thumbnail = models.BooleanField(
         _('Большая миниатюра'),
         default=False,

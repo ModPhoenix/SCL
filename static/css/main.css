@@ -656,6 +656,10 @@ article .post-author-img {
   height: 100px;
 }
 
+.post-embed {
+  height: 350px;
+}
+
 .wrapper-post-detail #i-eye {
   top: 3px;
   position: relative;
