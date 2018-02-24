@@ -54,8 +54,8 @@ class Post(ModerationBaseModel, HitCountMixin):
         _('Миниатюра'),
         blank=True,
         null=True)
-    iframe = models.TextField(
-        _('iframe'),
+    video_link = models.TextField(
+        _('Video from YpuTube or Vimeo'),
         blank=True,
         default='')
     big_thumbnail = models.BooleanField(
@@ -65,13 +65,11 @@ class Post(ModerationBaseModel, HitCountMixin):
     thumbnail_big = ImageSpecField(
         source='thumbnail',
         processors=[ResizeToFit(width=620)],
-        format='JPEG',
-        options={'quality': 95})
+        format='JPEG')
     thumbnail_small = ImageSpecField(
         source='thumbnail',
         processors=[ResizeToFill(100, 100)],
-        format='JPEG',
-        options={'quality': 95})
+        format='JPEG')
 
     tags = TaggableManager(blank=True)
 

@@ -3,7 +3,7 @@
 {% load cache %}
 <article class="post infinite-item">
   <div class="post-content clearfix">
-    {% if post.thumbnail and not post.big_thumbnail and not post.iframe %}
+    {% if post.thumbnail and not post.big_thumbnail and not post.video_link %}
     <div class="post-thumbnail-small">
       <img class="img-fluid" src="{{ post.thumbnail_small.url }}">
     </div>
@@ -11,15 +11,15 @@
     <a href="{{ post.get_absolute_url }}" class="post-link"><h3 class="post-title">{{ post.title }}</h3></a>
     <div class="post-excerpt">{{ post.excerpt|safe }}</div>
   </div>
-  {% if post.thumbnail and post.big_thumbnail and not post.iframe_ %}
+  {% if post.thumbnail and post.big_thumbnail and not post.video_link %}
   <div class="post-thumbnail-big">
     <img class="img-fluid" src="{{ post.thumbnail_big.url }}">
   </div>
   {% endif %}
-  {% if post.iframe %}
+  {% if post.video_link %}
   <div class="post-embed">
-    {% cache 600 iframe_cache post.iframe %}
-      {% video post.iframe '100% x 100%' is_secure=True %}
+    {% cache 600 iframe_cache post.video_link %}
+      {% video post.video_link '100% x 100%' is_secure=True %}
     {% endcache %}
   </div>
   {% endif %}
