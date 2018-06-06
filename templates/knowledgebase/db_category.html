@@ -21,7 +21,7 @@
             <tbody>
               {% for ship in ships %}
                 <tr>
-                  <td><a href="{% url 'database:ship_detail' slug=ship.slug  %}">{{ ship.name }}</a></th>
+                  <td><a href="{% url 'knowledgebase:ship_detail' slug=ship.slug  %}">{{ ship.name }}</a></th>
                   <td>{{ ship.manufacturer }}</td>
                   <td>{{ ship.focus }}</td>
                   <td>{{ ship.prod_state }}</td>

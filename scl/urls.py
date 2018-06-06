@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('profiles.urls', namespace='profiles')),
-    # url(r'^db/', include('database.urls', namespace='database')),
+    url(r'^db/', include('knowledgebase.urls', namespace='knowledgebase')),
     url(r'^', include('attachments.urls', namespace='attachments')),
     url(r'^tag/(?P<slug>[\w-]+)/$', TaggedList.as_view(), name='tagged'),
     url(r'^tag/(?P<slug>[\w-]+)/page/(?P<page>\d+)/$', TaggedList.as_view(), name='tagged_pagination'),

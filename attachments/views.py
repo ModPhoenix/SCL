@@ -19,7 +19,7 @@ class ImageCrop(ImageSpec):
 def image_upload(request):
     if request.FILES:
         the_file = request.FILES['image']
-        allowed_types = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/gif']
+        allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
         if not the_file.content_type in allowed_types:
             return HttpResponse(json.dumps({'error': _('You can only upload images.')}),
                                 content_type="application/json")

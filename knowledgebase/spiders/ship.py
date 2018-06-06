@@ -3,7 +3,7 @@ import scrapy
 from scrapy.contrib.loader import XPathItemLoader
 from scrapy.contrib.loader.processor import MapCompose, TakeFirst
 
-from database.models import ShipItem
+from knowledgebase.models import ShipItem
 
 class MyItemLoader(XPathItemLoader):
     default_item_class = ShipItem
@@ -15,7 +15,7 @@ class ShipSpider(scrapy.Spider):
 
     custom_settings = {
         'ITEM_PIPELINES': {
-            'database.pipelines.ShipPipeline': 300,
+            'knowledgebase.pipelines.ShipPipeline': 300,
         }
     }
 

@@ -1,21 +1,21 @@
 from django.db import models
-from mptt.models import MPTTModel, TreeForeignKey
-from django.utils.translation import to_locale, get_language, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 import scrapy
 from scrapy_djangoitem import DjangoItem
 
-from scl.models import (
-    BaseModel,
-    ModerationBaseModel,
-)
+from scl.models import BaseModel
 
 
-class KnowledgeBaseAbstractModel(BaseModel):
+class CommonPage(BaseModel):
     title = models.CharField(
         _("Заголовок"),
         max_length=250)
     slug = models.SlugField(
-        _("Слаг"))
+        _("Слаг"),
+        max_length=250)
+    content = models.TextField(
+        _('Контент'),
+        blank=True)
     description = models.TextField(
         _("Описание"),
         blank=True)
@@ -24,38 +24,16 @@ class KnowledgeBaseAbstractModel(BaseModel):
         default=True,
         help_text=_("Если стоит галочка запись будет доступна на сайте."))
 
+    class Meta:
+        abstract = True
 
-class Category(MPTTModel, BaseModel):
-    """
-    Категория в Базе Знаний, расширена
-    MPTTModel и BaseModel, содержит
-    поля title, slug, description,
-    keywords, parent
-    """
-    title = models.CharField(
-        _("Заголовок"),
-        max_length=250)
-    slug = models.SlugField(
-        _("Слаг"))
-    description = models.TextField(
-        _("Описание"),
-        blank=True)
-    parent = TreeForeignKey(
-        'self',
-        null=True,
-        blank=True,
-        related_name='children',
-        verbose_name=_('Родитель'))
+
+class Page(CommonPage):
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        verbose_name = _('Категория')
-        verbose_name_plural = _('Категории')
-
-    class MPTTMeta:
-        order_insertion_by = ['title']
 
 
 class Funding(models.Model):
@@ -63,20 +41,17 @@ class Funding(models.Model):
     fans = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.funds
+
 
 class FundingItem(DjangoItem):
     django_model = Funding
     success = scrapy.Field(default=False)
 
 
-class Company(KnowledgeBaseAbstractModel):
+class Company(CommonPage):
     name = models.CharField(max_length=255)
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        verbose_name=_("Катерогия"))
     content = models.TextField(blank=True)
     industry = models.CharField(max_length=255, blank=True)
     race = models.CharField(max_length=255, blank=True)
@@ -98,14 +73,8 @@ class CompanyItem(DjangoItem):
     success = scrapy.Field(default=False)
 
 
-class Ship(KnowledgeBaseAbstractModel):
+class Ship(CommonPage):
     name = models.CharField(max_length=255)
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        verbose_name=_("Катерогия"))
     content = models.TextField(blank=True)
     manufacturer = models.ForeignKey(
         Company,

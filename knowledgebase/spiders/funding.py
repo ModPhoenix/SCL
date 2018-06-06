@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
-from database.models import FundingItem
+from knowledgebase.models import FundingItem
 
 
 class FundingSpider(scrapy.Spider):

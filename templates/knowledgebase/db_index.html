@@ -13,14 +13,14 @@
             <div class="col-md-3">
                 <div class="category ships">
                   <div class="category-title">
-                    <h2><a href="{% url 'database:ships_category' %}">Корабли</a></h2>
+                    <h2><a href="{% url 'knowledgebase:ships_category' %}">Корабли</a></h2>
                   </div>
                   <div class="category-container">
                     <div class="title">Последние изменения</div>
                     <div class="content">
                       {% for ship in ships %}
                         <div class="content-item">
-                          <a href="{% url 'database:ship_detail' slug=ship.slug  %}">{{ ship }}</a>
+                          <a href="{% url 'knowledgebase:ship_detail' slug=ship.slug  %}">{{ ship }}</a>
                         </div>
                       {% endfor %}
                     </div>
@@ -35,6 +35,14 @@
                 </div>
             </div>
           </div>
+        <div class="row">
+            <div class="col-6">
+                <h2>Страницы</h2>
+                {% for page in pages %}
+                    <a href="{% url 'knowledgebase:page_detail' slug=page.slug %}">{{ page.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
         </div>
 
           

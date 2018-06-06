@@ -20,10 +20,10 @@ django.setup()
 
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE", "scl.settings")
 
-BOT_NAME = 'database'
+BOT_NAME = 'Star Citizen Life'
 
-SPIDER_MODULES = ['database.spiders']
-NEWSPIDER_MODULE = 'database.spiders'
+SPIDER_MODULES = ['knowledgebase.spiders']
+NEWSPIDER_MODULE = 'knowledgebase.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

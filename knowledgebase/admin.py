@@ -3,11 +3,17 @@ from mptt.admin import MPTTModelAdmin
 from reversion.admin import VersionAdmin
 from reversion_compare.admin import CompareVersionAdmin
 from .models import (
-    Category,
+    Page,
     Funding,
     Ship,
     Company,
 )
+
+
+@admin.register(Page)
+class ShipAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'created_at', 'updated_at', 'published')
+    list_display_links = ('title',)
 
 
 @admin.register(Ship)
@@ -15,15 +21,11 @@ class ShipAdmin(CompareVersionAdmin):
     list_display = ('id', 'name', 'manufacturer', 'max_crew',)
     list_display_links = ('name',)
 
-# admin.site.register(Ship, ShipAdmin)
-
 
 @admin.register(Company)
 class CompanyAdmin(CompareVersionAdmin):
     list_display = ('id', 'name',)
     list_display_links = ('name',)
-
-# admin.site.register(Company, CompanyAdmin)
 
 
 class FundingAdmin(admin.ModelAdmin):

@@ -14,7 +14,7 @@
         <a class="nav-link" href="{% url 'guides:index' %}">Гайды <span class="badge badge-info">Новое</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">База Знаний <span class="badge badge-info">Скоро</span></a>
+        <a class="nav-link" href="{% url 'knowledgebase:index' %}">База Знаний <span class="badge badge-info">Скоро</span></a>
       </li>
       {% if user.is_staff %}
       <li class="nav-item">

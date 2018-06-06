@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load popular_posts %}
+{% load popular_guides %}
+{% load comment_extras %}
+
+{% block head_title %}{{ page.title }}{% endblock %}
+{% block description %}{{ page.description }}{% endblock description %}
+
+{% block bodyclass %}class="page-detail"{% endblock bodyclass %}
+
+{% block content %}
+
+<div class="container main">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrapper-post-detail">
+        <div class="post-info">
+          <div class="date">{{ page.created_at }}</div>
+
+          {% if user.is_authenticated %}
+            {% if user == post.author or user.is_active and user.is_superuser %}
+
+            <div class="edit"><a href="{% url 'knowledgebase:page_edit' slug=page.slug %}">Редактировать</a></div>
+
+            {% endif %}
+          {% endif %}
+
+        </div>
+        <article class="post-detail">
+          <div class="post-detail-title">
+            <h1>{{ page.title }}</h1>
+          </div>
+
+          <div class="row">
+          <div class="post-detail-content my-gallery ql-editor col-md-8">{{ page.content|safe }}</div>
+          <div class="col-md-4 aside">
+            <div class="advertising">
+              <!-- 300600 -->
+              <ins class="adsbygoogle"
+                    style="display:inline-block;width:300px;height:600px"
+                    data-ad-client="ca-pub-3856937532939139"
+                    data-ad-slot="4740491338"></ins>
+              <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+            {% get_popular_posts %}
+            {% get_popular_guides %}
+          </div>
+          </div>
+
+        </article>
+      </div>
+    </div>
+    <div class="col-md-12 comments-wrap">
+      <div class="mttp-comments">
+          {% get_comments page page.id user %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
