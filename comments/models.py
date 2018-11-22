@@ -48,7 +48,8 @@ class Comment(CommentAbstractModel):
         null=True,
         blank=True,
         related_name=_('children'),
-        db_index=True)
+        db_index=True,
+        on_delete=models.CASCADE)
     is_public = models.BooleanField(
         _('Публичный'),
         default=True,
